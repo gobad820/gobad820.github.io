@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en-us"
+  dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="https://gobad820.github.io//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://gobad820.github.io//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://gobad820.github.io//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://gobad820.github.io//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://gobad820.github.io//apple-touch-icon.png">
+
+<meta name="description" content="회원 정보 관리 API 생성해보기"/>
+
+<title>
+    
+    HTTP API | Pelikan&#39;s Glide
+    
+</title>
+
+<link rel="canonical" href="https://gobad820.github.io/posts/http_api/"/>
+
+<meta property="og:url" content="https://gobad820.github.io/posts/http_api/">
+  <meta property="og:site_name" content="Pelikan&#39;s Glide">
+  <meta property="og:title" content="HTTP API">
+  <meta property="og:description" content="회원 정보 관리 API 생성해보기">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-01-12T09:46:05+09:00">
+    <meta property="article:modified_time" content="2025-01-12T09:46:05+09:00">
+    <meta property="article:tag" content="HTTP">
+    <meta property="article:tag" content="API">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.97e32d65fe11c0cd3781001e6be3bf3516248c01a93ff6256f1e75541632eddd.css" media="all">
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="https://gobad820.github.io/">Pelikan&#39;s Glide</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /home
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /posts
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /about
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+<div class="breadcrumbs">
+    
+    <a href="/">Home</a>
+    <span class="breadcrumbs-separator"> > </span>
+    
+    <a href="/posts/">Posts</a>
+    <span class="breadcrumbs-separator"> > </span>
+    
+    <a class="breadcrumbs-current" href="/posts/http_api/">HTTP API</a>
+</div>
+
+
+
+<div  class="autonumber" >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">HTTP API</h1>
+    
+    <p class="single-summary">HTTP API를 만들어보자</p>
+    
+
+    
+
+    <p class="single-readtime">
+      
+      
+      
+      <time datetime="2025-01-12T09:46:05&#43;09:00">January 12, 2025</time>
+      
+
+      
+      &nbsp; · &nbsp;
+      5 min read
+      
+    </p>
+
+  </div>
+
+  
+
+  
+  
+
+  <div class="single-tags">
+    
+    <span>
+      <a href="https://gobad820.github.io/tags/http/">#HTTP</a>
+    </span>
+    
+    
+    <span>
+      <a href="https://gobad820.github.io/tags/api/">#API</a>
+    </span>
+    
+    
+  </div>
+
+  
+  
+
+  
+
+  
+  <aside class="toc">
+    <p><strong>Table of contents</strong></p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#회원-정보-관리-api-만들어보기">회원 정보 관리 API 만들어보기</a></li>
+    <li><a href="#좋은-uri-설계">좋은 URI 설계</a></li>
+    <li><a href="#http-메서드">HTTP 메서드</a>
+      <ul>
+        <li><a href="#get">GET</a></li>
+        <li><a href="#post">POST</a></li>
+        <li><a href="#put">PUT</a></li>
+        <li><a href="#patch">PATCH</a></li>
+        <li><a href="#delete">DELETE</a></li>
+      </ul>
+    </li>
+    <li><a href="#http-메서드의-속성">HTTP 메서드의 속성</a>
+      <ul>
+        <li><a href="#안전safe">안전(Safe)</a></li>
+        <li><a href="#멱등idempotent">멱등(Idempotent)</a></li>
+        <li><a href="#cachable">Cachable</a></li>
+      </ul>
+    </li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+
+  
+
+  <div class="single-content">
+    <h2 class="heading" id="회원-정보-관리-api-만들어보기">
+  회원 정보 관리 API 만들어보기
+  <a href="#%ed%9a%8c%ec%9b%90-%ec%a0%95%eb%b3%b4-%ea%b4%80%eb%a6%ac-api-%eb%a7%8c%eb%93%a4%ec%96%b4%eb%b3%b4%ea%b8%b0">#</a>
+</h2>
+<p><figure><img src="/images/ashwini-chaudhary-monty-36kuP8NEZz0-unsplash.jpg"
+    alt="405 Error Message Images"><figcaption>
+      <p>Photo by Ashwini Chaudhary(Monty) on Unsplash</p>
+    </figcaption>
+</figure>
+
+<strong>요구 사항</strong></p>
+<ul>
+<li>회원 목록 조회 /read-member-list</li>
+<li>회원 조회 /read-member-by-id</li>
+<li>회원 등록 /create-member</li>
+<li>회원 수정 /update-member</li>
+<li>회원 삭제 /delete-member</li>
+</ul>
+<p>각 기능마다 API URL을 위와 같이 설계하면 그럴듯하게 완성은 된다.
+하지만 정말 좋은 URI인가?</p>
+<h2 class="heading" id="좋은-uri-설계">
+  좋은 URI 설계
+  <a href="#%ec%a2%8b%ec%9d%80-uri-%ec%84%a4%ea%b3%84">#</a>
+</h2>
+<p>URI(Uniform Resource Identifier) 설계에서 가장 중요한 것은 <strong>리소스 식별</strong>이다.
+이를 위해 리소스의 의미를 URI에 담아야 한다. 그러면 리소스는 무엇인가? <strong>리소스</strong>는 회원을 등록하고 수정하고 조회하는 것이 아니다.
+<strong>회원이라는 개념 자체가 바로 리소스이다</strong>. 그러므로 등록, 수정, 조회의 개념은 모두 배제하고 회원이라는 리소스만 식별할 수 있으면 된다.
+따라서 회원 리소스를 URI에 매핑시켜야 한다.</p>
+<blockquote>
+<p>&lsquo;미네랄을 캐라&rsquo;에서 리소스는 &lsquo;캐라&rsquo;가 아니라 &lsquo;미네랄&rsquo;이다!</p>
+</blockquote>
+<p>다시 더 알맞은 API URI 설계를 해보면 아래와 같이 할 수 있다.</p>
+<ul>
+<li><strong>회원</strong> 목록 조회 /members</li>
+<li><strong>회원</strong> 조회 /members/{id}</li>
+<li><strong>회원</strong> 등록 /members/{id}</li>
+<li><strong>회원</strong> 수정 /members/{id}</li>
+<li><strong>회원</strong> 삭제 /memebers/{id}</li>
+</ul>
+<blockquote>
+<p>계층 구조상 상위를 컬렉션으로 볼 수 있으므로 복수형으로 사용하는 것이 권장된다</p>
+</blockquote>
+<p>이렇게 URI 매핑을 하면 조회, 등록, 수정, 삭제 등이 모두 똑같이 매핑되어 어떻게 구분할 수 있을지가 궁금해진다.
+<strong>리소스와 행위를 분리하여 URI 설계</strong>를 하였기 때문에 URI에는 리소스만 식별되게 하고 행위는 <strong>HTTP 메서드</strong>를 통해 구분하게 된다.</p>
+<h2 class="heading" id="http-메서드">
+  HTTP 메서드
+  <a href="#http-%eb%a9%94%ec%84%9c%eb%93%9c">#</a>
+</h2>
+<p>HTTP 주요 메서드는 아래와 같다.</p>
+<ul>
+<li>GET: 리소스 조회</li>
+<li>POST: 요청 데이터 처리, 주로 등록</li>
+<li>PUT: 리소스 대체, 해당 리소스 없으면 생성</li>
+<li>PATCH: 리소스 부분 변경(특정 필드만 변경)</li>
+<li>DELETE: 리소스 삭제</li>
+<li>HEAD: GET과 동일, 메세지 부분을 제외하고 Status line과 header만 반환</li>
+<li>OPTIONS: 대상 리소스에 대한 통신 가능 옵션을 설명</li>
+<li>CONNECT: 대상 자원으로 식별되는 서버에 대한 터널을 설정</li>
+<li>TRACE: 대상 리소스에 대한 경로를 따라 메시지 루프백 테스트를 수행</li>
+</ul>
+<h3 class="heading" id="get">
+  GET
+  <a href="#get">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">GET</span> <span style="color:#666;font-weight:bold;font-style:italic">/serach?q=hello&amp;hl=ko</span> <span style="font-weight:bold;text-decoration:underline">HTTP</span>/1.1
+</span></span><span style="display:flex;"><span>Host: www.google.com
+</span></span></code></pre></div><p>GET 메소드는 말 그대로 리소스를 조회하는 메서드이다. 서버에 전달하고 싶은 데이터는 쿼리를 통해서 전달한다.
+물론 메시지 바디를 통해 데이터를 전달할 수 있지만 지원하지 않는 서버가 많아서 권장되지 않는다.
+따라서 데이터를 전달할 때에는 query parameter와 query string을 이용하는 것이 좋다.</p>
+<pre class="mermaid">graph LR
+    Client[Client] ---->|GET| Server[Server]
+</pre>
+<p>클라이언트가 아래 HTTP Request를 서버로 전송한다.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">GET</span> <span style="color:#666;font-weight:bold;font-style:italic">/members/100</span> <span style="font-weight:bold;text-decoration:underline">HTTP</span>/1.1
+</span></span><span style="display:flex;"><span>Host: www.google.com
+</span></span></code></pre></div><p>서버가 요청 메시지를 받으면 다시 서버는 클라이언트에게 아래의 예시와 같은 응답 메시지를 전송한다.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">HTTP</span>/1.1 200 OK
+</span></span><span style="display:flex;"><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span>Content-Length: 32
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    &#34;username&#34;: <span style="color:#666;font-style:italic">&#34;kim&#34;</span>,
+</span></span><span style="display:flex;"><span>    &#34;age&#34;: 25
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 class="heading" id="post">
+  POST
+  <a href="#post">#</a>
+</h3>
+<p>POST 메서드는 요청 데이터를 처리하며 메시지 바디를 통해 서버로 요청 데이터를 전달한다.
+서버는 요청 데이터를 처리하며 메시지 바디를 통해 들어온 데이터를 처리하는 모든 기능을 수행한다.
+주로 신규 리소스 등록, 프로세스 처리에 사용된다.</p>
+<p>클라이언트가 아래와 같이 요청 리퀘스트를 서버로 보내게 된다.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">POST</span> <span style="color:#666;font-weight:bold;font-style:italic">/members</span> <span style="font-weight:bold;text-decoration:underline">HTTP</span>/1.1
+</span></span><span style="display:flex;"><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    &#34;username&#34;: <span style="color:#666;font-style:italic">&#34;kim&#34;</span>,
+</span></span><span style="display:flex;"><span>    &#34;age&#34;: 25
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>서버는 신규 유저를 해당 리퀘스트 바디의 내용을 토대로 생성하게 된다.
+그러면 아래와 같이 서버는 다시 클라이언트에게 응답 데이터를 보낸다.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">HTTP</span>/1.1 201 Created
+</span></span><span style="display:flex;"><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span>Content-Length: 32
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    &#34;username&#34;: <span style="color:#666;font-style:italic">&#34;kim&#34;</span>,
+</span></span><span style="display:flex;"><span>    &#34;age&#34;: 25
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>POST 메서드의 의미</strong></p>
+<ul>
+<li>HTML 양식에 입력된 필드와 같은 데이터 블록을 데이터 처리 프로세스에 제공</li>
+<li>게시판, 뉴스 그룹, 메일링 리스트, 블로그 또는 유사한 기수 그룹에 메시지 게시</li>
+<li>서버가 아직 식별하지 않은 새 리소스 생성</li>
+<li>기존 자원에 데이터 추가</li>
+</ul>
+<blockquote>
+<p>o  Providing a block of data, such as the fields entered into an HTML
+form, to a data-handling process;</p>
+<p>o  Posting a message to a bulletin board, newsgroup, mailing list,
+blog, or similar group of articles;</p>
+<p>o  Creating a new resource that has yet to be identified by the
+origin server; and</p>
+<p>o  Appending data to a resource&rsquo;s existing representation(s).<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+</blockquote>
+<p><strong>리소스 URI에 POST 요청이 어떻게 동작할지와 리소스를 따로 정해주어야 한다.</strong></p>
+<p>POST의 동작 예시 정리</p>
+<ul>
+<li>등록(새 리소스 생성)</li>
+<li>결제완료 $\rightarrow$ 배달 시작 $\rightarrow$ 배달 완료 처럼 단순한 값 변경을 넘어 프로세스의 상태가 변겨오디는 경우
+<ul>
+<li>POST의 결과로 새로운 리소스가 생성되지 않을 수도 있음
+<ul>
+<li>POST /orders/(orderId)/start-delievery (컨트롤 URI)</li>
+</ul>
+</li>
+<li>하지만 이런 경우 이상적 URI 설계는 아니지 않는가?
+<ul>
+<li>물론 리소스로 최대한 URI를 설계하되 실무에서 어쩔 수 없이 행위를 가지고도 URI를 설계하게 될 수도 있다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>다른 메서드로 처리하기 애매한 경우, 즉 조회용으로 Message Body를 사용하고자 할 때
+<ul>
+<li>JSON으로 조회 데이터를 넘겨야 하는데, GET 메서드를 사용하기 어려운 경우</li>
+<li>애매하면 POST 메서드 이용</li>
+<li>GET의 경우 Message Body는 서버단에서 허용하지 않는 경우가 많기 때문</li>
+<li>그러면 다 POST로 하면 되는거 아닌가?
+<ul>
+<li>Cache와 관련한 기능에서 GET이 조회에서는 더 좋은 지원을 받는다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 class="heading" id="put">
+  PUT
+  <a href="#put">#</a>
+</h3>
+<p>PUT 메서드는 리소스를 대체한다. &lsquo;대체&rsquo;는 기존 파일이 있으면 대체되고 없으면 생성됨을 의미한다.(Copy &amp; Paste처럼 생각하면 편하다.)
+POST 메소드와 다르게 PUT 메소드는 클라이언트가 리소스를 식별한다. 즉 클라이언트가 리소스 위치를 알고 URI를 지정한다.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">PUT</span> <span style="color:#666;font-weight:bold;font-style:italic">/members/100</span> <span style="font-weight:bold;text-decoration:underline">HTTP</span>/1.1
+</span></span><span style="display:flex;"><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    &#34;username&#34;: <span style="color:#666;font-style:italic">&#34;lee&#34;</span>,
+</span></span><span style="display:flex;"><span>    &#34;age&#34;: 50
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>위와 같이 PUT Request를 전송할 때 /members/100에 기존의 리소스가 존재한다면 &ldquo;username&quot;과 &ldquo;age&quot;가 변경되겠지만
+아예 없었다면 새로이 생성된다. 만약 아래와 같이 나이만 변경하는 PUT Request를 전송한다면 &ldquo;username&rdquo; 필드가 삭제된다. 즉 기존 리소스는 삭제한 뒤 덮어쓰여진다.
+따라서 PUT 메서드는 기존의 리소스를 수정한다기 보다는 아예 교체해버린다.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">PUT</span> <span style="color:#666;font-weight:bold;font-style:italic">/members/100</span> <span style="font-weight:bold;text-decoration:underline">HTTP</span>/1.1
+</span></span><span style="display:flex;"><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    &#34;age&#34;: 50
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 class="heading" id="patch">
+  PATCH
+  <a href="#patch">#</a>
+</h3>
+<p>리소스의 부분 변경을 위해서는 PATCH를 사용할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">PATCH</span> <span style="color:#666;font-weight:bold;font-style:italic">/members/100</span> <span style="font-weight:bold;text-decoration:underline">HTTP</span>/1.1
+</span></span><span style="display:flex;"><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    &#34;age&#34;: 50
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>기존에 존재하는 리소스에서 &ldquo;age&quot;필드만 50으로 변경되게 할 수 있다.</p>
+<p>만약 PATCH가 정상 작동하지 않고 일부 수정만 하고 싶다면 POST를 사용하면 된다.</p>
+<h3 class="heading" id="delete">
+  DELETE
+  <a href="#delete">#</a>
+</h3>
+<p>리소스의 완전 제거를 위하여 DELETE 메서드를 사용할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">DELETE</span> <span style="color:#666;font-weight:bold;font-style:italic">/members/100</span> <span style="font-weight:bold;text-decoration:underline">HTTP</span>/1.1
+</span></span><span style="display:flex;"><span>Host: localhost:8080
+</span></span></code></pre></div><p>위와 같이 Request를 전송하면 서버측에서는 아래와 같이 응답 메시지를 전송할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-http" data-lang="http"><span style="display:flex;"><span><span style="">{
+</span></span></span><span style="display:flex;"><span><span style="">    &#34;username&#34;: &#34;kim&#34;,
+</span></span></span><span style="display:flex;"><span><span style="">    &#34;age&#34;: 25
+</span></span></span><span style="display:flex;"><span><span style="">}
+</span></span></span></code></pre></div><h2 class="heading" id="http-메서드의-속성">
+  HTTP 메서드의 속성
+  <a href="#http-%eb%a9%94%ec%84%9c%eb%93%9c%ec%9d%98-%ec%86%8d%ec%84%b1">#</a>
+</h2>
+<h3 class="heading" id="안전safe">
+  안전(Safe)
+  <a href="#%ec%95%88%ec%a0%84safe">#</a>
+</h3>
+<p><strong>호출해도 리소스를 변경하지 않음</strong>을 의미한다. GET 메서드는 안전하다고 할 수 있다.
+하지만 POST, PUT, PATCH, DELETE는 안전하지 않다고 할 수 있다.</p>
+<h3 class="heading" id="멱등idempotent">
+  멱등(Idempotent)
+  <a href="#%eb%a9%b1%eb%93%b1idempotent">#</a>
+</h3>
+<p><strong>호출의 횟수와 상관없이 결과가 똑같음</strong>을 의미한다.
+$$
+f(f(f(\cdots f(x)))) = f(x)
+$$
+GET, PUT, DELETE의 경우는 여러번 해도 같은 결과가 조회, 대체되며 삭제는 여러번 요청해도 첫번째 호출에서 삭제된 뒤 똑같이 결과는 삭제되어 있으므로 멱등하다.
+POST의 경우 결제, 배송 등이 여러본 호출되면 결과가 다르게 나온다.</p>
+<p>멱등의 개념이 왜 필요한가?</p>
+<ul>
+<li>자동 복구 매커니즘
+<ul>
+<li>서버가 응답이 없으면 동일 요청을 여러번 해서 복구할 수 있으므로</li>
+</ul>
+</li>
+</ul>
+<p>멱등의 경우 리소스가 변경되는 것은 고려하지 않는다.
+예를 들어 GET 후 PUT을 통해 대체한 뒤 다시 GET으로 조회한다면 처음의 GET과 마지막의 GET은 다른 값을 리턴할 것이다. 하지만 멱등은 외부 요인으로 변경되는 것은 고려하지 않기 때문에 여전히 멱등하다고 할 수 있다.</p>
+<h3 class="heading" id="cachable">
+  Cachable
+  <a href="#cachable">#</a>
+</h3>
+<p>응답 결과 리소스를 캐시해서 사용해도 되는가?</p>
+<p>GET, HEAD, POST, PATCH 메서드는 스펙상 캐시가 가능하나 실제로는 GET, HEAD 정도만 캐시로 사용한다.
+POST, PATCH는 본문 내용까지 캐시 키로 고려해야 하는데 구현이 쉽지 않다.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+<h2 class="heading" id="references">
+  References
+  <a href="#references">#</a>
+</h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.3">https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.3</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://www.inflearn.com/course/http-">https://www.inflearn.com/course/http-</a>웹-네트워크/dashboard&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+    
+  </div>
+
+  
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/http/">
+                        HTTP
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+    </footer>
+
+    
+    <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+<script defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+
+<script defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body);"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ]
+    });
+  });
+</script>
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>

@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Pelikan&#39;s Glide</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Jan 2025 00:17:11 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jan 2025 09:46:05 +0900</lastBuildDate>
     <atom:link href="https://gobad820.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTTP API</title>
+      <link>https://gobad820.github.io/posts/http_api/</link>
+      <pubDate>Sun, 12 Jan 2025 09:46:05 +0900</pubDate>
+      <guid>https://gobad820.github.io/posts/http_api/</guid>
+      <description>HTTP API를 만들어보자</description>
+    </item>
     <item>
       <title>HTTP</title>
       <link>https://gobad820.github.io/posts/http/</link>
