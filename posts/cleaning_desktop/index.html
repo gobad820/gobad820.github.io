@@ -185,6 +185,7 @@
       </ul>
     </li>
     <li><a href="#code-refactoring">Code Refactoring</a></li>
+    <li><a href="#references">Reference</a></li>
   </ul>
 </nav>
   </aside>
@@ -197,13 +198,54 @@
   Problem statement
   <a href="#problem-statement">#</a>
 </h2>
-<p>컴퓨터 바탕화면은 각 칸이 정사각형인 격자판입니다. 이때 컴퓨터 바탕화면의 상태를 나타낸 문자열 배열 wallpaper가 주어집니다. 파일들은 바탕화면의 격자칸에 위치하고 바탕화면의 격자점들은 바탕화면의 가장 왼쪽 위를 (0, 0)으로 시작해 (세로 좌표, 가로 좌표)로 표현합니다. 빈칸은 &ldquo;.&rdquo;, 파일이 있는 칸은 &ldquo;#&rdquo; 의 값을 가집니다. 드래그를 하면 파일들을 선택할 수 있고, 선택된 파일들을 삭제할 수 있습니다. 머쓱이는 최소한의 이동거리를 갖는 한 번의 드래그로 모든 파일을 선택해서 한 번에 지우려고 하며 드래그로 파일들을 선택하는 방법은 다음과 같습니다.</p>
+<ol>
+<li>
+<p>문제 개요<br>
+머쓱이는 컴퓨터 바탕화면의 파일들을 한 번의 드래그로 모두 선택해 삭제하려고 합니다. 최소한의 이동거리로 드래그를 설정하는 방법을 구현합니다.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+</li>
+<li>
+<p>바탕화면 설명</p>
 <ul>
-<li>드래그는 바탕화면의 격자점 S(lux, luy)를 마우스 왼쪽 버튼으로 클릭한 상태로 격자점 E(rdx, rdy)로 이동한 뒤 마우스 왼쪽 버튼을 떼는 행동입니다. 이때, &ldquo;점 S에서 점 E로 드래그한다&quot;고 표현하고 점 S와 점 E를 각각 드래그의 시작점, 끝점이라고 표현합니다.</li>
-<li>점 S(lux, luy)에서 점 E(rdx, rdy)로 드래그를 할 때, &ldquo;드래그 한 거리&quot;는 |rdx - lux| + |rdy - luy|로 정의합니다.</li>
-<li>점 S에서 점 E로 드래그를 하면 바탕화면에서 두 격자점을 각각 왼쪽 위, 오른쪽 아래로 하는 직사각형 내부에 있는 모든 파일이 선택됩니다.</li>
+<li>컴퓨터 바탕화면은 <strong>격자판</strong> 형태로 구성됩니다.</li>
+<li>각 칸은 다음과 같은 값으로 표시됩니다:
+<ul>
+<li>빈칸: <code>&quot;.&quot;</code></li>
+<li>파일이 있는 칸: <code>&quot;#&quot;</code></li>
 </ul>
-<p>머쓱이의 컴퓨터 바탕화면의 상태를 나타내는 문자열 배열 <code>wallpaper</code>가 매개변수로 주어질 때 바탕화면의 파일들을 한 번에 삭제하기 위해 최소한의 이동거리를 갖는 드래그의 시작점과 끝점을 담은 정수 배열을 return하는 solution 함수를 작성해 주세요. 드래그의 시작점이 (lux, luy), 끝점이 (rdx, rdy)라면 정수 배열 [lux, luy, rdx, rdy]를 return하면 됩니다.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+</li>
+<li><strong>격자 좌표</strong>는 <code>(세로, 가로)</code> 형식으로 표현하며, <code>(0, 0)</code>이 바탕화면의 가장 왼쪽 위에 위치합니다.</li>
+</ul>
+</li>
+<li>
+<p>드래그 규칙</p>
+<ul>
+<li>드래그는 시작점 <code>S(lux, luy)</code>에서 끝점 <code>E(rdx, rdy)</code>까지 이동합니다.</li>
+<li>드래그 거리:<br>
+[
+|rdx - lux| + |rdy - luy|
+]</li>
+<li>드래그 시, 시작점과 끝점이 각각 <strong>직사각형의 왼쪽 위</strong>와 <strong>오른쪽 아래</strong>를 형성하며, 이 내부의 모든 파일이 선택됩니다.</li>
+</ul>
+</li>
+<li>
+<p>입력</p>
+<ul>
+<li><strong><code>wallpaper</code></strong>: 문자열 배열로, 바탕화면 상태를 나타냅니다.</li>
+</ul>
+</li>
+<li>
+<p>출력</p>
+<ul>
+<li>최소 드래그로 모든 파일을 포함하는 직사각형의 시작점과 끝점을 정수 배열 <code>[lux, luy, rdx, rdy]</code>로 반환합니다.</li>
+</ul>
+</li>
+<li>
+<p>제약 사항</p>
+<ul>
+<li><code>wallpaper</code>는 최소 $1\times 1$에서 최대 $50\times 50$ 크기의 배열입니다.</li>
+</ul>
+</li>
+</ol>
 <h2 class="heading" id="problem-dividing">
   Problem Dividing
   <a href="#problem-dividing">#</a>
@@ -371,6 +413,10 @@ std::vector&lt;int&gt; solution(std::vector&lt;std::string&gt; wallpaper) {
 }
 </code></pre><p>결국 x축과 y축의 값을 계속 업데이트 하되 최저점과 최고점을 나누어 따로 업데이트를 시키면 되는 것이었다.
 2중 for문 한번으로 상하좌우의 최소, 최댓값을 모두 찾아내고 이를 이용하여 드래그의 시작점과 드래그의 끝점을 구할 수 있었다.</p>
+<h2 class="heading" id="references">
+  Reference
+  <a href="#references">#</a>
+</h2>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
