@@ -6,8 +6,15 @@
     <description>Recent content in Home on Pelikan&#39;s Glide</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Jan 2025 09:46:05 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 16 Jan 2025 17:34:05 +0900</lastBuildDate>
     <atom:link href="https://gobad820.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>키패드 누르기</title>
+      <link>https://gobad820.github.io/posts/press_keypad/</link>
+      <pubDate>Thu, 16 Jan 2025 17:34:05 +0900</pubDate>
+      <guid>https://gobad820.github.io/posts/press_keypad/</guid>
+      <description>2020 카카오 인턴쉽 기출문제</description>
+    </item>
     <item>
       <title>HTTP API</title>
       <link>https://gobad820.github.io/posts/http_api/</link>

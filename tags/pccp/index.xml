@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pccp on Pelikan&#39;s Glide</title>
+    <link>http://localhost:1313/tags/pccp/</link>
+    <description>Recent content in Pccp on Pelikan&#39;s Glide</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Jan 2025 01:13:40 +0900</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/pccp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PCCE 10</title>
+      <link>http://localhost:1313/posts/pcce_10/</link>
+      <pubDate>Wed, 15 Jan 2025 01:13:40 +0900</pubDate>
+      <guid>http://localhost:1313/posts/pcce_10/</guid>
+      <description>PCCE 10 데이터 분석</description>
+    </item>
+  </channel>
+</rss>
