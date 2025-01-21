@@ -179,6 +179,28 @@ I am interested in a range of topics, including algorithms, spring boot, JPA, an
     
     
 
+    <p class="line-date">21 Jan 2025 </p>
+
+    <div>
+        <p class="line-title">
+            <a href="/posts/personality_test/">
+                성격 유형 검사하기
+            </a>
+        </p>
+
+        
+        <p class="line-summary"> 2020 KAKAO TECH INTERNSHIP </p>
+        
+    </div>
+</div>
+    
+    <div class="post-line">
+
+    
+    
+    
+    
+
     <p class="line-date">16 Jan 2025 </p>
 
     <div>
@@ -306,6 +328,32 @@ I am interested in a range of topics, including algorithms, spring boot, JPA, an
     
 
 
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+    
+    function getTheme() {
+        return document.documentElement.classList.contains('dark') ? 'dark' : 'default';
+    }
+
+    
+    function initMermaid() {
+        mermaid.initialize({ theme: getTheme() });
+        mermaid.init();
+    }
+
+    
+    const observer = new MutationObserver(() => {
+        initMermaid();
+    });
+
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        initMermaid();
+    });
+</script>
     </footer>
 
     

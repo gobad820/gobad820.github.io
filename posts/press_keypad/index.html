@@ -361,6 +361,7 @@
       </tr>
   </tbody>
 </table>
+<hr>
 <h2 class="heading" id="문제-나누기">
   문제 나누기
   <a href="#%eb%ac%b8%ec%a0%9c-%eb%82%98%eb%88%84%ea%b8%b0">#</a>
@@ -383,7 +384,8 @@ int getPosY(int number);
 int getPosX(int number);
 void readPosition(int number, int&amp; pos_y);
 std::string decideHand(int number, std::pair&lt;int, int&gt;&amp; left, std::pair&lt;int, int&gt;&amp; right, std::string hand);
-</code></pre><h2 class="heading" id="문제-해결하기">
+</code></pre><hr>
+<h2 class="heading" id="문제-해결하기">
   문제 해결하기
   <a href="#%eb%ac%b8%ec%a0%9c-%ed%95%b4%ea%b2%b0%ed%95%98%ea%b8%b0">#</a>
 </h2>
@@ -479,6 +481,7 @@ std::string decideHand(int number, std::pair&lt;int, int&gt;&amp; left, std::pai
     }
 }
 </code></pre><p>문제 나누기에서 계획한대로 구현하기만하면 풀 수 있는 문제였다.</p>
+<hr>
 <h3 class="heading" id="고칠점-생각해보기">
   고칠점 생각해보기
   <a href="#%ea%b3%a0%ec%b9%a0%ec%a0%90-%ec%83%9d%ea%b0%81%ed%95%b4%eb%b3%b4%ea%b8%b0">#</a>
@@ -504,6 +507,7 @@ std::string chooseHandAndupdateThumbPositionWithCentralNumber(int number, std::p
 <li>해당 손의 엄지 위치를 갱신하는 함수</li>
 </ol>
 <p>사실 더 명확하게 거리 계산과 이동해야 할 손을 결정하는 것까지도 나눌 수 있다.</p>
+<hr>
 <h3 class="heading" id="코테에서의-함수-사용에-대한-단상">
   코테에서의 함수 사용에 대한 단상
   <a href="#%ec%bd%94%ed%85%8c%ec%97%90%ec%84%9c%ec%9d%98-%ed%95%a8%ec%88%98-%ec%82%ac%ec%9a%a9%ec%97%90-%eb%8c%80%ed%95%9c-%eb%8b%a8%ec%83%81">#</a>
@@ -511,6 +515,7 @@ std::string chooseHandAndupdateThumbPositionWithCentralNumber(int number, std::p
 <p>명확하게 이해를 한 뒤 최대한 잘게 기능을 나누어 함수를 작성하면 문제를 조금 더 쉽게 풀 수 있음을 최근 느끼고 있다.
 하지만 알고리듬 테스트의 경우 최소 시간 복잡도와 공간 복잡도로 문제를 푸는것이 핵심이다.
 하지만 이렇게 함수로 모든 기능을 나누는 것이 알맞은 코딩인지는 잘 모르겠다.</p>
+<hr>
 <h2 class="heading" id="풀이-개선하기">
   풀이 개선하기
   <a href="#%ed%92%80%ec%9d%b4-%ea%b0%9c%ec%84%a0%ed%95%98%ea%b8%b0">#</a>
@@ -606,6 +611,15 @@ std::string chooseHandAndupdateThumbPositionWithCentralNumber(int number, std::p
 
         <div class="single-pagination-next">
             
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/personality_test/">
+                        성격 유형 검사하기
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
         </div>
 
     </div>
@@ -647,6 +661,32 @@ std::string chooseHandAndupdateThumbPositionWithCentralNumber(int number, std::p
     
 
 
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+    
+    function getTheme() {
+        return document.documentElement.classList.contains('dark') ? 'dark' : 'default';
+    }
+
+    
+    function initMermaid() {
+        mermaid.initialize({ theme: getTheme() });
+        mermaid.init();
+    }
+
+    
+    const observer = new MutationObserver(() => {
+        initMermaid();
+    });
+
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        initMermaid();
+    });
+</script>
     </footer>
 
     

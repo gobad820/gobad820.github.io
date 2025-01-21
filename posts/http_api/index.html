@@ -230,7 +230,8 @@
     </figcaption>
 </figure>
 
-<strong>요구 사항</strong></p>
+<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p><strong>요구 사항</strong></p>
 <ul>
 <li>회원 목록 조회 /read-member-list</li>
 <li>회원 조회 /read-member-by-id</li>
@@ -343,7 +344,7 @@ form, to a data-handling process;</p>
 blog, or similar group of articles;</p>
 <p>o  Creating a new resource that has yet to be identified by the
 origin server; and</p>
-<p>o  Appending data to a resource&rsquo;s existing representation(s).<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<p>o  Appending data to a resource&rsquo;s existing representation(s).<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
 </blockquote>
 <p><strong>리소스 URI에 POST 요청이 어떻게 동작할지와 리소스를 따로 정해주어야 한다.</strong></p>
 <p>POST의 동작 예시 정리</p>
@@ -459,7 +460,7 @@ POST의 경우 결제, 배송 등이 여러본 호출되면 결과가 다르게 
 </h3>
 <p>응답 결과 리소스를 캐시해서 사용해도 되는가?</p>
 <p>GET, HEAD, POST, PATCH 메서드는 스펙상 캐시가 가능하나 실제로는 GET, HEAD 정도만 캐시로 사용한다.
-POST, PATCH는 본문 내용까지 캐시 키로 고려해야 하는데 구현이 쉽지 않다.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+POST, PATCH는 본문 내용까지 캐시 키로 고려해야 하는데 구현이 쉽지 않다.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
 <h2 class="heading" id="references">
   References
   <a href="#references">#</a>
@@ -468,10 +469,13 @@ POST, PATCH는 본문 내용까지 캐시 키로 고려해야 하는데 구현�
 <hr>
 <ol>
 <li id="fn:1">
-<p><a href="https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.3">https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.3</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>Ashwini, black and white love neon light signage. 2020. [Online]. Available: <a href="https://unsplash.com/photos/black-and-white-love-neon-light-signage-36kuP8NEZz0">https://unsplash.com/photos/black-and-white-love-neon-light-signage-36kuP8NEZz0</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2">
-<p><a href="https://www.inflearn.com/course/http-">https://www.inflearn.com/course/http-</a>웹-네트워크/dashboard&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.3">https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.3</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://www.inflearn.com/course/http-">https://www.inflearn.com/course/http-</a>웹-네트워크/dashboard&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </div>
@@ -562,6 +566,32 @@ POST, PATCH는 본문 내용까지 캐시 키로 고려해야 하는데 구현�
     
 
 
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+    
+    function getTheme() {
+        return document.documentElement.classList.contains('dark') ? 'dark' : 'default';
+    }
+
+    
+    function initMermaid() {
+        mermaid.initialize({ theme: getTheme() });
+        mermaid.init();
+    }
+
+    
+    const observer = new MutationObserver(() => {
+        initMermaid();
+    });
+
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        initMermaid();
+    });
+</script>
     </footer>
 
     

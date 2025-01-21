@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en-us"
+  dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="https://gobad820.github.io//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://gobad820.github.io//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://gobad820.github.io//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://gobad820.github.io//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://gobad820.github.io//apple-touch-icon.png">
+
+<meta name="description" content="프로그래머스 Level1 문제 풀이"/>
+
+<title>
+    
+    성격 유형 검사하기 | Pelikan&#39;s Glide
+    
+</title>
+
+<link rel="canonical" href="https://gobad820.github.io/posts/personality_test/"/>
+
+<meta property="og:url" content="https://gobad820.github.io/posts/personality_test/">
+  <meta property="og:site_name" content="Pelikan&#39;s Glide">
+  <meta property="og:title" content="성격 유형 검사하기">
+  <meta property="og:description" content="프로그래머스 Level1 문제 풀이">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-01-21T16:36:47+09:00">
+    <meta property="article:modified_time" content="2025-01-21T16:36:47+09:00">
+    <meta property="article:tag" content="Cpp">
+    <meta property="article:tag" content="Algorithm">
+    <meta property="article:tag" content="Programmers">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.97e32d65fe11c0cd3781001e6be3bf3516248c01a93ff6256f1e75541632eddd.css" media="all">
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="https://gobad820.github.io/">Pelikan&#39;s Glide</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /home
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /posts
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /about
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+<div class="breadcrumbs">
+    
+    <a href="/">Home</a>
+    <span class="breadcrumbs-separator"> > </span>
+    
+    <a href="/posts/">Posts</a>
+    <span class="breadcrumbs-separator"> > </span>
+    
+    <a class="breadcrumbs-current" href="/posts/personality_test/">성격 유형 검사하기</a>
+</div>
+
+
+
+<div  class="autonumber" >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">성격 유형 검사하기</h1>
+    
+    <p class="single-summary">2020 KAKAO TECH INTERNSHIP</p>
+    
+
+    
+
+    <p class="single-readtime">
+      
+      
+      
+      <time datetime="2025-01-21T16:36:47&#43;09:00">January 21, 2025</time>
+      
+
+      
+      &nbsp; · &nbsp;
+      5 min read
+      
+    </p>
+
+  </div>
+
+  
+
+  
+  
+
+  <div class="single-tags">
+    
+    <span>
+      <a href="https://gobad820.github.io/tags/cpp/">#Cpp</a>
+    </span>
+    
+    
+    <span>
+      <a href="https://gobad820.github.io/tags/algorithm/">#Algorithm</a>
+    </span>
+    
+    
+    <span>
+      <a href="https://gobad820.github.io/tags/programmers/">#Programmers</a>
+    </span>
+    
+    
+  </div>
+
+  
+  
+
+  
+
+  
+  <aside class="toc">
+    <p><strong>Table of contents</strong></p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#문제-설명">문제 설명</a>
+      <ul>
+        <li><a href="#1-문제-개요">1. 문제 개요</a></li>
+        <li><a href="#2-입력과-출력">2. 입력과 출력</a></li>
+        <li><a href="#3-예제-분석">3. 예제 분석</a></li>
+      </ul>
+    </li>
+    <li><a href="#문제-나누기">문제 나누기</a></li>
+    <li><a href="#문제-해결하기">문제 해결하기</a></li>
+    <li><a href="#문제-개선하기">문제 개선하기</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+
+  
+
+  <div class="single-content">
+    <h2 class="heading" id="문제-설명">
+  문제 설명
+  <a href="#%eb%ac%b8%ec%a0%9c-%ec%84%a4%eb%aa%85">#</a>
+</h2>
+<h3 class="heading" id="1-문제-개요">
+  1. 문제 개요
+  <a href="#1-%eb%ac%b8%ec%a0%9c-%ea%b0%9c%ec%9a%94">#</a>
+</h3>
+<p>나만의 카카오 성격 유형 검사지를 만들기 위한 문제이다.</p>
+<p>성격 유형 검사는 다음과 같은 네 가지 지표를 기반으로 성격 유형을 구분한다:<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
+<table>
+  <thead>
+      <tr>
+          <th>지표 번호</th>
+          <th>성격 유형</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1번 지표</td>
+          <td>라이언형(R), 튜브형(T)</td>
+      </tr>
+      <tr>
+          <td>2번 지표</td>
+          <td>콘형(C), 프로도형(F)</td>
+      </tr>
+      <tr>
+          <td>3번 지표</td>
+          <td>제이지형(J), 무지형(M)</td>
+      </tr>
+      <tr>
+          <td>4번 지표</td>
+          <td>어피치형(A), 네오형(N)</td>
+      </tr>
+  </tbody>
+</table>
+<p>검사지는 총 <code>n</code>개의 질문으로 구성되며, 각 질문은 위 지표 중 하나의 성격 유형 점수를 결정한다.
+질문에 대한 선택지는 7가지이며, 선택에 따라 점수가 부여된다.</p>
+<ul>
+<li><strong>매우 비동의</strong>: 비동의 관련 성격 유형에 3점 부여</li>
+<li><strong>비동의</strong>: 비동의 관련 성격 유형에 2점 부여</li>
+<li><strong>약간 비동의</strong>: 비동의 관련 성격 유형에 1점 부여</li>
+<li><strong>모르겠음</strong>: 점수 없음</li>
+<li><strong>약간 동의</strong>: 동의 관련 성격 유형에 1점 부여</li>
+<li><strong>동의</strong>: 동의 관련 성격 유형에 2점 부여</li>
+<li><strong>매우 동의</strong>: 동의 관련 성격 유형에 3점 부여</li>
+</ul>
+<p>결과는 모든 질문에서 계산된 점수를 더하여 각 지표에서 더 높은 점수를 가진 성격 유형으로 결정된다.
+만약 점수가 같다면 사전 순으로 빠른 성격 유형이 선택된다.</p>
+<hr>
+<h3 class="heading" id="2-입력과-출력">
+  2. 입력과 출력
+  <a href="#2-%ec%9e%85%eb%a0%a5%ea%b3%bc-%ec%b6%9c%eb%a0%a5">#</a>
+</h3>
+<h4 class="heading" id="입력">
+  입력
+  <a href="#%ec%9e%85%eb%a0%a5">#</a>
+</h4>
+<ol>
+<li><code>survey</code>: 질문마다 성격 유형 지표를 나타내는 문자열 배열 (ex. [&ldquo;AN&rdquo;, &ldquo;CF&rdquo;, &ldquo;MJ&rdquo;, &ldquo;RT&rdquo;, &ldquo;NA&rdquo;])</li>
+<li><code>choices</code>: 검사자가 각 질문에 대해 선택한 선택지 (1~7 사이의 정수로 표현)</li>
+</ol>
+<h4 class="heading" id="출력">
+  출력
+  <a href="#%ec%b6%9c%eb%a0%a5">#</a>
+</h4>
+<p>지표 번호 순서대로 검사자의 성격 유형을 반환하는 문자열 (ex. &ldquo;TCMA&rdquo;)</p>
+<hr>
+<h3 class="heading" id="3-예제-분석">
+  3. 예제 분석
+  <a href="#3-%ec%98%88%ec%a0%9c-%eb%b6%84%ec%84%9d">#</a>
+</h3>
+<h4 class="heading" id="입출력-예-1">
+  <strong>입출력 예 #1</strong>
+  <a href="#%ec%9e%85%ec%b6%9c%eb%a0%a5-%ec%98%88-1">#</a>
+</h4>
+<p><strong>Input:</strong></p>
+<ul>
+<li>survey = [&ldquo;AN&rdquo;, &ldquo;CF&rdquo;, &ldquo;MJ&rdquo;, &ldquo;RT&rdquo;, &ldquo;NA&rdquo;]</li>
+<li>choices = [5, 3, 2, 7, 5]</li>
+</ul>
+<p><strong>점수 계산:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>질문</th>
+          <th>선택지</th>
+          <th>비동의 성격 유형</th>
+          <th>동의 성격 유형</th>
+          <th>부여된 점수</th>
+          <th>결과</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>AN</td>
+          <td>5</td>
+          <td>A</td>
+          <td>N</td>
+          <td>N +1</td>
+          <td>N: 1</td>
+      </tr>
+      <tr>
+          <td>CF</td>
+          <td>3</td>
+          <td>C</td>
+          <td>F</td>
+          <td>C +1</td>
+          <td>C: 1</td>
+      </tr>
+      <tr>
+          <td>MJ</td>
+          <td>2</td>
+          <td>M</td>
+          <td>J</td>
+          <td>M +2</td>
+          <td>M: 2</td>
+      </tr>
+      <tr>
+          <td>RT</td>
+          <td>7</td>
+          <td>R</td>
+          <td>T</td>
+          <td>T +3</td>
+          <td>T: 3</td>
+      </tr>
+      <tr>
+          <td>NA</td>
+          <td>5</td>
+          <td>N</td>
+          <td>A</td>
+          <td>A +1</td>
+          <td>A: 1</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>최종 점수:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>지표 번호</th>
+          <th>성격 유형 점수</th>
+          <th>최종 성격 유형</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1번</td>
+          <td>R: 0, T: 3</td>
+          <td>T</td>
+      </tr>
+      <tr>
+          <td>2번</td>
+          <td>C: 1, F: 0</td>
+          <td>C</td>
+      </tr>
+      <tr>
+          <td>3번</td>
+          <td>J: 0, M: 2</td>
+          <td>M</td>
+      </tr>
+      <tr>
+          <td>4번</td>
+          <td>A: 1, N: 1</td>
+          <td>A (사전 순)</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Output:</strong> &ldquo;TCMA&rdquo;</p>
+<hr>
+<h4 class="heading" id="입출력-예-2">
+  <strong>입출력 예 #2</strong>
+  <a href="#%ec%9e%85%ec%b6%9c%eb%a0%a5-%ec%98%88-2">#</a>
+</h4>
+<p><strong>Input:</strong></p>
+<ul>
+<li>survey = [&ldquo;TR&rdquo;, &ldquo;RT&rdquo;, &ldquo;TR&rdquo;]</li>
+<li>choices = [7, 1, 3]</li>
+</ul>
+<p><strong>점수 계산:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>질문</th>
+          <th>선택지</th>
+          <th>비동의 성격 유형</th>
+          <th>동의 성격 유형</th>
+          <th>부여된 점수</th>
+          <th>결과</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>TR</td>
+          <td>7</td>
+          <td>T</td>
+          <td>R</td>
+          <td>R +3</td>
+          <td>R: 3</td>
+      </tr>
+      <tr>
+          <td>RT</td>
+          <td>1</td>
+          <td>R</td>
+          <td>T</td>
+          <td>R +3</td>
+          <td>R: 6</td>
+      </tr>
+      <tr>
+          <td>TR</td>
+          <td>3</td>
+          <td>T</td>
+          <td>R</td>
+          <td>T +1</td>
+          <td>T: 1</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>최종 점수:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>지표 번호</th>
+          <th>성격 유형 점수</th>
+          <th>최종 성격 유형</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1번</td>
+          <td>R: 6, T: 1</td>
+          <td>R</td>
+      </tr>
+      <tr>
+          <td>2번</td>
+          <td>C: 0, F: 0</td>
+          <td>C (사전 순)</td>
+      </tr>
+      <tr>
+          <td>3번</td>
+          <td>J: 0, M: 0</td>
+          <td>J (사전 순)</td>
+      </tr>
+      <tr>
+          <td>4번</td>
+          <td>A: 0, N: 0</td>
+          <td>A (사전 순)</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Output:</strong> &ldquo;RCJA&rdquo;</p>
+<h2 class="heading" id="문제-나누기">
+  문제 나누기
+  <a href="#%eb%ac%b8%ec%a0%9c-%eb%82%98%eb%88%84%ea%b8%b0">#</a>
+</h2>
+<p>성격 유형 검사하기의 경우 복잡한 문제가 아니므로 여러 함수를 만들지 않고 바로 main 함수에서 코드를 작성할 수 있었다.
+크게 보면 choices를 순회하면서 각 성향 지표마다 점수를 계산한 뒤 4가지 지표에 포함되는 성격 유형 중 우세 성향을 선택하여 answer로 리턴하면 된다.</p>
+<p>choices를 순회할 때 각 점수는 4점보다 작으면 4 - choice 점수를 해당 성격 유형에 더하고
+4점보다 크면 choice 점수 - 4 만큼의 점수를 해당 성격 유형에 더해주면 된다.</p>
+<p>성격 유형은 4가지 지표마다 2개씩 존재하는데 각각 (R, T), (C, F), (J, M), (A, N)이 있다.
+이를 순서대로 char 배열에 정리하여 두어 앞의 유형의 점수가 크거나 같으면 앞의 유형을 우세 성향으로 정할 수 있다.
+같은 경우는 사전순으로 앞에 오는 것을 선택하는데 위의 순서는 이미 사전순으로 정렬이 되어 있기 때문이다.</p>
+<p>만약 정렬이 되어 있지 않아면 vector를 이용해서 정렬할 수 있을것이다.</p>
+<h2 class="heading" id="문제-해결하기">
+  문제 해결하기
+  <a href="#%eb%ac%b8%ec%a0%9c-%ed%95%b4%ea%b2%b0%ed%95%98%ea%b8%b0">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">char</span> character_type[4][2] = {{<span style="color:#666;font-style:italic">&#39;R&#39;</span>,<span style="color:#666;font-style:italic">&#39;T&#39;</span>},{<span style="color:#666;font-style:italic">&#39;C&#39;</span>,<span style="color:#666;font-style:italic">&#39;F&#39;</span>},{<span style="color:#666;font-style:italic">&#39;J&#39;</span>,<span style="color:#666;font-style:italic">&#39;M&#39;</span>},{<span style="color:#666;font-style:italic">&#39;A&#39;</span>,<span style="color:#666;font-style:italic">&#39;N&#39;</span>}};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>std::string getDominantCharacter(<span style="font-weight:bold;text-decoration:underline">char</span> first, <span style="font-weight:bold;text-decoration:underline">char</span> second, std::map&lt;<span style="font-weight:bold;text-decoration:underline">char</span>, <span style="font-weight:bold;text-decoration:underline">int</span>&gt; character){
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold;text-decoration:underline">if</span>(character[first] &lt; character[second]){
+</span></span><span style="display:flex;"><span>        <span style="font-weight:bold;text-decoration:underline">return</span> std::string() + second;
+</span></span><span style="display:flex;"><span>    }<span style="font-weight:bold;text-decoration:underline">else</span>{
+</span></span><span style="display:flex;"><span>        <span style="font-weight:bold;text-decoration:underline">return</span> std::string() + first;
+</span></span><span style="display:flex;"><span>    } 
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>std::string solution(std::vector&lt;std::string&gt; survey, std::vector&lt;<span style="font-weight:bold;text-decoration:underline">int</span>&gt; choices){
+</span></span><span style="display:flex;"><span>    std::string answer = <span style="color:#666;font-style:italic">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>    std::map&lt;<span style="font-weight:bold;text-decoration:underline">char</span>, <span style="font-weight:bold;text-decoration:underline">int</span>&gt; type_score;
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold;text-decoration:underline">int</span> index = 0;
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold;text-decoration:underline">for</span>(<span style="font-weight:bold;text-decoration:underline">auto</span>&amp; choice : choices){
+</span></span><span style="display:flex;"><span>        <span style="font-weight:bold;text-decoration:underline">auto</span> temp_character = survey[index];
+</span></span><span style="display:flex;"><span>       	<span style="font-weight:bold;text-decoration:underline">if</span>(choice &lt; 4){
+</span></span><span style="display:flex;"><span>            type_score[temp_character[0]] += (4-choice);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="font-weight:bold;text-decoration:underline">else</span> <span style="color:#666;font-weight:bold;font-style:italic">if</span>(choice &gt; 4) {
+</span></span><span style="display:flex;"><span>            type_score[temp_character[1]] += (choice-4);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="font-weight:bold;text-decoration:underline">else</span> {
+</span></span><span style="display:flex;"><span>           	;	 
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        index++;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold;text-decoration:underline">for</span>(<span style="font-weight:bold;text-decoration:underline">const</span> <span style="font-weight:bold;text-decoration:underline">auto</span>&amp; item: character_type){
+</span></span><span style="display:flex;"><span>        answer += getDominantCharacter(item[0], item[1], type_score);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold;text-decoration:underline">return</span> answer;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 class="heading" id="문제-개선하기">
+  문제 개선하기
+  <a href="#%eb%ac%b8%ec%a0%9c-%ea%b0%9c%ec%84%a0%ed%95%98%ea%b8%b0">#</a>
+</h2>
+<ol>
+<li>
+<p><code>std::string()</code>으로 char에서 string 변환 부분 수정</p>
+<p>std::string() + first의 코드 보다는 바로 std::string(1, first)를 통해 size()가 1인 string을 바로 만들 수 있다.</p>
+</li>
+<li>
+<p>enhanced loop과 index의 사용보다는 기존 for-loop을 사용하되 <code>std::size_t</code>로 사용할것</p>
+<p><code>for(std::size_t i = 0 ; i &lt; choices.size() ; i++) {} </code></p>
+</li>
+<li>
+<p><code>char character_type[4][2]</code>를 <code>std::array&lt;std::pair&lt;char, char&gt;, 4&gt; character_type</code>으로 변경</p>
+<p><code>for(const auto&amp; [first, second] : character_type) {answer += getDo~~;)</code> 로 코드 간결화 가능
+pair의 경우 enhance loop 사용시 <code>[first, second]</code>와 같이 호출할 수 있다.</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#888;font-weight:bold">#include</span> <span style="color:#888;font-weight:bold">&lt;string&gt;</span><span style="color:#888;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-weight:bold">#include</span> <span style="color:#888;font-weight:bold">&lt;vector&gt;</span><span style="color:#888;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-weight:bold">#include</span> <span style="color:#888;font-weight:bold">&lt;map&gt;</span><span style="color:#888;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-weight:bold">#include</span> <span style="color:#888;font-weight:bold">&lt;array&gt;</span><span style="color:#888;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-weight:bold"></span>
+</span></span><span style="display:flex;"><span>std::string getDominantCharacter(<span style="font-weight:bold;text-decoration:underline">char</span> first, <span style="font-weight:bold;text-decoration:underline">char</span> second, <span style="font-weight:bold;text-decoration:underline">const</span> std::map&lt;<span style="font-weight:bold;text-decoration:underline">char</span>, <span style="font-weight:bold;text-decoration:underline">int</span>&gt;&amp; character_scores) {
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold;text-decoration:underline">if</span> (character_scores.at(first) &lt; character_scores.at(second)) {
+</span></span><span style="display:flex;"><span>        <span style="font-weight:bold;text-decoration:underline">return</span> std::string(1, second);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold;text-decoration:underline">return</span> std::string(1, first);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>std::string solution(<span style="font-weight:bold;text-decoration:underline">const</span> std::vector&lt;std::string&gt;&amp; survey, <span style="font-weight:bold;text-decoration:underline">const</span> std::vector&lt;<span style="font-weight:bold;text-decoration:underline">int</span>&gt;&amp; choices) {
+</span></span><span style="display:flex;"><span>    std::string answer = <span style="color:#666;font-style:italic">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#888;font-style:italic">// 성격 유형 초기화
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic"></span>    std::map&lt;<span style="font-weight:bold;text-decoration:underline">char</span>, <span style="font-weight:bold;text-decoration:underline">int</span>&gt; type_score = {
+</span></span><span style="display:flex;"><span>        {<span style="color:#666;font-style:italic">&#39;R&#39;</span>, 0}, {<span style="color:#666;font-style:italic">&#39;T&#39;</span>, 0},
+</span></span><span style="display:flex;"><span>        {<span style="color:#666;font-style:italic">&#39;C&#39;</span>, 0}, {<span style="color:#666;font-style:italic">&#39;F&#39;</span>, 0},
+</span></span><span style="display:flex;"><span>        {<span style="color:#666;font-style:italic">&#39;J&#39;</span>, 0}, {<span style="color:#666;font-style:italic">&#39;M&#39;</span>, 0},
+</span></span><span style="display:flex;"><span>        {<span style="color:#666;font-style:italic">&#39;A&#39;</span>, 0}, {<span style="color:#666;font-style:italic">&#39;N&#39;</span>, 0}
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#888;font-style:italic">// 선택지 처리
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic"></span>    <span style="font-weight:bold;text-decoration:underline">for</span> (std::size_t i = 0; i &lt; choices.size(); ++i) {
+</span></span><span style="display:flex;"><span>        <span style="font-weight:bold;text-decoration:underline">char</span> disagree = survey[i][0];
+</span></span><span style="display:flex;"><span>        <span style="font-weight:bold;text-decoration:underline">char</span> agree = survey[i][1];
+</span></span><span style="display:flex;"><span>        <span style="font-weight:bold;text-decoration:underline">int</span> choice = choices[i];
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="font-weight:bold;text-decoration:underline">if</span> (choice &lt; 4) {
+</span></span><span style="display:flex;"><span>            type_score[disagree] += (4 - choice);
+</span></span><span style="display:flex;"><span>        } <span style="font-weight:bold;text-decoration:underline">else</span> <span style="color:#666;font-weight:bold;font-style:italic">if</span> (choice &gt; 4) {
+</span></span><span style="display:flex;"><span>            type_score[agree] += (choice - 4);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#888;font-style:italic">// 각 지표에서 우세 성향 선택
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic"></span>    <span style="font-weight:bold;text-decoration:underline">const</span> std::array&lt;std::pair&lt;<span style="font-weight:bold;text-decoration:underline">char</span>, <span style="font-weight:bold;text-decoration:underline">char</span>&gt;, 4&gt; character_type = {{
+</span></span><span style="display:flex;"><span>        {<span style="color:#666;font-style:italic">&#39;R&#39;</span>, <span style="color:#666;font-style:italic">&#39;T&#39;</span>}, {<span style="color:#666;font-style:italic">&#39;C&#39;</span>, <span style="color:#666;font-style:italic">&#39;F&#39;</span>}, {<span style="color:#666;font-style:italic">&#39;J&#39;</span>, <span style="color:#666;font-style:italic">&#39;M&#39;</span>}, {<span style="color:#666;font-style:italic">&#39;A&#39;</span>, <span style="color:#666;font-style:italic">&#39;N&#39;</span>}
+</span></span><span style="display:flex;"><span>    }};
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold;text-decoration:underline">for</span> (<span style="font-weight:bold;text-decoration:underline">const</span> <span style="font-weight:bold;text-decoration:underline">auto</span>&amp; [first, second] : character_type) {
+</span></span><span style="display:flex;"><span>        answer += getDominantCharacter(first, second, type_score);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold;text-decoration:underline">return</span> answer;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>“코딩테스트 연습 - 성격 유형 검사하기,” 프로그래머스 스쿨. <a href="https://school.programmers.co.kr/learn/courses/30/lessons/118666">https://school.programmers.co.kr/learn/courses/30/lessons/118666</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+    
+  </div>
+
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/press_keypad/">
+                        키패드 누르기
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+    
+    function getTheme() {
+        return document.documentElement.classList.contains('dark') ? 'dark' : 'default';
+    }
+
+    
+    function initMermaid() {
+        mermaid.initialize({ theme: getTheme() });
+        mermaid.init();
+    }
+
+    
+    const observer = new MutationObserver(() => {
+        initMermaid();
+    });
+
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        initMermaid();
+    });
+</script>
+    </footer>
+
+    
+    <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+<script defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+
+<script defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body);"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ]
+    });
+  });
+</script>
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>

@@ -169,7 +169,7 @@
     <div class="tag-line">
     <div>
         <p class="tag-title">
-            <a href="/tags/kakao/">#Kakao</a>
+            <a href="/tags/programmers/">#Programmers</a>
         </p>
     </div>
 </div>
@@ -181,7 +181,7 @@
     <div class="tag-line">
     <div>
         <p class="tag-title">
-            <a href="/tags/programmers/">#Programmers</a>
+            <a href="/tags/kakao/">#Kakao</a>
         </p>
     </div>
 </div>
@@ -234,6 +234,32 @@
     
 
 
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+    
+    function getTheme() {
+        return document.documentElement.classList.contains('dark') ? 'dark' : 'default';
+    }
+
+    
+    function initMermaid() {
+        mermaid.initialize({ theme: getTheme() });
+        mermaid.init();
+    }
+
+    
+    const observer = new MutationObserver(() => {
+        initMermaid();
+    });
+
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        initMermaid();
+    });
+</script>
     </footer>
 
     
