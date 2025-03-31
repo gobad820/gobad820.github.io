@@ -9,11 +9,11 @@
     <lastBuildDate>Mon, 24 Mar 2025 17:38:55 +0900</lastBuildDate>
     <atom:link href="https://gobad820.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Image Filtering</title>
+      <title>이미지 필터링</title>
       <link>https://gobad820.github.io/posts/image-filtering/</link>
       <pubDate>Mon, 24 Mar 2025 17:38:55 +0900</pubDate>
       <guid>https://gobad820.github.io/posts/image-filtering/</guid>
-      <description>Computer Vision Lecture 02</description>
+      <description>ComputerVision Lecture01</description>
     </item>
     <item>
       <title>성격 유형 검사하기</title>

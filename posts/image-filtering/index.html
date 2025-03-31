@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en-us"
+  dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="https://gobad820.github.io//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://gobad820.github.io//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://gobad820.github.io//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://gobad820.github.io//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://gobad820.github.io//apple-touch-icon.png">
+
+<meta name="description" content="컴퓨터비전 이미지 필터링"/>
+
+<title>
+    
+    이미지 필터링 | Pelikan&#39;s Glide
+    
+</title>
+
+<link rel="canonical" href="https://gobad820.github.io/posts/image-filtering/"/>
+
+<meta property="og:url" content="https://gobad820.github.io/posts/image-filtering/">
+  <meta property="og:site_name" content="Pelikan&#39;s Glide">
+  <meta property="og:title" content="이미지 필터링">
+  <meta property="og:description" content="컴퓨터비전 이미지 필터링">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-03-24T17:38:55+09:00">
+    <meta property="article:modified_time" content="2025-03-24T17:38:55+09:00">
+    <meta property="article:tag" content="Computervision">
+    <meta property="article:tag" content="Imagefilter">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.97e32d65fe11c0cd3781001e6be3bf3516248c01a93ff6256f1e75541632eddd.css" media="all">
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="https://gobad820.github.io/">Pelikan&#39;s Glide</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /home
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /posts
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /about
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+<div class="breadcrumbs">
+    
+    <a href="/">Home</a>
+    <span class="breadcrumbs-separator"> > </span>
+    
+    <a href="/posts/">Posts</a>
+    <span class="breadcrumbs-separator"> > </span>
+    
+    <a class="breadcrumbs-current" href="/posts/image-filtering/">이미지 필터링</a>
+</div>
+
+
+
+<div  class="autonumber" >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">이미지 필터링</h1>
+    
+    <p class="single-summary">ComputerVision Lecture01</p>
+    
+
+    
+
+    <p class="single-readtime">
+      
+      
+      
+      <time datetime="2025-03-24T17:38:55&#43;09:00">March 24, 2025</time>
+      
+
+      
+      &nbsp; · &nbsp;
+      5 min read
+      
+    </p>
+
+  </div>
+
+  
+
+  
+  
+
+  <div class="single-tags">
+    
+    <span>
+      <a href="https://gobad820.github.io/tags/computervision/">#Computervision</a>
+    </span>
+    
+    
+    <span>
+      <a href="https://gobad820.github.io/tags/imagefilter/">#Imagefilter</a>
+    </span>
+    
+    
+  </div>
+
+  
+  
+
+  
+
+  
+  <aside class="toc">
+    <p><strong>Table of contents</strong></p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#image-denoising">Image Denoising</a>
+      <ul>
+        <li><a href="#weighted-sum">Weighted Sum</a></li>
+        <li><a href="#variance-filtering">Variance Filtering</a></li>
+      </ul>
+    </li>
+    <li><a href="#edge-detection">Edge Detection</a>
+      <ul>
+        <li><a href="#conversion-to-graysclae">Conversion to graysclae</a></li>
+        <li><a href="#finding-edges-in-image">Finding edges in image</a></li>
+      </ul>
+    </li>
+    <li><a href="#filtering">Filtering</a>
+      <ul>
+        <li><a href="#linear-filtering">Linear filtering</a></li>
+        <li><a href="#cross-correlation">Cross-correlation</a></li>
+        <li><a href="#convolution">Convolution</a></li>
+      </ul>
+    </li>
+    <li><a href="#gaussian-kernel">Gaussian Kernel</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+
+  
+
+  <div class="single-content">
+    <h2 class="heading" id="image-denoising">
+  Image Denoising
+  <a href="#image-denoising">#</a>
+</h2>
+<p><strong>Goal of the Denoising: Recover Noisy image to the original image</strong></p>
+<p>이를 위해 각픽셀을 이웃한 픽셀의 wegihted average로 변경해야 한다.</p>
+<p><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div>
+        <img loading="lazy" alt="Denoising pixel example - Photo by Fredo Durand" src="/images/denoising_pixel.png" >
+    </div>
+
+    
+</figure>
+</p>
+<p><strong>Image</strong></p>
+<p>이미지는 배열로 나타낼 수 있다. Grayscale의 경우 숫자가 클수록 밝은 색이며 검정색에 가까울수록 그 값 또한 0에 가깝다.</p>
+<h3 class="heading" id="weighted-sum">
+  Weighted Sum
+  <a href="#weighted-sum">#</a>
+</h3>
+<p>앞서 보았듯이 이미지 디노이징을 위해서는 해당 픽셀의 인접 픽셀들의 weighted average로 교체 하여야 한다.
+이 떄 Weights를 <strong>filter kernel</strong>이라 한다. $3\times 3$ 인접 픽셀의 경우 아래와 같은 박스 필터를 가지게 된다.</p>
+<p><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div>
+        <img loading="lazy" alt="Box filter example - Source: D. Lowe" src="/images/box_filter.png" >
+    </div>
+
+    
+</figure>
+</p>
+<p>해당 박스 필터를 이용해서 특정 픽셀의 인접 3x3 픽셀들에 모두 weight를 곱한 다음 평균을 낸 픽셀의 값을 해당 픽셀의 값으로 변경한다.</p>
+<p>$$
+\begin{bmatrix}
+90\quad 90\quad 90\newline
+90\quad 0\quad 90\newline
+90\quad 90\quad 90\newline
+\end{bmatrix} \Longrightarrow Filter Kernel \Longrightarrow 80
+$$</p>
+<p>위와 같은 필터 커널로 weighted average를 구할 때 해당 픽셀 주위의 $3\times 3$ 범위에 픽셀이 없는 경우들이 있다.
+예를 들어 Input의 가장자리 픽셀들의 경우는 박스 필터를 적용하지 못한다. 이럴 경우는 Padding을 추가하게 된다.</p>
+<p>Padding은 Input iamge의 가장자리에 검정색 zero padding추가 하게 되며 $10\times 10$ 사이즈 이미지가 $11\times 11$ 이미지가 된다.</p>
+<p><strong>Padding의 종류</strong></p>
+<ul>
+<li>zero padding</li>
+<li>circular repetition</li>
+<li>mirror edge pixels</li>
+<li>ground truth</li>
+</ul>
+<h3 class="heading" id="variance-filtering">
+  Variance Filtering
+  <a href="#variance-filtering">#</a>
+</h3>
+<p><strong>Impulse Filter</strong>
+$$
+\begin{bmatrix}
+0\quad 0\quad 0\newline
+0\quad 1\quad 0\newline
+0\quad 0\quad 0\newline
+\end{bmatrix}
+$$</p>
+<p>Impulse Filter의 경우 원본 이미지와 똑같은 결과를 냄을 알 수 있다.</p>
+<p><strong>Translated Impulse</strong></p>
+<p>$$
+\begin{bmatrix}
+0\quad 0\quad 0\newline
+0\quad 0\quad 1\newline
+0\quad 0\quad 0\newline
+\end{bmatrix}
+$$</p>
+<p>Impulse Filter와 유사하지만 원래 픽셀의 오른쪽 값만 살아 남는 것을 확인할 수 있다. 즉 원복 이미지에 비해 오른쪽으로 한칸 밀리는 이미지가 output으로 나온다.
+(Shifted left by 1pixel)</p>
+<p><strong>Box Filter</strong></p>
+<p>$$
+\frac{1}{9}
+\begin{bmatrix}
+1\quad 1\quad 1\newline
+1\quad 1\quad 1\newline
+1\quad 1\quad 1\newline
+\end{bmatrix}
+$$</p>
+<p>Box Filter의 경우 인접 픽셀의 weight average를 반환하므로 Blurring이 됨을 확인할 수 있다.
+그렇다면 아래의 필터는 어떠한 기능을 하는지 예측해보자.</p>
+<p><strong>Sharpening Filter</strong>
+$$
+\begin{bmatrix}
+-\frac{1}{9} &amp; -\frac{1}{9} &amp; -\frac{1}{9} \newline\newline
+-\frac{1}{9} &amp; \frac{17}{9} &amp; -\frac{1}{9} \newline\newline
+-\frac{1}{9} &amp; -\frac{1}{9} &amp; -\frac{1}{9}
+\end{bmatrix}
+$$</p>
+<p>위ㅌ의 필터는 아래와 같이 다시 분리할 수 있다.</p>
+<p>$$
+\begin{bmatrix}
+0\quad 0\quad 0\newline
+0\quad 2\quad 0\newline
+0\quad 0\quad 0\newline
+\end{bmatrix} - \frac{1}{9}
+\begin{bmatrix}
+1\quad 1\quad 1\newline
+1\quad 1\quad 1\newline
+1\quad 1\quad 1\newline
+\end{bmatrix}
+$$</p>
+<p>먼저 첫번째 필터를 통해 원본 이미지의 각 픽셀의 값을 2배로 올린다. 이후 blur된 이미지의 값 즉 평균값을 빼줌으로 Sharpening의 효과를 얻을 수 있다.</p>
+<h2 class="heading" id="edge-detection">
+  Edge Detection
+  <a href="#edge-detection">#</a>
+</h2>
+<p>Edge Detection을 위해서는 먼저 GrayScale로 이미지를 변경해야 한다.</p>
+<h3 class="heading" id="conversion-to-graysclae">
+  Conversion to graysclae
+  <a href="#conversion-to-graysclae">#</a>
+</h3>
+<p>$$
+I_{Gray}[y,x] = \frac{1}{3}\left(I_{rgb}[y,x,0]+I_{rgb}[y,x,1]+I_{rgb}[y,x,2]\right)
+$$
+GrayScale 이미지는 2차원 평면에서 1차원의 값을 갖는다. 컬러 이미지의 경우 2차원 평면에서 RGB 3차원의 값을 갖는다.
+원본 컬러 이미지에서 픽셀 3차원의 값들을 평균 낸 것이 grayscle 픽셀의 값이 된다.($I(x,y) = intensity\ at\ pixel(x,y)$)</p>
+<h3 class="heading" id="finding-edges-in-image">
+  Finding edges in image
+  <a href="#finding-edges-in-image">#</a>
+</h3>
+<p>먼저 이미지의 Gradient는 아래와 같다. Gradient는 밝기의 x축과 y축을 따른 방향 변화율을 의미한다.
+$$
+\nabla I = \left(\frac{\partial \mathbf{I}}{\partial x}, \frac{\partial \mathbf{I}}{\partial y}\right) \newline
+$$</p>
+<p>실제 이미지는 이산값이므로 미분을 이용해 직접 계산할 수 없다. 하지만 근사적으로 두 픽셀 간 차이로 미분을 계산할 수 있다. 이를 Finite Difference Method라 한다.
+$$
+\frac{\partial \mathbf{I}}{\partial x} \simeq \mathbf{I}(x,y) - \mathbf{I}(x-1,y)
+$$</p>
+<p>Edge의 Strnegth는 아래와 같이 구할 수 있다. Euclidean Norm인 <strong>L2 Norm</strong>의 제곱으로 구할 수 있다.
+$$
+E(x,y) = ||\nabla \mathbf{I}(x,y)||^2 = \left( \frac{\partial I}{\partial x}\right)^2 + \left(\frac{\partial I}{\partial y}\right)^2
+$$
+즉 L2 Norm 제곱의 크기가 클 수록, 옆 또는 위 픽셀 간의 derivation값이 클 수록 에지일 가능성이 높음을 의미한다.</p>
+<p>Edge의 orientation은 아래와 같다. Edge orientation은 어느 방향으로 edge가 변화하고 있는지 알려준다. 이는 기울기를 의미하며 graident의 y/x 비율로 각도를 계산한다.
+$$
+\theta(x,y) = \angle \nabla \mathbf{I} = \arctan \frac{\partial\mathbf{I}/\partial y}{\partial \mathbf{I}/\partial x} \newline
+\tan \angle \nabla \mathbf{I} = \frac{\partial\mathbf{I}/\partial y}{\partial \mathbf{I}/\partial x}
+$$</p>
+<p><strong>Codes for Derivatives</strong></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>Ix = np.zeros(I.shape) <span style="color:#888;font-style:italic"># empty numpy array</span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">for</span> y <span style="font-weight:bold">in</span> <span style="font-weight:bold;font-style:italic">range</span>(I.shape[0]): <span style="color:#888;font-style:italic"># y축 의 범위</span>
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold;text-decoration:underline">for</span> x <span style="font-weight:bold">in</span> <span style="font-weight:bold;font-style:italic">range</span>(I.shape[1]): <span style="color:#888;font-style:italic"># x축의 범위</span>
+</span></span><span style="display:flex;"><span>        <span style="font-weight:bold;text-decoration:underline">if</span> x-1 &lt; 0: <span style="color:#888;font-style:italic"># 왼쪽 픽셀이 없는 경우</span>
+</span></span><span style="display:flex;"><span>            Ix[y,x] = 0
+</span></span><span style="display:flex;"><span>        <span style="font-weight:bold;text-decoration:underline">else</span>: 
+</span></span><span style="display:flex;"><span>            Ix[y,x] = I[y,x] - i[y,x-1]
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic"># numpy.ndarray.shape은 배열의 모양을 알려주는 튜플이다.</span>
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic"># 예를 들어 2x3인 배열인 경우 shape은 (2,3)이며 튜플은 []를 이용해 인덱스 접근이 가능하다.</span>
+</span></span></code></pre></div><p>x,y의 Derivates 값을 Filter로 보면 아래와 같다.</p>
+<p>$$
+d_x =
+\begin{bmatrix}
+0 &amp; 0 &amp; 0 \newline
+-1 &amp; 1 &amp; 0 \newline
+0 &amp; 0 &amp; 0
+\end{bmatrix}
+$$
+$$
+d_y =
+\begin{bmatrix}
+0 &amp; 0 &amp; 0 \newline
+0 &amp; 1 &amp; 0 \newline
+0 &amp; -1 &amp; 0
+\end{bmatrix}
+$$
+$$
+\frac{\partial \mathbf{i}}{\partial x} \simeq \mathbf{I}(x,y) - \mathbf{I}(x-1,y)
+$$</p>
+<p><strong>Diffusion</strong> is Generating image by denoising</p>
+<p>Neighborhood filtering은 아주 강력한 아이디어이며 CNN에서도 neighbor filtering이라는 기반 위에서 머신 러닝 시스템이 있는 형태이다.
+즉 Filtering을 통해 32x32 매트릭스를 벡터로 표현할 수 있다.</p>
+<h2 class="heading" id="filtering">
+  Filtering
+  <a href="#filtering">#</a>
+</h2>
+<p>필터링은 원하지 않는 소스는 제거하고 오직 작업과 관련된 정보만을 남기는 것을 의미한다.</p>
+<p>$$
+f[n,m] \rightarrow H(filter\ kernel) \rightarrow g[n,m]
+$$</p>
+<h3 class="heading" id="linear-filtering">
+  Linear filtering
+  <a href="#linear-filtering">#</a>
+</h3>
+<p>$$
+f[n,m] = \sum_{k=0}^{N-1}\sum_{l=0}^{M-1}h[n,m,k,l]g[k,l]
+$$</p>
+<p>linear filtering의 필터는 2차원이 아닌 4차원이 중요하다.
+filter kernel h는 (n,m)위치에서 사용하는 필터가 (k,l) 위치의 입력 픽셀에 얼마나 영향을 주는지를 나타낸다.
+n, m은 출력 픽셀 위치이고 k, l은 입력 픽셀의 위치이다. 즉 출력 픽셀 위치에 따라 적용되는 필터 자체가 달라짐을 의미한다.
+이러한 특성 때문에 linear filter는 translation invariance하다.</p>
+<p>$$
+f[10,10] = \sum_{k=0}^{N-1}\sum_{l=0}^{M-1}h[10,10,k,l]g[k,l]
+$$</p>
+<h3 class="heading" id="cross-correlation">
+  Cross-correlation
+  <a href="#cross-correlation">#</a>
+</h3>
+<p>$$
+g[m,n] = f\cdot h = \sum_{k=1}^N\sum_{l=1}^M f[m+k,n+l]h[k,l]
+$$</p>
+<p>$f$를 이미지, $h$를 커널이라 하자. $g$는 output image이며 $f[m+k,n+l]$을 통해 m,n만큼 쉬프트 된 것을 알 수 있다.
+또한 $h$는 zero padding으로 감싸 연산을 하도록 한다.</p>
+<h3 class="heading" id="convolution">
+  Convolution
+  <a href="#convolution">#</a>
+</h3>
+<p>$$
+g[m,n] = f\cdot h = \sum_{k=1}^N\sum_{l=1}^M f[m-k,n-l]h[k,l]
+$$</p>
+<p>앞서 본 <strong>Correlation-cross</strong>와 연산이 매우 닮을을 확인할 수 있다. 이는 <strong>Coreelation-cross</strong>의 kernel이 flip되어 있는 형태를 의미한다.</p>
+<p><strong>Properties of the convolution</strong></p>
+<ol>
+<li>$h[n] \circ g[n] = g[n] \circ h[n]$</li>
+<li>$h[n] \circ g[n] \circ f[n] = h[n] \circ ( g[n] \circ f[n]) = (h[n] \circ g[n]) \circ f[n]$</li>
+<li>$h[n] \circ (f[n] \circ g[n]) = h[n] \circ f[n] + h[n] \circ g[n]$</li>
+</ol>
+<h2 class="heading" id="gaussian-kernel">
+  Gaussian Kernel
+  <a href="#gaussian-kernel">#</a>
+</h2>
+<p>$$
+G_\sigma = \frac{1}{2\pi \sigma^2} e ^{\displaystyle-\frac{(x^2+y^2)}{2\sigma^2}}
+$$</p>
+<p>guassian kerenl을 이용해 합을 1로 만들 수 있다. 즉 normalization이 된다. 또한 corner부분을 확실하게 갖오하여 준다.
+그렇기에 Gaussian standard deviation의 경우 $\sigma$가 커질수록 blur 처리가 더욱 강하게 된다. 퍼뜨리는 정도를 높였기 때문에 blur가 된다.</p>
+<p>Gaussian filter에 Gaussian Filter를 convolve한다면 이는 또 다른 가우시안 필터가 나오게 된다.
+$$
+\sigma \circ \sigma = \sqrt{2}\sigma
+$$</p>
+<p>따라서 이미지에 계속 Gaussian filter를 적용하게 되면 $\sigma$값이 큰 gaussian filter를 적용한 것과 동일하다.
+$$
+I\circ (h\circ h\circ \cdots \circ h) = ((I\circ h) \circ h)\circ \cdots \circ h
+$$</p>
+<p>또한 2D Blur Gaussian Filter의 경우 1D Guasian filter를 x축, y축으로 돌리는 것과 동일하다.
+rectangular filter가 $(n\times 1)\ and\ (1\times n)$개가 존재한다. 이로 인해 빠른 속도를 보장 받는다.
+커널의 크기가 $n\times n$이 었을 때는 $\mathcal{O(n^2)}$이지만 1차원 필터를 사용하면 $\mathcal{O(n)}$이 된다.</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Photo by Fredo Durand&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Source: D. Lowe&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+    
+  </div>
+
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/personality_test/">
+                        성격 유형 검사하기
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+    
+    function getTheme() {
+        return document.documentElement.classList.contains('dark') ? 'dark' : 'default';
+    }
+
+    
+    function initMermaid() {
+        mermaid.initialize({ theme: getTheme() });
+        mermaid.init();
+    }
+
+    
+    const observer = new MutationObserver(() => {
+        initMermaid();
+    });
+
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        initMermaid();
+    });
+</script>
+    </footer>
+
+    
+    <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+<script defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+
+<script defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body);"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ]
+    });
+  });
+</script>
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>

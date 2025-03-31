@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en-us"
+  dir="ltr">
+
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="http://localhost:1313//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313//apple-touch-icon.png">
+
+<meta name="description" content="이곳에 설명을 입력하세요"/>
+
+<title>
+    
+    Linear Algebra Review | Pelikan&#39;s Glide
+    
+</title>
+
+<link rel="canonical" href="http://localhost:1313/posts/linear-algebra-review/"/>
+
+<meta property="og:url" content="http://localhost:1313/posts/linear-algebra-review/">
+  <meta property="og:site_name" content="Pelikan&#39;s Glide">
+  <meta property="og:title" content="Linear Algebra Review">
+  <meta property="og:description" content="이곳에 설명을 입력하세요">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-03-24T17:02:10+09:00">
+    <meta property="article:modified_time" content="2025-03-24T17:02:10+09:00">
+    <meta property="article:tag" content="Computer Vision">
+    <meta property="article:tag" content="Linear Algebra">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.97e32d65fe11c0cd3781001e6be3bf3516248c01a93ff6256f1e75541632eddd.css" media="all">
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="http://localhost:1313/">Pelikan&#39;s Glide</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /home
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /posts
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /about
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+<div class="breadcrumbs">
+    
+    <a href="/">Home</a>
+    <span class="breadcrumbs-separator"> > </span>
+    
+    <a href="/posts/">Posts</a>
+    <span class="breadcrumbs-separator"> > </span>
+    
+    <a class="breadcrumbs-current" href="/posts/linear-algebra-review/">Linear Algebra Review</a>
+</div>
+
+
+
+<div  class="autonumber" >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">Linear Algebra Review</h1>
+    
+    <p class="single-summary">컴퓨터비전 선형대수 복습</p>
+    
+
+    
+
+    <p class="single-readtime">
+      
+      
+      
+      <time datetime="2025-03-24T17:02:10&#43;09:00">March 24, 2025</time>
+      
+
+      
+      &nbsp; · &nbsp;
+      2 min read
+      
+    </p>
+
+  </div>
+
+  
+
+  
+  
+
+  <div class="single-tags">
+    
+    <span>
+      <a href="http://localhost:1313/tags/computer-vision/">#Computer Vision</a>
+    </span>
+    
+    
+    <span>
+      <a href="http://localhost:1313/tags/linear-algebra/">#Linear Algebra</a>
+    </span>
+    
+    
+  </div>
+
+  
+  
+
+  
+
+  
+  <aside class="toc">
+    <p><strong>Table of contents</strong></p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#matricies">Matricies</a></li>
+    <li><a href="#matrix-vector-product">Matrix-Vector Product</a></li>
+    <li><a href="#normalization">Normalization</a></li>
+    <li><a href="#measuring-length">Measuring Length</a></li>
+    <li><a href="#dot-products">Dot products</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+
+  
+
+  <div class="single-content">
+    <h2 class="heading" id="matricies">
+  Matricies
+  <a href="#matricies">#</a>
+</h2>
+<p>n개의 m차원 열벡터를 묶는다면 $m\times n$ 크기의 $\mathbb{M}\ A$를 얻게 된다.</p>
+<p><strong>Transpose</strong></p>
+<p>transpose는 row/column을 뒤집는 것을 의미하며 아래와 같다.
+$$
+\begin{bmatrix}
+a\newline
+b\newline
+c
+\end{bmatrix}^T
+= \begin{bmatrix}a \quad b \quad c\end{bmatrix}
+$$</p>
+<p>$$
+\mathbb{A} = \begin{bmatrix}-\quad u_1^T\quad - \newline \vdots \newline -\quad u_m^T\quad -\end{bmatrix} = \begin{bmatrix} u_{1_1}\quad u_{1_2}\quad u_{1_3}\newline u_{2_1}\quad u_{2_2}\quad u_{2_3}\end{bmatrix}
+$$</p>
+<h2 class="heading" id="matrix-vector-product">
+  Matrix-Vector Product
+  <a href="#matrix-vector-product">#</a>
+</h2>
+<p>$$
+\mathbb{y_{2\times 1}} = \mathbb{A_{2\times 3}x_{3\times 1}}
+\newline
+\newline
+$$
+$$
+\begin{bmatrix}
+y_1\newline
+y_2
+\end{bmatrix}
+= \begin{bmatrix}
+|\quad |\quad |\newline
+v1\quad v2\quad v3\newline
+|\quad |\quad |\newline
+\end{bmatrix} \begin{bmatrix}
+x_1\newline
+x_2\newline
+x_3\newline\end{bmatrix}
+$$
+$$
+y = x_1v_1 + x_2v_2 + x_3v_3
+$$</p>
+<h2 class="heading" id="normalization">
+  Normalization
+  <a href="#normalization">#</a>
+</h2>
+<p><strong>Norms</strong>는 벡터의 크기 또는 길이의 수치이다. $||\cdot||:R^n \rightarrow [0, \infty)$의 형태로 나타내며 이는 음수가 아닌 수이다.</p>
+<p>Norms의 종류는 아래와 같이 4개가 존재한다.</p>
+<ul>
+<li>Euclidean norm</li>
+<li>Manhattan distance</li>
+<li>general $l_p$ norm</li>
+<li>$l_\infty$ norm</li>
+</ul>
+<p>이 중 Computer Vision에서는 $Euclidean\ norm$을 사용한다.</p>
+<h2 class="heading" id="measuring-length">
+  Measuring Length
+  <a href="#measuring-length">#</a>
+</h2>
+<p>$L2\ Norm(Euclidean\ Norm)$을 이용해서 벡터의 크기를 구할 수 있다.</p>
+<p>$$
+||x|| = ||x||_2 = \left(\sum^n_i x_i^2 \right)^{1/2}
+$$</p>
+<p>$L2\ Norm$을 통해 벡터의 크기를 구한 다음 이를 이용하여 벡터를 나누어 주게 되면 단위 벡터 값을 구할 수 있다. 즉 길이가 1이고 방향값만 남아 있는 벡터를 구할 수 있따.</p>
+<h2 class="heading" id="dot-products">
+  Dot products
+  <a href="#dot-products">#</a>
+</h2>
+<p>벡터 $x$와 벡터 $y$의 내적은 아래와 같다.</p>
+<p>$$
+\begin{align*}
+x\cdot y &amp;= \sum^n_{i=1}x_iy_i = y^Tx\newline
+&amp;= \cos(\theta)||x||\ ||y||
+\end{align*}
+$$</p>
+<p>내적을 이용해서 단위 벡터 $x$와 $y$ 사잇각인 $\theta$를 구할 수 있다.</p>
+
+    
+  </div>
+
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/introduction_to_relational_models/">
+                        관계형 모델 소개
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/image-filtering/">
+                        Image Filtering
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+    
+    function getTheme() {
+        return document.documentElement.classList.contains('dark') ? 'dark' : 'default';
+    }
+
+    
+    function initMermaid() {
+        mermaid.initialize({ theme: getTheme() });
+        mermaid.init();
+    }
+
+    
+    const observer = new MutationObserver(() => {
+        initMermaid();
+    });
+
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        initMermaid();
+    });
+</script>
+    </footer>
+
+    
+    <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+<script defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+
+<script defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body);"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ]
+    });
+  });
+</script>
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>

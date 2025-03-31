@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linear Algebra on Pelikan&#39;s Glide</title>
+    <link>http://localhost:1313/tags/linear-algebra/</link>
+    <description>Recent content in Linear Algebra on Pelikan&#39;s Glide</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 Mar 2025 17:02:10 +0900</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/linear-algebra/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linear Algebra Review</title>
+      <link>http://localhost:1313/posts/linear-algebra-review/</link>
+      <pubDate>Mon, 24 Mar 2025 17:02:10 +0900</pubDate>
+      <guid>http://localhost:1313/posts/linear-algebra-review/</guid>
+      <description>컴퓨터비전 선형대수 복습</description>
+    </item>
+  </channel>
+</rss>

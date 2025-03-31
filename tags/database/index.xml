@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Database on Pelikan&#39;s Glide</title>
+    <link>http://localhost:1313/tags/database/</link>
+    <description>Recent content in Database on Pelikan&#39;s Glide</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 16 Mar 2025 02:53:04 +0900</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>관계형 모델 소개</title>
+      <link>http://localhost:1313/posts/introduction_to_relational_models/</link>
+      <pubDate>Sun, 16 Mar 2025 02:53:04 +0900</pubDate>
+      <guid>http://localhost:1313/posts/introduction_to_relational_models/</guid>
+      <description>관계형 모델은 상업용 데이터 처리 응용을 위한 주요 데이터 모델이다.</description>
+    </item>
+  </channel>
+</rss>
