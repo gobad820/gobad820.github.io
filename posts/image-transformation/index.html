@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en-us"
+  dir="ltr">
+
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="http://localhost:1313//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313//apple-touch-icon.png">
+
+<meta name="description" content="이곳에 설명을 입력하세요"/>
+
+<title>
+    
+    Image Transformation | Pelikan&#39;s Glide
+    
+</title>
+
+<link rel="canonical" href="http://localhost:1313/posts/image-transformation/"/>
+
+<meta property="og:url" content="http://localhost:1313/posts/image-transformation/">
+  <meta property="og:site_name" content="Pelikan&#39;s Glide">
+  <meta property="og:title" content="Image Transformation">
+  <meta property="og:description" content="이곳에 설명을 입력하세요">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-03-31T17:11:39+09:00">
+    <meta property="article:modified_time" content="2025-03-31T17:11:39+09:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.97e32d65fe11c0cd3781001e6be3bf3516248c01a93ff6256f1e75541632eddd.css" media="all">
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="http://localhost:1313/">Pelikan&#39;s Glide</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /home
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /posts
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /about
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+<div class="breadcrumbs">
+    
+    <a href="/">Home</a>
+    <span class="breadcrumbs-separator"> > </span>
+    
+    <a href="/posts/">Posts</a>
+    <span class="breadcrumbs-separator"> > </span>
+    
+    <a class="breadcrumbs-current" href="/posts/image-transformation/">Image Transformation</a>
+</div>
+
+
+
+<div  class="autonumber" >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">Image Transformation</h1>
+    
+    <p class="single-summary">이곳에 요약을 입력하세요</p>
+    
+
+    
+
+    <p class="single-readtime">
+      
+      
+      
+      <time datetime="2025-03-31T17:11:39&#43;09:00">March 31, 2025</time>
+      
+
+      
+      &nbsp; · &nbsp;
+      3 min read
+      
+    </p>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <aside class="toc">
+    <p><strong>Table of contents</strong></p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#review">Review</a></li>
+    <li><a href="#model-fitting">Model Fitting</a>
+      <ul>
+        <li><a href="#least-squares">Least-Squares</a></li>
+        <li><a href="#running-least-squares">Running Least Squares</a></li>
+        <li><a href="#ransac">RANSAC</a></li>
+        <li><a href="#affine-transformation">Affine Transformation</a></li>
+        <li><a href="#homography-transformation">Homography Transformation</a></li>
+      </ul>
+    </li>
+    <li><a href="#정리">정리</a></li>
+  </ul>
+</nav>
+  </aside>
+  
+
+  
+
+  <div class="single-content">
+    <h2 class="heading" id="review">
+  Review
+  <a href="#review">#</a>
+</h2>
+<ol>
+<li>Detection: Harris/Laplcian of Gaussian</li>
+<li>Descriptor: SIFT</li>
+</ol>
+<h2 class="heading" id="model-fitting">
+  Model Fitting
+  <a href="#model-fitting">#</a>
+</h2>
+<p>모델 피팅에는 아래 3가지 요소가 필요한다.</p>
+<ol>
+<li>Data</li>
+<li>Model</li>
+<li>Objective Function(평가)</li>
+</ol>
+<h3 class="heading" id="least-squares">
+  Least-Squares
+  <a href="#least-squares">#</a>
+</h3>
+<ul>
+<li>Data: $(x_1, y_1),\ (x_2, y_2), \cdots,\ (x_k,y_k)$</li>
+<li>Model: $(m,b)\ y_i = mx_i + b\ Or\ (w)y_i = {w}^Tx_i$</li>
+<li>Objective function: $(y_i - {w}^Tx_i)^2$</li>
+</ul>
+<p><strong>Least-Square Setup</strong>
+$$
+\sum_{i=1}^k(y_i-w^Tx_i)^2 \longrightarrow ||Y-Xw||_2^2\newline
+$$</p>
+<p>$$
+Y = \begin{bmatrix}y_1\newline \vdots \newline y_k\end{bmatrix}
+X = \begin{bmatrix}x_1 &amp; 1\newline \vdots &amp; \vdots\newline x_k &amp; 1\end{bmatrix}
+w = \begin{bmatrix}m\newline b\end{bmatrix}
+$$</p>
+<h3 class="heading" id="running-least-squares">
+  Running Least Squares
+  <a href="#running-least-squares">#</a>
+</h3>
+<p>$||Y-Xw||_2^2$를 직접 계산하여 할 수도 있지만 행렬의 역산으로 $w$를 직접 구할 수도 있다.
+$$
+w = (X^TX)^{-1}X^TY
+$$</p>
+<h3 class="heading" id="ransac">
+  RANSAC
+  <a href="#ransac">#</a>
+</h3>
+<p>모델은 최대한 많은 값들을 잘 설명해야 한다.
+즉 오버피팅이 되어서는 안된다.
+하지만 dataset 전체를 Leaset Squares처리해가면서 하나씩 하면 시간이 너무 오래 걸린다는 단점이 있다.
+RANSAC<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>을 통해서 dataset 중 랜덤하게 뽑아 평가할 수 있다.</p>
+<p><strong>PseudoCode for RANSAC</strong></p>
+<pre tabindex="0"><code>bestLine, bestCount = None, -1
+for trial in range(numTrials):
+    subset = pickPairOfPoints(data)
+    line = totalLeastSquares(subset)
+    E = linePointDistance(data,line)
+    inliers = E &lt; threshold
+    if #inliers &gt; bestCount:
+        bestLine, bestCount = line, #inliers
+</code></pre><p><code>bestLine</code>은 모델을, <code>bestCount</code>는 threshold안에 있는 포인트들을 의미한다.
+<code>numTrials</code>만큼 반복하면서 데이터를 수집 후 <code>linePointDistance</code>함수를 통해 평가한다.
+평가 값이 <code>threshold</code>보다 작다면 즉 inlier라면 <code>bestCount</code>에 추가하며 이 값이 이전 모델보다 크다면
+<code>bestLine</code>을 변경한다.</p>
+<p><strong>RANSAC의 장점</strong></p>
+<ol>
+<li>심플하다.</li>
+<li>효과적이다.</li>
+<li>범용적이다.</li>
+</ol>
+<p><strong>RANSAC의 단점</strong></p>
+<ol>
+<li>파라미터를 튜닝해야 한다.</li>
+<li>많은 outlier가 있는 경우 비효율적이다.</li>
+</ol>
+<h3 class="heading" id="affine-transformation">
+  Affine Transformation
+  <a href="#affine-transformation">#</a>
+</h3>
+<p><strong>Geometric Transformation의 종류</strong></p>
+<ul>
+<li>Translation: 이미지 전체를 x,y 방향으로 일정 거리만큼 평행 이동</li>
+<li>Rotation: 이미지 객체를 주어진 각도만큼 회전</li>
+<li>Scaling: 이미지의 크기를 확대 또는 축소</li>
+<li>Shearing: 이미지 형태를 비스듬이 늘리거나 줄여서, 직선이 기욱어지도록 함</li>
+<li>Reflection: 이미지를 좌우 또는 상하로 반전</li>
+<li>Affine: Translation, Rotation, Scaling, Shearing을 모두 포함하는 선형 변환</li>
+<li>Homography: Affine에 원근감을 추가하는 변환</li>
+</ul>
+<p><strong>Fitting Models</strong></p>
+<ul>
+<li>Data: $(x_i,y_i,x^\prime_i,y^\prime_i)$ (여기서 $x^\prime,y^\prime$ 값은 실제 이미지의 값을 의미)</li>
+<li>Model: $[x_i^\prime,y_i^\prime] = M[x_i,y_i]+t$ (여기서 $x^\prime,y^\prime$값은 실제 값이 아닌 예측값, M은 $2\times 2$ matrix)</li>
+<li>Objective function: $||[x^\prime_i,y^\prime_i]-(M[x_i,y_i]+t)||^2$</li>
+</ul>
+<p>데이터는 2차원이 아닌 4차원의 값을 가진다.
+즉 첫번쨰 이미지와 두번째 이미지의 픽셀 위치 각각 2개씩을 쌍으로 가진다.</p>
+<p>$$
+\begin{bmatrix}x_i^\prime\newline y_i^\prime\end{bmatrix} = \begin{bmatrix}m_1 &amp; m_2 \newline m_3 &amp; m_4\end{bmatrix}\begin{bmatrix}x_i\newline y_i\end{bmatrix} + \begin{bmatrix}t_x\newline t_y\end{bmatrix}
+$$
+위의 식을 아래처럼 변경할 수 있다.</p>
+<p>$$
+\begin{bmatrix}\vdots \newline x_i^\prime\newline y_i^\prime\newline \vdots\end{bmatrix} = \begin{bmatrix}\cdots&amp;\cdots  &amp;\cdots &amp; \cdots&amp;\cdots &amp;\cdots \newline x_i &amp; y_i &amp; 0 &amp; 0 &amp; 1 &amp; 0\newline 0 &amp; 0 &amp; x_i &amp; y_i &amp; 0 &amp; i\newline \cdots&amp;\cdots  &amp;\cdots &amp; \cdots&amp;\cdots &amp;\cdots \end{bmatrix}\begin{bmatrix}m_1\newline m_2\newline m_3\newline m_4\newline t_x\newline t_y\end{bmatrix}
+$$</p>
+<p>해당 행렬을 통해 2개의 방정식과 6개의 미지수가 있음을 알 수 있다.
+그렇다면 데이터셋 $6/2=3$개가 필요하다.
+따라서 3개의 점을 통해 Affine Transformation을 할 수 있다.</p>
+<p>RANSAC을 통해 데이터셋을 선별한 후 $\argmin\limits_x||Ax-b||^2$을 구하면 된다.</p>
+<p>이 떄 $Ax-b$가 inlier를 의미한다.</p>
+<h3 class="heading" id="homography-transformation">
+  Homography Transformation
+  <a href="#homography-transformation">#</a>
+</h3>
+<p><strong>Fitting Models</strong></p>
+<ul>
+<li>Data: $(x_i,y_i,x_i^\prime,y_i^\prime)$</li>
+<li>Model: $[x_i^\prime,y_i^\prime,1] \equiv \mathbf{H}[x_i,y_i,1]$</li>
+<li>Objective function: complicated</li>
+</ul>
+<p>$$
+\begin{bmatrix}
+0^T &amp; -p_1^T &amp; y_1^\prime p_1^\prime\newline
+p_1^T &amp; 0^T &amp; -x_1^\prime p_1^\prime\newline
+&amp; \vdots &amp; \newline
+0^T &amp; -p_n^T &amp; y_n^\prime p_n^\prime\newline
+p_n^T &amp; 0^T &amp; -x_n^\prime p_n^\prime
+\end{bmatrix}
+\begin{bmatrix}
+h_1\newline
+h_2\newline
+h_3
+\end{bmatrix} = 0
+$$</p>
+<p>Objective-function은 아래와 같다.</p>
+<p>$$
+h^* = \argmin_{||h||=1} ||Ah||^2
+$$</p>
+<h2 class="heading" id="정리">
+  정리
+  <a href="#%ec%a0%95%eb%a6%ac">#</a>
+</h2>
+<p>Transformation 순서</p>
+<ol>
+<li>Detection</li>
+<li>Descriptor</li>
+<li>Match by Nearest Neighbor</li>
+<li>Fit h via RANSAC</li>
+<li>Blend image</li>
+</ol>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>RANdom SAmple Concencus&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+    
+  </div>
+
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/image-filtering/">
+                        이미지 필터링
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+    
+    function getTheme() {
+        return document.documentElement.classList.contains('dark') ? 'dark' : 'default';
+    }
+
+    
+    function initMermaid() {
+        mermaid.initialize({ theme: getTheme() });
+        mermaid.init();
+    }
+
+    
+    const observer = new MutationObserver(() => {
+        initMermaid();
+    });
+
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        initMermaid();
+    });
+</script>
+    </footer>
+
+    
+    <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+<script defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+
+<script defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body);"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ]
+    });
+  });
+</script>
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>
