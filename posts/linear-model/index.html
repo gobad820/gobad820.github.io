@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en-us"
+  dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="https://gobad820.github.io//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://gobad820.github.io//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://gobad820.github.io//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://gobad820.github.io//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://gobad820.github.io//apple-touch-icon.png">
+
+<meta name="description" content="컴퓨터비전 5강: 선형 모델"/>
+
+<title>
+    
+    Linear Model | Pelikan&#39;s Glide
+    
+</title>
+
+<link rel="canonical" href="https://gobad820.github.io/posts/linear-model/"/>
+
+<meta property="og:url" content="https://gobad820.github.io/posts/linear-model/">
+  <meta property="og:site_name" content="Pelikan&#39;s Glide">
+  <meta property="og:title" content="Linear Model">
+  <meta property="og:description" content="컴퓨터비전 5강: 선형 모델">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-04-02T17:32:12+09:00">
+    <meta property="article:modified_time" content="2025-04-02T17:32:12+09:00">
+    <meta property="article:tag" content="Computervision">
+    <meta property="article:tag" content="Linearmodel">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.97e32d65fe11c0cd3781001e6be3bf3516248c01a93ff6256f1e75541632eddd.css" media="all">
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="https://gobad820.github.io/">Pelikan&#39;s Glide</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /home
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /posts
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /about
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+<div class="breadcrumbs">
+    
+    <a href="/">Home</a>
+    <span class="breadcrumbs-separator"> > </span>
+    
+    <a href="/posts/">Posts</a>
+    <span class="breadcrumbs-separator"> > </span>
+    
+    <a class="breadcrumbs-current" href="/posts/linear-model/">Linear Model</a>
+</div>
+
+
+
+<div  class="autonumber" >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">Linear Model</h1>
+    
+    <p class="single-summary">Computer Vision Lecture 5: Linear model</p>
+    
+
+    
+
+    <p class="single-readtime">
+      
+      
+      
+      <time datetime="2025-04-02T17:32:12&#43;09:00">April 2, 2025</time>
+      
+
+      
+      &nbsp; · &nbsp;
+      2 min read
+      
+    </p>
+
+  </div>
+
+  
+
+  
+  
+
+  <div class="single-tags">
+    
+    <span>
+      <a href="https://gobad820.github.io/tags/computervision/">#Computervision</a>
+    </span>
+    
+    
+    <span>
+      <a href="https://gobad820.github.io/tags/linearmodel/">#Linearmodel</a>
+    </span>
+    
+    
+  </div>
+
+  
+  
+
+  
+
+  
+  <aside class="toc">
+    <p><strong>Table of contents</strong></p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#machine-learning">Machine Learning</a>
+      <ul>
+        <li><a href="#notation">Notation</a></li>
+        <li><a href="#example">Example</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </aside>
+  
+
+  
+
+  <div class="single-content">
+    <h2 class="heading" id="machine-learning">
+  Machine Learning
+  <a href="#machine-learning">#</a>
+</h2>
+<p>ML의 목표는 데이터를 분석하고 그 속에서 유의미한 정보를 도출해내는 것이다.
+ML을 통해 objective function을 최소화하거나 최대화하는 transformation을 찾아야 한다.</p>
+<h3 class="heading" id="notation">
+  Notation
+  <a href="#notation">#</a>
+</h3>
+<ul>
+<li>Input: x $\rightarrow$ Feature Vector or Data Point</li>
+<li>Output: y $\rightarrow$ Label or Target</li>
+</ul>
+<h3 class="heading" id="example">
+  Example
+  <a href="#example">#</a>
+</h3>
+<ul>
+<li>Input: $x \in \mathbf{R}^N$</li>
+<li>Output: $y$</li>
+</ul>
+<pre class="mermaid">block-beta
+        columns 3
+        block:main["input x\n\n\n\n\n\n\n\n\n\n"]
+            columns 2
+            space space
+            Blood_Pressure 50 Heart_Rate 60 .... ... Glucose_Level 0.2
+            space space
+        end
+        blockArrow<["&nbsp;f(w·x)"]>(right)
+        block:result["output x\n\n\n\n\n\n\n\n\n\n"]
+            columns 1
+            space
+        P_of_Has_Diabetes P_of_No_Diabetes
+        space space
+        end
+        
+</pre>
+<p>해당 그래프는 Linear Regression을 표현한 것이다.
+Regression은 Supervised이며 Continous하다.</p>
+<p>ML Problem은 아래와 같은 기준으로 나눌 수 있다.</p>
+<p><strong>OUTPUT</strong>의 연속성여부와 <strong>Supervised</strong>의 여부이다.</p>
+<ol>
+<li>Classification (Supervised + Discrete Date)</li>
+<li>Regression (Supervised + Continuous Data)</li>
+<li>Clustering (Unsupervised + Discrete Data)</li>
+<li>Dimensional Reduction(Unsupervised + Continuous Data)</li>
+</ol>
+<p>다시 Regression의 예제로 돌아가보면 아래와 같이 모델을 설정할 수 있다.</p>
+<ul>
+<li>Data: $(x_1,y_1),\ (x_2,y_2),\ \dots ,\ (x_k,y_k)$</li>
+<li>Model: $(m,b)\ y_i = mx_i+b\ Or\ (w)\ y_i=w^Tx_i$</li>
+<li>Objective function: $(y_i-w^Tx_i)^2$</li>
+</ul>
+<p>$$
+\sum_{i=1}^k(y_i-w^Tx_i)^2 \longrightarrow ||y-Xw||_2^2\newline \newline
+$$
+위 식을 이용해서 최적의 weighted sum을 찾아야 한다.
+$$
+\argmin_w||y-Xw||_2^2
+$$
+위 식을 통해 Objective function은 Loss function와 동일함을 할 수 있다.
+$w$는 perceptron learning rule로 구할수도 있고 행렬의 역산으로 아래와 같이 구할 수도 있다.</p>
+<p>$$
+w^* = (X^TX)^{-1}X^Ty
+$$</p>
+<p>Training이 모두 종료되면 Inference(Test)과정을 거친다.
+$$
+w^Tx= w_1x_1 + \cdots + w_fx_f
+$$</p>
+<p>input이 $X_{5\times 4}$이고 output이 $y_{5\times 1}$이라면 입력에서 3개의 feature과 1개의 bias로 이루어짐을 알 수 있다.
+그렇다면 $y = xw$를 만족해야 하므로 $w_{4\times 1}$이 되어야 한다.
+이제 input의 사이즈를 키워서 $X_{5\times 7}$이라고 가정해보자
+이 때 $w=(X^TX)^{-1}X^Ty$를 만족한다.
+$X^TX$는 $7\times 7$의 사이즈이며 이는 rank<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> deficient<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>이다.</p>
+<p>$$
+\argmin_w ||y-Xw||_2^2 + \lambda ||w||_2^2
+$$</p>
+<p>위 식을 통해 더욱 심플한 모델을 w에 대한 penalty를 통해 도출할 수 있다.
+$$
+W^* = (X^TX+\lambda I)^{-1}X^Ty
+$$</p>
+<p>이 때의 $\lambda$는 trade-off hyperparameter로서 validation process를 통해 최적의 $\lambda$를 고를 수 있다.</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>$rank(A) \le min(m,n)$이며 $rank(A) = min(m,n)$인 경우 full rank를 가진다고 한다. 이 때 $min(m,n)$은 행렬 $A\in \mathbb{R}^{m\times n}$에서 선형 독립인 행 또는 열의 개수를 의미한다.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>full rank를 가지지 않는 경우를 rank deficient라고 한다. 즉 $A \in \mathbb{R}^{m \times n}$인데, $\text{rank}(A) &lt; \min(m, n)$일 때 rank deficient 상태이다.
+rank deficient의 경우 역행렬을 가질 수 없다.
+따라서 아래와 같이 Regularization을 해주어야 한다.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+    
+  </div>
+
+  
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/image-transformation/">
+                        Image Transformation
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+    
+    function getTheme() {
+        return document.documentElement.classList.contains('dark') ? 'dark' : 'default';
+    }
+
+    
+    function initMermaid() {
+        mermaid.initialize({ theme: getTheme() });
+        mermaid.init();
+    }
+
+    
+    const observer = new MutationObserver(() => {
+        initMermaid();
+    });
+
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        initMermaid();
+    });
+</script>
+    </footer>
+
+    
+    <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+<script defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+
+<script defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body);"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ]
+    });
+  });
+</script>
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>

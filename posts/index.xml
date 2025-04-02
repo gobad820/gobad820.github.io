@@ -6,14 +6,21 @@
     <description>Recent content in Posts on Pelikan&#39;s Glide</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 31 Mar 2025 17:11:39 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 02 Apr 2025 17:32:12 +0900</lastBuildDate>
     <atom:link href="https://gobad820.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linear Model</title>
+      <link>https://gobad820.github.io/posts/linear-model/</link>
+      <pubDate>Wed, 02 Apr 2025 17:32:12 +0900</pubDate>
+      <guid>https://gobad820.github.io/posts/linear-model/</guid>
+      <description>Computer Vision Lecture 5: Linear model</description>
+    </item>
     <item>
       <title>Image Transformation</title>
       <link>https://gobad820.github.io/posts/image-transformation/</link>
       <pubDate>Mon, 31 Mar 2025 17:11:39 +0900</pubDate>
       <guid>https://gobad820.github.io/posts/image-transformation/</guid>
-      <description>ComputerVision Lecture05</description>
+      <description>ComputerVision Lecture05: Image transformation</description>
     </item>
     <item>
       <title>이미지 필터링</title>
