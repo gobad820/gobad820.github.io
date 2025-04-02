@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linearmodel on Pelikan&#39;s Glide</title>
+    <title>LinearModel on Pelikan&#39;s Glide</title>
     <link>https://gobad820.github.io/tags/linearmodel/</link>
-    <description>Recent content in Linearmodel on Pelikan&#39;s Glide</description>
+    <description>Recent content in LinearModel on Pelikan&#39;s Glide</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 02 Apr 2025 17:32:12 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 02 Apr 2025 18:42:01 +0900</lastBuildDate>
     <atom:link href="https://gobad820.github.io/tags/linearmodel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linear-Models(ML)</title>
+      <link>https://gobad820.github.io/posts/linear-models_ml/</link>
+      <pubDate>Wed, 02 Apr 2025 18:42:01 +0900</pubDate>
+      <guid>https://gobad820.github.io/posts/linear-models_ml/</guid>
+      <description>선형 모델(머신러닝)</description>
+    </item>
     <item>
       <title>Linear Model</title>
       <link>https://gobad820.github.io/posts/linear-model/</link>
