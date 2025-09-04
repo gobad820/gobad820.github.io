@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CS 전공지식 정리 on Pelikan&#39;s Glide</title>
+    <link>https://pelikan-dev.click/series/cs-%EC%A0%84%EA%B3%B5%EC%A7%80%EC%8B%9D-%EC%A0%95%EB%A6%AC/</link>
+    <description>Recent content in CS 전공지식 정리 on Pelikan&#39;s Glide</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 29 Aug 2025 00:08:46 +0900</lastBuildDate>
+    <atom:link href="https://pelikan-dev.click/series/cs-%EC%A0%84%EA%B3%B5%EC%A7%80%EC%8B%9D-%EC%A0%95%EB%A6%AC/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>네트워크 기초 - CS 전공지식 정리</title>
+      <link>https://pelikan-dev.click/posts/cs-note/cs-note-1-2-factory/</link>
+      <pubDate>Fri, 29 Aug 2025 00:08:46 +0900</pubDate>
+      <guid>https://pelikan-dev.click/posts/cs-note/cs-note-1-2-factory/</guid>
+      <description>네트워크 기초 개념 정리</description>
+    </item>
+  </channel>
+</rss>

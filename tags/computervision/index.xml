@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Computervision on Pelikan&#39;s Glide</title>
-    <link>https://gobad820.github.io/tags/computervision/</link>
+    <link>https://pelikan-dev.click/tags/computervision/</link>
     <description>Recent content in Computervision on Pelikan&#39;s Glide</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 28 Apr 2025 17:30:55 +0900</lastBuildDate>
-    <atom:link href="https://gobad820.github.io/tags/computervision/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pelikan-dev.click/tags/computervision/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Back Propagation</title>
-      <link>https://gobad820.github.io/posts/back-propagation/</link>
+      <link>https://pelikan-dev.click/posts/back-propagation/</link>
       <pubDate>Mon, 28 Apr 2025 17:30:55 +0900</pubDate>
-      <guid>https://gobad820.github.io/posts/back-propagation/</guid>
+      <guid>https://pelikan-dev.click/posts/back-propagation/</guid>
       <description>ComputerVision Lecture 9-1</description>
     </item>
     <item>
       <title>Linear Model</title>
-      <link>https://gobad820.github.io/posts/linear-model/</link>
+      <link>https://pelikan-dev.click/posts/linear-model/</link>
       <pubDate>Wed, 02 Apr 2025 17:32:12 +0900</pubDate>
-      <guid>https://gobad820.github.io/posts/linear-model/</guid>
+      <guid>https://pelikan-dev.click/posts/linear-model/</guid>
       <description>Computer Vision Lecture 5: Linear model</description>
     </item>
     <item>
       <title>Image Transformation</title>
-      <link>https://gobad820.github.io/posts/image-transformation/</link>
+      <link>https://pelikan-dev.click/posts/image-transformation/</link>
       <pubDate>Mon, 31 Mar 2025 17:11:39 +0900</pubDate>
-      <guid>https://gobad820.github.io/posts/image-transformation/</guid>
+      <guid>https://pelikan-dev.click/posts/image-transformation/</guid>
       <description>ComputerVision Lecture05: Image transformation</description>
     </item>
     <item>
       <title>이미지 필터링</title>
-      <link>https://gobad820.github.io/posts/image-filtering/</link>
+      <link>https://pelikan-dev.click/posts/image-filtering/</link>
       <pubDate>Mon, 24 Mar 2025 17:38:55 +0900</pubDate>
-      <guid>https://gobad820.github.io/posts/image-filtering/</guid>
+      <guid>https://pelikan-dev.click/posts/image-filtering/</guid>
       <description>ComputerVision Lecture01</description>
     </item>
   </channel>

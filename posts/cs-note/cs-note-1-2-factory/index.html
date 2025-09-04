@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en-us"
+  dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+
+<link rel="icon" type="image/ico" href="https://pelikan-dev.click/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://pelikan-dev.click/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://pelikan-dev.click/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://pelikan-dev.click/android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://pelikan-dev.click/apple-touch-icon.png">
+
+<meta name="description" content="네트워크 기초"/>
+
+
+
+<title>
+    
+    네트워크 기초 - CS 전공지식 정리 | Pelikan&#39;s Glide
+    
+</title>
+
+<link rel="canonical" href="https://pelikan-dev.click/posts/cs-note/cs-note-1-2-factory/"/>
+
+<meta property="og:url" content="https://pelikan-dev.click/posts/cs-note/cs-note-1-2-factory/">
+  <meta property="og:site_name" content="Pelikan&#39;s Glide">
+  <meta property="og:title" content="네트워크 기초 - CS 전공지식 정리">
+  <meta property="og:description" content="네트워크 기초">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-29T00:08:46+09:00">
+    <meta property="article:modified_time" content="2025-08-29T00:08:46+09:00">
+    <meta property="article:tag" content="CS">
+    <meta property="article:tag" content="면접">
+    <meta property="article:tag" content="전공지식">
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.104a7fee30ae385db782d9ae92a3b5b05f36936519aabc8b11655e4ed1a7ed69.css" media="all">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+</head>
+
+
+
+
+
+
+
+<body class="auto">
+
+  <div class="content">
+    <header>
+      
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="https://pelikan-dev.click/">Pelikan&#39;s Glide</a>
+    </h1>
+
+    <div class="header-menu">
+        
+
+        
+        
+
+        <p
+            class="small ">
+            <a href="/" >
+                /home
+            </a>
+        </p>
+        
+
+        <p
+            class="small ">
+            <a href="/posts" >
+                /posts
+            </a>
+        </p>
+        
+
+        <p
+            class="small ">
+            <a href="/about" >
+                /about
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+    </header>
+
+    <main class="main">
+      
+
+
+
+
+<div class="breadcrumbs"><a href="/">Home</a><span class="breadcrumbs-separator">/</span><a href="/posts/">Posts</a><span class="breadcrumbs-separator">/</span>
+        <a href="/posts/cs-note/cs-note-1-2-factory/">네트워크 기초 - CS 전공지식 정리</a></div>
+
+
+<div  class="autonumber" >
+  <article>
+    <header class="single-intro-container">
+        
+        <h1 class="single-title">네트워크 기초 - CS 전공지식 정리</h1>
+        <p class="single-summary">네트워크 기초 개념 정리</p>
+        
+        <div class="single-subsummary">
+          
+          <div>
+            
+            <p class="single-date">
+              <time datetime="2025-08-29T00:08:46&#43;09:00">August 29, 2025</time>
+              &nbsp; · &nbsp;3 min read
+            </p>
+          </div>
+        </div>
+        
+    </header>    
+        <div class="single-tags"><span>
+                  <a href="https://pelikan-dev.click/tags/cs/">#CS</a>
+                </span><span>
+                  <a href="https://pelikan-dev.click/tags/%EB%A9%B4%EC%A0%91/">#면접</a>
+                </span><span>
+                  <a href="https://pelikan-dev.click/tags/%EC%A0%84%EA%B3%B5%EC%A7%80%EC%8B%9D/">#전공지식</a>
+                </span>
+        </div>
+      <aside class="toc">
+        <p><strong>Table of contents</strong></p>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#-학습-정보">📚 학습 정보</a></li>
+    <li><a href="#-핵심-개념-정리">🎯 핵심 개념 정리</a></li>
+    <li><a href="#-상세-학습-내용">📖 상세 학습 내용</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+      </aside>
+    
+    <div class="single-content">
+      <h2 class="heading" id="-학습-정보">
+  📚 학습 정보
+  <a class="anchor" href="#-%ed%95%99%ec%8a%b5-%ec%a0%95%eb%b3%b4">#</a>
+</h2>
+<ul>
+<li><strong>Section</strong>:   
+<span class="highlight-blue"><strong>2.1: Network Basic</strong></span>
+
+</li>
+<li><strong>Topic</strong>: <strong>네트워크 기초</strong></li>
+<li><strong>Study Date</strong>: 2025-08-29</li>
+</ul>
+<h2 class="heading" id="-핵심-개념-정리">
+  🎯 핵심 개념 정리
+  <a class="anchor" href="#-%ed%95%b5%ec%8b%ac-%ea%b0%9c%eb%85%90-%ec%a0%95%eb%a6%ac">#</a>
+</h2>
+<p>네트워크의 기본 개념들에 대해 학습 및 요약한다.</p>
+<h3 class="heading" id="주요-키워드">
+  주요 키워드
+  <a class="anchor" href="#%ec%a3%bc%ec%9a%94-%ed%82%a4%ec%9b%8c%eb%93%9c">#</a>
+</h3>
+<ul>
+<li>Throughput &amp; Latency</li>
+<li>Network topology</li>
+<li>Network classification</li>
+</ul>
+<h2 class="heading" id="-상세-학습-내용">
+  📖 상세 학습 내용
+  <a class="anchor" href="#-%ec%83%81%ec%84%b8-%ed%95%99%ec%8a%b5-%eb%82%b4%ec%9a%a9">#</a>
+</h2>
+<h3 class="heading" id="thrghouput--latency">
+  Thrghouput &amp; Latency
+  <a class="anchor" href="#thrghouput--latency">#</a>
+</h3>
+<ul>
+<li>
+<span class="highlight-blue">📝 <strong>Throughput</strong>(처리량)</span>
+
+은 이더넷이나 패킷 라디오와 같은 통신네트워크에서 통신 채널을 통한 메세지 전달률을 의미한다.<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
+<li>
+<span class="highlight-blue">📝 <strong>Latency</strong></span>
+
+는 자극과 반응 사이의 시간이며 네트워크에서는 두 기기 사이를 왕복하는데 걸리는 시간이다.<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></li>
+<li>
+<span class="highlight-blue">📝 <strong>Traffic</strong></span>
+
+은 인터넷을 경유하는 데이터의 흐름을 의미한다.<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></li>
+</ul>
+<h3 class="heading" id="network-topology">
+  Network topology
+  <a class="anchor" href="#network-topology">#</a>
+</h3>
+<h4 class="heading" id="tree-topology">
+  Tree topology
+  <a class="anchor" href="#tree-topology">#</a>
+</h4>
+<ul>
+<li>트리 형태를 가진 Hierarchy topology</li>
+<li>장점: 계층적 구조로 관리가 용이</li>
+<li>단점: 특정 노드에 트래픽 집중 시 하위 노드에 영향</li>
+</ul>
+<pre class="mermaid">graph TD
+    A[Root Hub] --&gt; B[Hub 1]
+    A --&gt; C[Hub 2]
+    B --&gt; D[Node 1]
+    B --&gt; E[Node 2]
+    B --&gt; F[Node 3]
+    C --&gt; G[Node 4]
+    C --&gt; H[Node 5]
+    C --&gt; I[Node 6]
+
+    style A fill:#ff9999
+    style B fill:#99ccff
+    style C fill:#99ccff
+</pre>
+
+<h4 class="heading" id="bus-topology">
+  Bus topology
+  <a class="anchor" href="#bus-topology">#</a>
+</h4>
+<ul>
+<li>중앙 통신 회선 하나에 여러개의 노드가 연결</li>
+<li>장점: 간편하고 비용이 낮으며 신뢰도가 높다.</li>
+<li>단점: 
+<span class="highlight-red">⚠️ 스푸핑(Sfooping[^4])이 가능하다</span>
+
+.
+<blockquote>
+<p>스푸핑은 스위칭 기능을 마비시켜 속임을 이용한 공격의 총칭이다.</p>
+</blockquote>
+</li>
+</ul>
+<pre class="mermaid">graph TB
+    N1[Node 1] ---|T자 연결| BusLine
+    N2[Node 2] ---|T자 연결| BusLine
+    BusLine[📡 공통 버스 라인&lt;br/&gt;━━━━━━━━]
+    N3[Node 3] ---|T자 연결| BusLine
+    N4[Node 4] ---|T자 연결| BusLine
+    N5[Node 5] ---|T자 연결| BusLine
+
+
+    style BusLine fill:#fff3e0,stroke:#ff6600,stroke-width:3px
+    style N1 fill:#e3f2fd
+    style N2 fill:#e3f2fd
+    style N3 fill:#e3f2fd
+    style N4 fill:#e3f2fd
+    style N5 fill:#e3f2fd
+</pre>
+
+<h4 class="heading" id="star-topology">
+  Star topology
+  <a class="anchor" href="#star-topology">#</a>
+</h4>
+<ul>
+<li>중앙 노드에 전체 노드를 연결한 topology</li>
+<li>장점: 패킷의 충돌 가능성이 낮다.</li>
+<li>단점: Single Failure Point가 발생할 수 있으며 설치비가 비싸다.</li>
+</ul>
+<pre class="mermaid">flowchart TD
+    N1[Node 1] --- Hub[🌟 중앙 Hub]
+    N2[Node 2] --- Hub
+    Hub --- N3[Node 3]
+    Hub --- N4[Node 4]
+    Hub --- N5[Node 5]
+    Hub --- N6[Node 6]
+
+    style Hub fill:#ff9999,stroke:#333,stroke-width:3px
+    style N1 fill:#e3f2fd
+    style N2 fill:#e3f2fd
+    style N3 fill:#e3f2fd
+    style N4 fill:#e3f2fd
+    style N5 fill:#e3f2fd
+    style N6 fill:#e3f2fd
+</pre>
+
+<h4 class="heading" id="ring-topology">
+  Ring topology
+  <a class="anchor" href="#ring-topology">#</a>
+</h4>
+<ul>
+<li>각 노드 옆 두 노드와 연결하며 노드에서 노드로 데이터를 이동시킨다.</li>
+<li>장점: 네트워크 손실이 없으며 출력이 낮아지지 않는다.</li>
+<li>단점: 구성 변경이 어렵다.</li>
+</ul>
+<pre class="mermaid">graph LR
+    N1[Node 1] &lt;--&gt; N2[Node 2]
+    N2 &lt;--&gt; N3[Node 3]
+    N3 &lt;--&gt; N4[Node 4]
+    N4 &lt;--&gt; N5[Node 5]
+    N5 &lt;--&gt; N6[Node 6]
+    N6 &lt;--&gt; N1
+
+    style N1 fill:#99ff99
+    style N2 fill:#99ff99
+    style N3 fill:#99ff99
+    style N4 fill:#99ff99
+    style N5 fill:#99ff99
+    style N6 fill:#99ff99
+</pre>
+
+<h4 class="heading" id="mesh-topology">
+  Mesh topology
+  <a class="anchor" href="#mesh-topology">#</a>
+</h4>
+<ul>
+<li>그물처럼 전체가 다 연결되어 있는 topology</li>
+<li>장점: 
+<span class="highlight-green">💡 강건성이 있다</span>
+
+.</li>
+<li>단점: 노드 추가 삭제가 어렵고 설치, 운용 비용이 높다.</li>
+</ul>
+<pre class="mermaid">graph TD
+    %% 별 모양 배치 - 중앙과 사방으로
+    N1[Node 1] --- N2[Node 2]
+    N1 --- N3[Node 3]
+    N1 --- N4[Node 4]
+    N1 --- N5[Node 5]
+
+    %% 외곽 노드들끼리도 모두 연결 (완전 연결 그래프)
+    N2 --- N3
+    N2 --- N4
+    N2 --- N5
+    N3 --- N4
+    N3 --- N5
+    N4 --- N5
+
+    style N1 fill:#ff6b6b,stroke:#333,stroke-width:2px
+    style N2 fill:#4ecdc4,stroke:#333,stroke-width:2px
+    style N3 fill:#45b7d1,stroke:#333,stroke-width:2px
+    style N4 fill:#96ceb4,stroke:#333,stroke-width:2px
+    style N5 fill:#feca57,stroke:#333,stroke-width:2px
+</pre>
+
+<h3 class="heading" id="network-classification">
+  Network classification
+  <a class="anchor" href="#network-classification">#</a>
+</h3>
+<ul>
+<li>LAN: 건물 및 캠퍼스단위의 네트워크이며 비교적 높은 속도와 낮은 혼잡도를 가진다.</li>
+<li>MAN: 대도시 및 지역 단위의 네트워크이며 보통 속도와 LAN보다 높은 혼잡도를 가진다.</li>
+<li>WAN: 광역 또는 대륙 단위의 네트워크이며 속도가 낮고 혼잡도가 높다.</li>
+</ul>
+<pre class="mermaid">graph TB
+    subgraph &#34;네트워크 분류 (범위별)&#34;
+        LAN[&#34;🏢 LAN&lt;br/&gt;(Local Area Network)&lt;br/&gt;• 건물/캠퍼스&lt;br/&gt;• 높은 속도&lt;br/&gt;• 낮은 혼잡도&#34;]
+        MAN[&#34;🏙️ MAN&lt;br/&gt;(Metropolitan Area Network)&lt;br/&gt;• 대도시/지역&lt;br/&gt;• 보통 속도&lt;br/&gt;• 중간 혼잡도&#34;]
+        WAN[&#34;🌍 WAN&lt;br/&gt;(Wide Area Network)&lt;br/&gt;• 광역/대륙&lt;br/&gt;• 낮은 속도&lt;br/&gt;• 높은 혼잡도&#34;]
+    end
+
+    LAN --&gt; MAN
+    MAN --&gt; WAN
+
+    style LAN fill:#c8e6c9
+    style MAN fill:#fff3e0
+    style WAN fill:#ffcdd2
+</pre>
+
+<h3 class="heading" id="network-protocol">
+  Network protocol
+  <a class="anchor" href="#network-protocol">#</a>
+</h3>
+<p>네트워크 프로토콜은 <a href="https://www.ieee802.org/3/">IEEE 802.3</a>을 따르고 있다.</p>
+<h2 class="heading" id="references">
+  References
+  <a class="anchor" href="#references">#</a>
+</h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://en.wikipedia.org/wiki/Network_throughput">https://en.wikipedia.org/wiki/Network_throughput</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://ko.wikipedia.org/wiki/">https://ko.wikipedia.org/wiki/</a>레이턴시&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://ko.wikipedia.org/wiki/">https://ko.wikipedia.org/wiki/</a>인터넷_트래픽&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+    </div>
+  </article>
+
+  
+  
+  
+  <script defer
+    type="module"
+    id="mermaid_script"
+    data-light-theme="default"
+    data-dark-theme="dark"
+    src='/js/mermaid.js'>
+  </script>
+  
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flexnowrap">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/algorithm/dynamic-programming-1/">
+                        Dynamic Programming: N으로 표현
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+    </main>
+  </div>
+
+  
+  
+
+
+
+
+
+    
+
+
+
+
+  <footer>
+    
+
+    
+    
+
+
+
+
+
+    
+
+
+
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+  </footer>
+
+  
+  <link rel="stylesheet" 
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+  
+<script defer 
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+
+<script defer
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body);"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ]
+    });
+  });
+</script>
+  
+</body>
+
+<script src="/js/theme-switch.js"></script>
+<script defer src="/js/copy-code.js"></script>
+</html>

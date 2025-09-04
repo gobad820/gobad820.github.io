@@ -2,87 +2,101 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Home on Pelikan&#39;s Glide</title>
-    <link>https://gobad820.github.io/</link>
+    <link>https://pelikan-dev.click/</link>
     <description>Recent content in Home on Pelikan&#39;s Glide</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Apr 2025 17:30:55 +0900</lastBuildDate>
-    <atom:link href="https://gobad820.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Sep 2025 04:03:51 +0900</lastBuildDate>
+    <atom:link href="https://pelikan-dev.click/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>네트워크 기초 - CS 전공지식 정리</title>
+      <link>https://pelikan-dev.click/posts/cs-note/cs-note-1-2-factory/</link>
+      <pubDate>Fri, 29 Aug 2025 00:08:46 +0900</pubDate>
+      <guid>https://pelikan-dev.click/posts/cs-note/cs-note-1-2-factory/</guid>
+      <description>네트워크 기초 개념 정리</description>
+    </item>
+    <item>
+      <title>Dynamic Programming: N으로 표현</title>
+      <link>https://pelikan-dev.click/posts/algorithm/dynamic-programming-1/</link>
+      <pubDate>Fri, 05 Sep 2025 04:03:51 +0900</pubDate>
+      <guid>https://pelikan-dev.click/posts/algorithm/dynamic-programming-1/</guid>
+      <description>알고리즘 문제 해결 과정을 기록합니다</description>
+    </item>
     <item>
       <title>Back Propagation</title>
-      <link>https://gobad820.github.io/posts/back-propagation/</link>
+      <link>https://pelikan-dev.click/posts/back-propagation/</link>
       <pubDate>Mon, 28 Apr 2025 17:30:55 +0900</pubDate>
-      <guid>https://gobad820.github.io/posts/back-propagation/</guid>
+      <guid>https://pelikan-dev.click/posts/back-propagation/</guid>
       <description>ComputerVision Lecture 9-1</description>
     </item>
     <item>
       <title>Linear-Models(ML)</title>
-      <link>https://gobad820.github.io/posts/linear-models_ml/</link>
+      <link>https://pelikan-dev.click/posts/linear-models_ml/</link>
       <pubDate>Wed, 02 Apr 2025 18:42:01 +0900</pubDate>
-      <guid>https://gobad820.github.io/posts/linear-models_ml/</guid>
+      <guid>https://pelikan-dev.click/posts/linear-models_ml/</guid>
       <description>선형 모델(머신러닝)</description>
     </item>
     <item>
       <title>Linear Model</title>
-      <link>https://gobad820.github.io/posts/linear-model/</link>
+      <link>https://pelikan-dev.click/posts/linear-model/</link>
       <pubDate>Wed, 02 Apr 2025 17:32:12 +0900</pubDate>
-      <guid>https://gobad820.github.io/posts/linear-model/</guid>
+      <guid>https://pelikan-dev.click/posts/linear-model/</guid>
       <description>Computer Vision Lecture 5: Linear model</description>
     </item>
     <item>
       <title>Image Transformation</title>
-      <link>https://gobad820.github.io/posts/image-transformation/</link>
+      <link>https://pelikan-dev.click/posts/image-transformation/</link>
       <pubDate>Mon, 31 Mar 2025 17:11:39 +0900</pubDate>
-      <guid>https://gobad820.github.io/posts/image-transformation/</guid>
+      <guid>https://pelikan-dev.click/posts/image-transformation/</guid>
       <description>ComputerVision Lecture05: Image transformation</description>
     </item>
     <item>
       <title>이미지 필터링</title>
-      <link>https://gobad820.github.io/posts/image-filtering/</link>
+      <link>https://pelikan-dev.click/posts/image-filtering/</link>
       <pubDate>Mon, 24 Mar 2025 17:38:55 +0900</pubDate>
-      <guid>https://gobad820.github.io/posts/image-filtering/</guid>
+      <guid>https://pelikan-dev.click/posts/image-filtering/</guid>
       <description>ComputerVision Lecture01</description>
     </item>
     <item>
       <title>성격 유형 검사하기</title>
-      <link>https://gobad820.github.io/posts/personality_test/</link>
+      <link>https://pelikan-dev.click/posts/personality_test/</link>
       <pubDate>Tue, 21 Jan 2025 16:36:47 +0900</pubDate>
-      <guid>https://gobad820.github.io/posts/personality_test/</guid>
+      <guid>https://pelikan-dev.click/posts/personality_test/</guid>
       <description>2020 KAKAO TECH INTERNSHIP</description>
     </item>
     <item>
       <title>키패드 누르기</title>
-      <link>https://gobad820.github.io/posts/press_keypad/</link>
+      <link>https://pelikan-dev.click/posts/press_keypad/</link>
       <pubDate>Thu, 16 Jan 2025 17:34:05 +0900</pubDate>
-      <guid>https://gobad820.github.io/posts/press_keypad/</guid>
+      <guid>https://pelikan-dev.click/posts/press_keypad/</guid>
       <description>2020 카카오 인턴쉽 기출문제</description>
     </item>
     <item>
       <title>HTTP API</title>
-      <link>https://gobad820.github.io/posts/http_api/</link>
+      <link>https://pelikan-dev.click/posts/http_api/</link>
       <pubDate>Sun, 12 Jan 2025 09:46:05 +0900</pubDate>
-      <guid>https://gobad820.github.io/posts/http_api/</guid>
+      <guid>https://pelikan-dev.click/posts/http_api/</guid>
       <description>HTTP API를 만들어보자</description>
     </item>
     <item>
       <title>크레인 인형뽑기 게임</title>
-      <link>https://gobad820.github.io/posts/crain_doll_game/</link>
+      <link>https://pelikan-dev.click/posts/crain_doll_game/</link>
       <pubDate>Fri, 10 Jan 2025 06:24:34 +0900</pubDate>
-      <guid>https://gobad820.github.io/posts/crain_doll_game/</guid>
+      <guid>https://pelikan-dev.click/posts/crain_doll_game/</guid>
       <description>2019 카카오 겨울 인턴쉽 기출</description>
     </item>
     <item>
       <title>HTTP</title>
-      <link>https://gobad820.github.io/posts/http/</link>
+      <link>https://pelikan-dev.click/posts/http/</link>
       <pubDate>Fri, 10 Jan 2025 00:17:11 +0900</pubDate>
-      <guid>https://gobad820.github.io/posts/http/</guid>
+      <guid>https://pelikan-dev.click/posts/http/</guid>
       <description>모든 것이 HTTP</description>
     </item>
     <item>
       <title>바탕화면 정리</title>
-      <link>https://gobad820.github.io/posts/cleaning_desktop/</link>
+      <link>https://pelikan-dev.click/posts/cleaning_desktop/</link>
       <pubDate>Tue, 07 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>https://gobad820.github.io/posts/cleaning_desktop/</guid>
+      <guid>https://pelikan-dev.click/posts/cleaning_desktop/</guid>
       <description>바탕화면의 파일들을 한 번에 삭제하기 위해 최소한의 이동거리를 갖는 드래그의 시작점과 끝점을 담은 정수 배열을 반환하라</description>
     </item>
   </channel>

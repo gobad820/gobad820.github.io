@@ -2,87 +2,129 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://gobad820.github.io/posts/back-propagation/</loc>
+    <loc>https://pelikan-dev.click/posts/cs-note/cs-note-1-2-factory/</loc>
+    <lastmod>2025-08-29T00:08:46+09:00</lastmod>
+  </url><url>
+    <loc>https://pelikan-dev.click/categories/algorithm/</loc>
+    <lastmod>2025-09-05T04:03:51+09:00</lastmod>
+  </url><url>
+    <loc>https://pelikan-dev.click/categories/</loc>
+    <lastmod>2025-09-05T04:03:51+09:00</lastmod>
+  </url><url>
+    <loc>https://pelikan-dev.click/tags/dp/</loc>
+    <lastmod>2025-09-05T04:03:51+09:00</lastmod>
+  </url><url>
+    <loc>https://pelikan-dev.click/posts/algorithm/dynamic-programming-1/</loc>
+    <lastmod>2025-09-05T04:03:51+09:00</lastmod>
+  </url><url>
+    <loc>https://pelikan-dev.click/</loc>
+    <lastmod>2025-09-05T04:03:51+09:00</lastmod>
+  </url><url>
+    <loc>https://pelikan-dev.click/posts/</loc>
+    <lastmod>2025-09-05T04:03:51+09:00</lastmod>
+  </url><url>
+    <loc>https://pelikan-dev.click/series/</loc>
+    <lastmod>2025-09-05T04:03:51+09:00</lastmod>
+  </url><url>
+    <loc>https://pelikan-dev.click/tags/</loc>
+    <lastmod>2025-09-05T04:03:51+09:00</lastmod>
+  </url><url>
+    <loc>https://pelikan-dev.click/tags/%EB%AC%B8%EC%A0%9C%ED%95%B4%EA%B2%B0/</loc>
+    <lastmod>2025-09-05T04:03:51+09:00</lastmod>
+  </url><url>
+    <loc>https://pelikan-dev.click/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</loc>
+    <lastmod>2025-09-05T04:03:51+09:00</lastmod>
+  </url><url>
+    <loc>https://pelikan-dev.click/series/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EB%A7%88%EC%8A%A4%ED%84%B0%ED%95%98%EA%B8%B0/</loc>
+    <lastmod>2025-09-05T04:03:51+09:00</lastmod>
+  </url><url>
+    <loc>https://pelikan-dev.click/tags/cs/</loc>
+    <lastmod>2025-08-29T00:08:46+09:00</lastmod>
+  </url><url>
+    <loc>https://pelikan-dev.click/categories/cs-study/</loc>
+    <lastmod>2025-08-29T00:08:46+09:00</lastmod>
+  </url><url>
+    <loc>https://pelikan-dev.click/series/cs-%EC%A0%84%EA%B3%B5%EC%A7%80%EC%8B%9D-%EC%A0%95%EB%A6%AC/</loc>
+    <lastmod>2025-08-29T00:08:46+09:00</lastmod>
+  </url><url>
+    <loc>https://pelikan-dev.click/tags/%EB%A9%B4%EC%A0%91/</loc>
+    <lastmod>2025-08-29T00:08:46+09:00</lastmod>
+  </url><url>
+    <loc>https://pelikan-dev.click/tags/%EC%A0%84%EA%B3%B5%EC%A7%80%EC%8B%9D/</loc>
+    <lastmod>2025-08-29T00:08:46+09:00</lastmod>
+  </url><url>
+    <loc>https://pelikan-dev.click/posts/back-propagation/</loc>
     <lastmod>2025-04-28T17:30:55+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/tags/cnn/</loc>
+    <loc>https://pelikan-dev.click/tags/cnn/</loc>
     <lastmod>2025-04-28T17:30:55+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/tags/computervision/</loc>
+    <loc>https://pelikan-dev.click/tags/computervision/</loc>
     <lastmod>2025-04-28T17:30:55+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/</loc>
+    <loc>https://pelikan-dev.click/tags/machinelearning/</loc>
     <lastmod>2025-04-28T17:30:55+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/tags/machinelearning/</loc>
-    <lastmod>2025-04-28T17:30:55+09:00</lastmod>
-  </url><url>
-    <loc>https://gobad820.github.io/posts/</loc>
-    <lastmod>2025-04-28T17:30:55+09:00</lastmod>
-  </url><url>
-    <loc>https://gobad820.github.io/tags/</loc>
-    <lastmod>2025-04-28T17:30:55+09:00</lastmod>
-  </url><url>
-    <loc>https://gobad820.github.io/posts/linear-models_ml/</loc>
+    <loc>https://pelikan-dev.click/posts/linear-models_ml/</loc>
     <lastmod>2025-04-02T18:42:01+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/tags/linearmodel/</loc>
+    <loc>https://pelikan-dev.click/tags/linearmodel/</loc>
     <lastmod>2025-04-02T18:42:01+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/tags/ml/</loc>
+    <loc>https://pelikan-dev.click/tags/ml/</loc>
     <lastmod>2025-04-02T18:42:01+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/posts/linear-model/</loc>
+    <loc>https://pelikan-dev.click/posts/linear-model/</loc>
     <lastmod>2025-04-02T17:32:12+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/posts/image-transformation/</loc>
+    <loc>https://pelikan-dev.click/posts/image-transformation/</loc>
     <lastmod>2025-03-31T17:11:39+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/tags/imagetransformation/</loc>
+    <loc>https://pelikan-dev.click/tags/imagetransformation/</loc>
     <lastmod>2025-03-31T17:11:39+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/tags/imagefilter/</loc>
+    <loc>https://pelikan-dev.click/tags/imagefilter/</loc>
     <lastmod>2025-03-24T17:38:55+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/posts/image-filtering/</loc>
+    <loc>https://pelikan-dev.click/posts/image-filtering/</loc>
     <lastmod>2025-03-24T17:38:55+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/tags/algorithm/</loc>
+    <loc>https://pelikan-dev.click/tags/algorithm/</loc>
     <lastmod>2025-01-21T16:36:47+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/tags/cpp/</loc>
+    <loc>https://pelikan-dev.click/tags/cpp/</loc>
     <lastmod>2025-01-21T16:36:47+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/tags/programmers/</loc>
+    <loc>https://pelikan-dev.click/tags/programmers/</loc>
     <lastmod>2025-01-21T16:36:47+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/posts/personality_test/</loc>
+    <loc>https://pelikan-dev.click/posts/personality_test/</loc>
     <lastmod>2025-01-21T16:36:47+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/tags/kakao/</loc>
+    <loc>https://pelikan-dev.click/tags/kakao/</loc>
     <lastmod>2025-01-16T17:34:05+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/posts/press_keypad/</loc>
+    <loc>https://pelikan-dev.click/posts/press_keypad/</loc>
     <lastmod>2025-01-16T17:34:05+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/tags/api/</loc>
+    <loc>https://pelikan-dev.click/tags/api/</loc>
     <lastmod>2025-01-12T09:46:05+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/tags/http/</loc>
+    <loc>https://pelikan-dev.click/tags/http/</loc>
     <lastmod>2025-01-12T09:46:05+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/posts/http_api/</loc>
+    <loc>https://pelikan-dev.click/posts/http_api/</loc>
     <lastmod>2025-01-12T09:46:05+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/posts/crain_doll_game/</loc>
+    <loc>https://pelikan-dev.click/posts/crain_doll_game/</loc>
     <lastmod>2025-01-10T06:24:34+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/posts/http/</loc>
+    <loc>https://pelikan-dev.click/posts/http/</loc>
     <lastmod>2025-01-10T00:17:11+09:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/posts/cleaning_desktop/</loc>
+    <loc>https://pelikan-dev.click/posts/cleaning_desktop/</loc>
     <lastmod>2025-01-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://gobad820.github.io/g-xxxxxxxxx/</loc>
+    <loc>https://pelikan-dev.click/g-xxxxxxxxx/</loc>
   </url>
 </urlset>

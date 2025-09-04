@@ -2,101 +2,143 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Pelikan&#39;s Glide</title>
-    <link>https://gobad820.github.io/tags/</link>
+    <link>https://pelikan-dev.click/tags/</link>
     <description>Recent content in Tags on Pelikan&#39;s Glide</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Apr 2025 17:30:55 +0900</lastBuildDate>
-    <atom:link href="https://gobad820.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Sep 2025 04:03:51 +0900</lastBuildDate>
+    <atom:link href="https://pelikan-dev.click/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DP</title>
+      <link>https://pelikan-dev.click/tags/dp/</link>
+      <pubDate>Fri, 05 Sep 2025 04:03:51 +0900</pubDate>
+      <guid>https://pelikan-dev.click/tags/dp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>문제해결</title>
+      <link>https://pelikan-dev.click/tags/%EB%AC%B8%EC%A0%9C%ED%95%B4%EA%B2%B0/</link>
+      <pubDate>Fri, 05 Sep 2025 04:03:51 +0900</pubDate>
+      <guid>https://pelikan-dev.click/tags/%EB%AC%B8%EC%A0%9C%ED%95%B4%EA%B2%B0/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>알고리즘</title>
+      <link>https://pelikan-dev.click/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</link>
+      <pubDate>Fri, 05 Sep 2025 04:03:51 +0900</pubDate>
+      <guid>https://pelikan-dev.click/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CS</title>
+      <link>https://pelikan-dev.click/tags/cs/</link>
+      <pubDate>Fri, 29 Aug 2025 00:08:46 +0900</pubDate>
+      <guid>https://pelikan-dev.click/tags/cs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>면접</title>
+      <link>https://pelikan-dev.click/tags/%EB%A9%B4%EC%A0%91/</link>
+      <pubDate>Fri, 29 Aug 2025 00:08:46 +0900</pubDate>
+      <guid>https://pelikan-dev.click/tags/%EB%A9%B4%EC%A0%91/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>전공지식</title>
+      <link>https://pelikan-dev.click/tags/%EC%A0%84%EA%B3%B5%EC%A7%80%EC%8B%9D/</link>
+      <pubDate>Fri, 29 Aug 2025 00:08:46 +0900</pubDate>
+      <guid>https://pelikan-dev.click/tags/%EC%A0%84%EA%B3%B5%EC%A7%80%EC%8B%9D/</guid>
+      <description></description>
+    </item>
     <item>
       <title>CNN</title>
-      <link>https://gobad820.github.io/tags/cnn/</link>
+      <link>https://pelikan-dev.click/tags/cnn/</link>
       <pubDate>Mon, 28 Apr 2025 17:30:55 +0900</pubDate>
-      <guid>https://gobad820.github.io/tags/cnn/</guid>
+      <guid>https://pelikan-dev.click/tags/cnn/</guid>
       <description></description>
     </item>
     <item>
       <title>Computervision</title>
-      <link>https://gobad820.github.io/tags/computervision/</link>
+      <link>https://pelikan-dev.click/tags/computervision/</link>
       <pubDate>Mon, 28 Apr 2025 17:30:55 +0900</pubDate>
-      <guid>https://gobad820.github.io/tags/computervision/</guid>
+      <guid>https://pelikan-dev.click/tags/computervision/</guid>
       <description></description>
     </item>
     <item>
       <title>MachineLearning</title>
-      <link>https://gobad820.github.io/tags/machinelearning/</link>
+      <link>https://pelikan-dev.click/tags/machinelearning/</link>
       <pubDate>Mon, 28 Apr 2025 17:30:55 +0900</pubDate>
-      <guid>https://gobad820.github.io/tags/machinelearning/</guid>
+      <guid>https://pelikan-dev.click/tags/machinelearning/</guid>
       <description></description>
     </item>
     <item>
       <title>LinearModel</title>
-      <link>https://gobad820.github.io/tags/linearmodel/</link>
+      <link>https://pelikan-dev.click/tags/linearmodel/</link>
       <pubDate>Wed, 02 Apr 2025 18:42:01 +0900</pubDate>
-      <guid>https://gobad820.github.io/tags/linearmodel/</guid>
+      <guid>https://pelikan-dev.click/tags/linearmodel/</guid>
       <description></description>
     </item>
     <item>
       <title>ML</title>
-      <link>https://gobad820.github.io/tags/ml/</link>
+      <link>https://pelikan-dev.click/tags/ml/</link>
       <pubDate>Wed, 02 Apr 2025 18:42:01 +0900</pubDate>
-      <guid>https://gobad820.github.io/tags/ml/</guid>
+      <guid>https://pelikan-dev.click/tags/ml/</guid>
       <description></description>
     </item>
     <item>
       <title>Imagetransformation</title>
-      <link>https://gobad820.github.io/tags/imagetransformation/</link>
+      <link>https://pelikan-dev.click/tags/imagetransformation/</link>
       <pubDate>Mon, 31 Mar 2025 17:11:39 +0900</pubDate>
-      <guid>https://gobad820.github.io/tags/imagetransformation/</guid>
+      <guid>https://pelikan-dev.click/tags/imagetransformation/</guid>
       <description></description>
     </item>
     <item>
       <title>Imagefilter</title>
-      <link>https://gobad820.github.io/tags/imagefilter/</link>
+      <link>https://pelikan-dev.click/tags/imagefilter/</link>
       <pubDate>Mon, 24 Mar 2025 17:38:55 +0900</pubDate>
-      <guid>https://gobad820.github.io/tags/imagefilter/</guid>
+      <guid>https://pelikan-dev.click/tags/imagefilter/</guid>
       <description></description>
     </item>
     <item>
       <title>Algorithm</title>
-      <link>https://gobad820.github.io/tags/algorithm/</link>
+      <link>https://pelikan-dev.click/tags/algorithm/</link>
       <pubDate>Tue, 21 Jan 2025 16:36:47 +0900</pubDate>
-      <guid>https://gobad820.github.io/tags/algorithm/</guid>
+      <guid>https://pelikan-dev.click/tags/algorithm/</guid>
       <description></description>
     </item>
     <item>
       <title>Cpp</title>
-      <link>https://gobad820.github.io/tags/cpp/</link>
+      <link>https://pelikan-dev.click/tags/cpp/</link>
       <pubDate>Tue, 21 Jan 2025 16:36:47 +0900</pubDate>
-      <guid>https://gobad820.github.io/tags/cpp/</guid>
+      <guid>https://pelikan-dev.click/tags/cpp/</guid>
       <description></description>
     </item>
     <item>
       <title>Programmers</title>
-      <link>https://gobad820.github.io/tags/programmers/</link>
+      <link>https://pelikan-dev.click/tags/programmers/</link>
       <pubDate>Tue, 21 Jan 2025 16:36:47 +0900</pubDate>
-      <guid>https://gobad820.github.io/tags/programmers/</guid>
+      <guid>https://pelikan-dev.click/tags/programmers/</guid>
       <description></description>
     </item>
     <item>
       <title>Kakao</title>
-      <link>https://gobad820.github.io/tags/kakao/</link>
+      <link>https://pelikan-dev.click/tags/kakao/</link>
       <pubDate>Thu, 16 Jan 2025 17:34:05 +0900</pubDate>
-      <guid>https://gobad820.github.io/tags/kakao/</guid>
+      <guid>https://pelikan-dev.click/tags/kakao/</guid>
       <description></description>
     </item>
     <item>
       <title>API</title>
-      <link>https://gobad820.github.io/tags/api/</link>
+      <link>https://pelikan-dev.click/tags/api/</link>
       <pubDate>Sun, 12 Jan 2025 09:46:05 +0900</pubDate>
-      <guid>https://gobad820.github.io/tags/api/</guid>
+      <guid>https://pelikan-dev.click/tags/api/</guid>
       <description></description>
     </item>
     <item>
       <title>HTTP</title>
-      <link>https://gobad820.github.io/tags/http/</link>
+      <link>https://pelikan-dev.click/tags/http/</link>
       <pubDate>Sun, 12 Jan 2025 09:46:05 +0900</pubDate>
-      <guid>https://gobad820.github.io/tags/http/</guid>
+      <guid>https://pelikan-dev.click/tags/http/</guid>
       <description></description>
     </item>
   </channel>

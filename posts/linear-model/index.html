@@ -2,19 +2,38 @@
 <html lang="en-us"
   dir="ltr">
 
-  <head>
-    <meta charset="utf-8">
+<head>
+  <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 
 
 
-<link rel="icon" type="image/ico" href="https://gobad820.github.io//favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://gobad820.github.io//favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://gobad820.github.io//favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="https://gobad820.github.io//android-chrome-192x192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="https://gobad820.github.io//apple-touch-icon.png">
+
+
+
+
+
+    
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+
+<link rel="icon" type="image/ico" href="https://pelikan-dev.click/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://pelikan-dev.click/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://pelikan-dev.click/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://pelikan-dev.click/android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://pelikan-dev.click/apple-touch-icon.png">
 
 <meta name="description" content="컴퓨터비전 5강: 선형 모델"/>
+
+
 
 <title>
     
@@ -22,9 +41,9 @@
     
 </title>
 
-<link rel="canonical" href="https://gobad820.github.io/posts/linear-model/"/>
+<link rel="canonical" href="https://pelikan-dev.click/posts/linear-model/"/>
 
-<meta property="og:url" content="https://gobad820.github.io/posts/linear-model/">
+<meta property="og:url" content="https://pelikan-dev.click/posts/linear-model/">
   <meta property="og:site_name" content="Pelikan&#39;s Glide">
   <meta property="og:title" content="Linear Model">
   <meta property="og:description" content="컴퓨터비전 5강: 선형 모델">
@@ -47,9 +66,7 @@
 
 
 
-
-<link rel="stylesheet" href="/assets/combined.min.97e32d65fe11c0cd3781001e6be3bf3516248c01a93ff6256f1e75541632eddd.css" media="all">
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/assets/combined.min.104a7fee30ae385db782d9ae92a3b5b05f36936519aabc8b11655e4ed1a7ed69.css" media="all">
 
 
 
@@ -59,49 +76,63 @@
 
 
 
-  </head>
 
-  
 
-  
-  
-  
 
-  <body class="auto">
 
-    <div class="content">
-      <header>
-        
+
+
+    
+
+
+
+
+</head>
+
+
+
+
+
+
+
+<body class="auto">
+
+  <div class="content">
+    <header>
+      
 
 <div class="header">
 
     
 
     <h1 class="header-title">
-        <a href="https://gobad820.github.io/">Pelikan&#39;s Glide</a>
+        <a href="https://pelikan-dev.click/">Pelikan&#39;s Glide</a>
     </h1>
 
-    <div class="flex">
+    <div class="header-menu">
         
 
         
         
-      
-        <p class="small ">
+
+        <p
+            class="small ">
             <a href="/" >
                 /home
             </a>
         </p>
         
-      
-        <p class="small ">
+
+        <p
+            class="small ">
             <a href="/posts" >
                 /posts
             </a>
         </p>
         
-      
-        <p class="small ">
+
+        <p
+            class="small ">
             <a href="/about" >
                 /about
             </a>
@@ -114,108 +145,62 @@
 
 </div>
 
-      </header>
+    </header>
 
-      <main class="main">
-        
-
-
+    <main class="main">
+      
 
 
 
-<div class="breadcrumbs">
-    
-    <a href="/">Home</a>
-    <span class="breadcrumbs-separator"> > </span>
-    
-    <a href="/posts/">Posts</a>
-    <span class="breadcrumbs-separator"> > </span>
-    
-    <a class="breadcrumbs-current" href="/posts/linear-model/">Linear Model</a>
-</div>
 
+<div class="breadcrumbs"><a href="/">Home</a><span class="breadcrumbs-separator">/</span><a href="/posts/">Posts</a><span class="breadcrumbs-separator">/</span>
+        <a href="/posts/linear-model/">Linear Model</a></div>
 
 
 <div  class="autonumber" >
-
-  <div class="single-intro-container">
-
-    
-
-    <h1 class="single-title">Linear Model</h1>
-    
-    <p class="single-summary">Computer Vision Lecture 5: Linear model</p>
-    
-
-    
-
-    <p class="single-readtime">
-      
-      
-      
-      <time datetime="2025-04-02T17:32:12&#43;09:00">April 2, 2025</time>
-      
-
-      
-      &nbsp; · &nbsp;
-      2 min read
-      
-    </p>
-
-  </div>
-
-  
-
-  
-  
-
-  <div class="single-tags">
-    
-    <span>
-      <a href="https://gobad820.github.io/tags/computervision/">#Computervision</a>
-    </span>
-    
-    
-    <span>
-      <a href="https://gobad820.github.io/tags/linearmodel/">#LinearModel</a>
-    </span>
-    
-    
-  </div>
-
-  
-  
-
-  
-
-  
-  <aside class="toc">
-    <p><strong>Table of contents</strong></p>
-    <nav id="TableOfContents">
+  <article>
+    <header class="single-intro-container">
+        
+        <h1 class="single-title">Linear Model</h1>
+        <p class="single-summary">Computer Vision Lecture 5: Linear model</p>
+        
+        <div class="single-subsummary">
+          
+          <div>
+            
+            <p class="single-date">
+              <time datetime="2025-04-02T17:32:12&#43;09:00">April 2, 2025</time>
+              &nbsp; · &nbsp;2 min read
+            </p>
+          </div>
+        </div>
+        
+    </header>    
+        <div class="single-tags"><span>
+                  <a href="https://pelikan-dev.click/tags/computervision/">#Computervision</a>
+                </span><span>
+                  <a href="https://pelikan-dev.click/tags/linearmodel/">#LinearModel</a>
+                </span>
+        </div>
+      <aside class="toc">
+        <p><strong>Table of contents</strong></p>
+        <nav id="TableOfContents">
   <ul>
-    <li><a href="#machine-learning">Machine Learning</a>
-      <ul>
-        <li><a href="#notation">Notation</a></li>
-        <li><a href="#example">Example</a></li>
-      </ul>
-    </li>
+    <li><a href="#machine-learning">Machine Learning</a></li>
   </ul>
 </nav>
-  </aside>
-  
-
-  
-
-  <div class="single-content">
-    <h2 class="heading" id="machine-learning">
+      </aside>
+    
+    <div class="single-content">
+      <h2 class="heading" id="machine-learning">
   Machine Learning
-  <a href="#machine-learning">#</a>
+  <a class="anchor" href="#machine-learning">#</a>
 </h2>
 <p>ML의 목표는 데이터를 분석하고 그 속에서 유의미한 정보를 도출해내는 것이다.
 ML을 통해 objective function을 최소화하거나 최대화하는 transformation을 찾아야 한다.</p>
 <h3 class="heading" id="notation">
   Notation
-  <a href="#notation">#</a>
+  <a class="anchor" href="#notation">#</a>
 </h3>
 <ul>
 <li>Input: x $\rightarrow$ Feature Vector or Data Point</li>
@@ -223,7 +208,7 @@ ML을 통해 objective function을 최소화하거나 최대화하는 transforma
 </ul>
 <h3 class="heading" id="example">
   Example
-  <a href="#example">#</a>
+  <a class="anchor" href="#example">#</a>
 </h3>
 <ul>
 <li>Input: $x \in \mathbf{R}^N$</li>
@@ -231,14 +216,14 @@ ML을 통해 objective function을 최소화하거나 최대화하는 transforma
 </ul>
 <pre class="mermaid">block-beta
         columns 3
-        block:main["input x\n\n\n\n\n\n\n\n\n\n"]
+        block:main[&#34;input x\n\n\n\n\n\n\n\n\n\n&#34;]
             columns 2
             space space
             Blood_Pressure 50 Heart_Rate 60 .... ... Glucose_Level 0.2
             space space
         end
-        blockArrow<["&nbsp;f(w·x)"]>(right)
-        block:result["output x\n\n\n\n\n\n\n\n\n\n"]
+        blockArrow&lt;[&#34;&amp;nbsp;f(w·x)&#34;]&gt;(right)
+        block:result[&#34;output x\n\n\n\n\n\n\n\n\n\n&#34;]
             columns 1
             space
         P_of_Has_Diabetes P_of_No_Diabetes
@@ -246,6 +231,7 @@ ML을 통해 objective function을 최소화하거나 최대화하는 transforma
         end
         
 </pre>
+
 <p>해당 그래프는 Linear Regression을 표현한 것이다.
 Regression은 Supervised이며 Continous하다.</p>
 <p>ML Problem은 아래와 같은 기준으로 나눌 수 있다.</p>
@@ -305,16 +291,20 @@ rank deficient의 경우 역행렬을 가질 수 없다.
 </ol>
 </div>
 
-    
-  </div>
+    </div>
+  </article>
 
   
-  <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true });
+  
+  
+  <script defer
+    type="module"
+    id="mermaid_script"
+    data-light-theme="default"
+    data-dark-theme="dark"
+    src='/js/mermaid.js'>
   </script>
   
-
 
   
 
@@ -324,7 +314,7 @@ rank deficient의 경우 역행렬을 가질 수 없다.
 <div class="single-pagination">
     <hr />
 
-    <div class="flex">
+    <div class="flexnowrap">
 
         <div class="single-pagination-prev">
             
@@ -374,11 +364,35 @@ rank deficient의 경우 역행렬을 가질 수 없다.
 </div>
 
 
-      </main>
-    </div>
+    </main>
+  </div>
 
-    <footer>
-      
+  
+  
+
+
+
+
+
+    
+
+
+
+
+  <footer>
+    
+
+    
+    
+
+
+
+
+
+    
+
+
+
 
     
     <p>Powered by
@@ -391,42 +405,17 @@ rank deficient의 경우 역행렬을 가질 수 없다.
     
 
 
+  </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-<script>
-    
-    function getTheme() {
-        return document.documentElement.classList.contains('dark') ? 'dark' : 'default';
-    }
-
-    
-    function initMermaid() {
-        mermaid.initialize({ theme: getTheme() });
-        mermaid.init();
-    }
-
-    
-    const observer = new MutationObserver(() => {
-        initMermaid();
-    });
-
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-
-    
-    document.addEventListener('DOMContentLoaded', () => {
-        initMermaid();
-    });
-</script>
-    </footer>
-
-    
-    <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
-<script defer
-  src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+  
+  <link rel="stylesheet" 
+  href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+  
+<script defer 
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
 
 <script defer
-  src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"
+  src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"
   onload="renderMathInElement(document.body);"></script>
 
 <script>
@@ -439,41 +428,9 @@ rank deficient의 경우 역행렬을 가질 수 없다.
     });
   });
 </script>
-    
+  
+</body>
 
-  </body>
-
-  <script>
-
-  function isAuto() {
-    return document.body.classList.contains("auto");
-  }
-
-  function setTheme() {
-    if (!isAuto()) {
-      return
-    }
-
-    document.body.classList.remove("auto");
-    let cls = "light";
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      cls = "dark";
-    }
-
-    document.body.classList.add(cls);
-  }
-
-  function invertBody() {
-    document.body.classList.toggle("dark");
-    document.body.classList.toggle("light");
-  }
-
-  if (isAuto()) {
-    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
-  }
-
-  setTheme();
-
-</script>
-
+<script src="/js/theme-switch.js"></script>
+<script defer src="/js/copy-code.js"></script>
 </html>

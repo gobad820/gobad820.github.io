@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Algorithm on Pelikan&#39;s Glide</title>
-    <link>https://gobad820.github.io/tags/algorithm/</link>
+    <link>https://pelikan-dev.click/tags/algorithm/</link>
     <description>Recent content in Algorithm on Pelikan&#39;s Glide</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 21 Jan 2025 16:36:47 +0900</lastBuildDate>
-    <atom:link href="https://gobad820.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pelikan-dev.click/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>성격 유형 검사하기</title>
-      <link>https://gobad820.github.io/posts/personality_test/</link>
+      <link>https://pelikan-dev.click/posts/personality_test/</link>
       <pubDate>Tue, 21 Jan 2025 16:36:47 +0900</pubDate>
-      <guid>https://gobad820.github.io/posts/personality_test/</guid>
+      <guid>https://pelikan-dev.click/posts/personality_test/</guid>
       <description>2020 KAKAO TECH INTERNSHIP</description>
     </item>
     <item>
       <title>키패드 누르기</title>
-      <link>https://gobad820.github.io/posts/press_keypad/</link>
+      <link>https://pelikan-dev.click/posts/press_keypad/</link>
       <pubDate>Thu, 16 Jan 2025 17:34:05 +0900</pubDate>
-      <guid>https://gobad820.github.io/posts/press_keypad/</guid>
+      <guid>https://pelikan-dev.click/posts/press_keypad/</guid>
       <description>2020 카카오 인턴쉽 기출문제</description>
     </item>
     <item>
       <title>크레인 인형뽑기 게임</title>
-      <link>https://gobad820.github.io/posts/crain_doll_game/</link>
+      <link>https://pelikan-dev.click/posts/crain_doll_game/</link>
       <pubDate>Fri, 10 Jan 2025 06:24:34 +0900</pubDate>
-      <guid>https://gobad820.github.io/posts/crain_doll_game/</guid>
+      <guid>https://pelikan-dev.click/posts/crain_doll_game/</guid>
       <description>2019 카카오 겨울 인턴쉽 기출</description>
     </item>
     <item>
       <title>바탕화면 정리</title>
-      <link>https://gobad820.github.io/posts/cleaning_desktop/</link>
+      <link>https://pelikan-dev.click/posts/cleaning_desktop/</link>
       <pubDate>Tue, 07 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>https://gobad820.github.io/posts/cleaning_desktop/</guid>
+      <guid>https://pelikan-dev.click/posts/cleaning_desktop/</guid>
       <description>바탕화면의 파일들을 한 번에 삭제하기 위해 최소한의 이동거리를 갖는 드래그의 시작점과 끝점을 담은 정수 배열을 반환하라</description>
     </item>
   </channel>

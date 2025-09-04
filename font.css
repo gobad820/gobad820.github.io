@@ -1,5 +1,122 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+/* Noto Sans KR 로컬 폰트 설정 */
+@font-face {
+  font-family: "NotoSansKR";
+  src: url("/fonts/NotoSansKR/NotoSansKR-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
+@font-face {
+  font-family: "NotoSansKR";
+  src: url("/fonts/NotoSansKR/NotoSansKR-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NotoSansKR";
+  src: url("/fonts/NotoSansKR/NotoSansKR-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NotoSansKR";
+  src: url("/fonts/NotoSansKR/NotoSansKR-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NotoSansKR";
+  src: url("/fonts/NotoSansKR/NotoSansKR-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NotoSansKR";
+  src: url("/fonts/NotoSansKR/NotoSansKR-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 기본 폰트 설정 */
 body {
-  font-family: 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+  font-family: "NotoSansKR", "Literata", "Malgun Gothic", "Apple SD Gothic Neo",
+    sans-serif;
+  font-weight: 400;
+}
+
+/* 한글 제목 볼드 강화 설정 - 최고 우선순위 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6,
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6,
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
+  font-family: "NotoSansKR", "Noto Sans KR", "Malgun Gothic",
+    "Apple SD Gothic Neo", sans-serif !important;
+  font-weight: 800 !important;
+  font-style: normal !important;
+  color: inherit !important;
+}
+
+/* 강조 텍스트 볼드 설정 */
+strong,
+b,
+.content strong,
+.content b,
+article strong,
+article b {
+  font-family: "NotoSansKR", "Noto Sans KR", "Malgun Gothic",
+    "Apple SD Gothic Neo", sans-serif !important;
+  font-weight: 800 !important;
+  font-style: normal !important;
+}
+
+/* 특별히 한글이 포함된 제목 강제 볼드 */
+h1:lang(ko),
+h2:lang(ko),
+h3:lang(ko),
+h4:lang(ko),
+h5:lang(ko),
+h6:lang(ko) {
+  font-family: "NotoSansKR", sans-serif !important;
+  font-weight: 900 !important;
+}
+
+/* 마크다운 제목에 이모지가 있을 때도 한글 부분은 볼드 유지 */
+h1 *,
+h2 *,
+h3 *,
+h4 *,
+h5 *,
+h6 * {
+  font-family: inherit !important;
+  font-weight: inherit !important;
 }

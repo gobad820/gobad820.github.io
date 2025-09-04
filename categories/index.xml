@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Pelikan&#39;s Glide</title>
+    <link>https://pelikan-dev.click/categories/</link>
+    <description>Recent content in Categories on Pelikan&#39;s Glide</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 05 Sep 2025 04:03:51 +0900</lastBuildDate>
+    <atom:link href="https://pelikan-dev.click/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Algorithm</title>
+      <link>https://pelikan-dev.click/categories/algorithm/</link>
+      <pubDate>Fri, 05 Sep 2025 04:03:51 +0900</pubDate>
+      <guid>https://pelikan-dev.click/categories/algorithm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CS Study</title>
+      <link>https://pelikan-dev.click/categories/cs-study/</link>
+      <pubDate>Fri, 29 Aug 2025 00:08:46 +0900</pubDate>
+      <guid>https://pelikan-dev.click/categories/cs-study/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

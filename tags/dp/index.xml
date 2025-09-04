@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DP on Pelikan&#39;s Glide</title>
+    <link>https://pelikan-dev.click/tags/dp/</link>
+    <description>Recent content in DP on Pelikan&#39;s Glide</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 05 Sep 2025 04:03:51 +0900</lastBuildDate>
+    <atom:link href="https://pelikan-dev.click/tags/dp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dynamic Programming: N으로 표현</title>
+      <link>https://pelikan-dev.click/posts/algorithm/dynamic-programming-1/</link>
+      <pubDate>Fri, 05 Sep 2025 04:03:51 +0900</pubDate>
+      <guid>https://pelikan-dev.click/posts/algorithm/dynamic-programming-1/</guid>
+      <description>알고리즘 문제 해결 과정을 기록합니다</description>
+    </item>
+  </channel>
+</rss>
