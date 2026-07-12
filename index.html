@@ -1,534 +1,458 @@
-<!DOCTYPE html>
-<html lang="en-us"
-  dir="ltr">
-
+<!doctype html>
+<html lang="ko">
 <head>
-	<meta name="generator" content="Hugo 0.140.2">
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="김상해 백엔드 개발자 포트폴리오 — 동시성·데이터 정합·AI 검증 자동화">
+<meta property="og:title" content="김상해 · Backend Engineer">
+<meta property="og:description" content="예외와 동시성을 설계 단계에서 잡고, AI를 검증 파이프라인에 넣는 백엔드 개발자">
+<meta property="og:type" content="website">
+<title>김상해 · Backend Engineer</title>
+<style>
+  :root {
+    --ground: #f5f7f8;
+    --surface: #ffffff;
+    --surface-2: #eef1f3;
+    --ink: #161a1f;
+    --ink-soft: #48525b;
+    --ink-faint: #8b949c;
+    --hairline: #e0e5e9;
+    --accent: #0f766e;
+    --accent-bright: #0d9488;
+    --accent-soft: rgba(15, 118, 110, 0.09);
+    --good: #15803d;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", "Segoe UI", Roboto, sans-serif;
+    --font-mono: "SF Mono", "JetBrains Mono", "Cascadia Code", ui-monospace, "D2Coding", Menlo, Consolas, monospace;
+    --maxw: 68rem;
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #0f1216;
+      --surface: #161b21;
+      --surface-2: #1d232a;
+      --ink: #e8ebee;
+      --ink-soft: #a6b0b8;
+      --ink-faint: #69737b;
+      --hairline: #252c33;
+      --accent: #2dd4bf;
+      --accent-bright: #5eead4;
+      --accent-soft: rgba(45, 212, 191, 0.11);
+      --good: #4ade80;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0f1216;
+    --surface: #161b21;
+    --surface-2: #1d232a;
+    --ink: #e8ebee;
+    --ink-soft: #a6b0b8;
+    --ink-faint: #69737b;
+    --hairline: #252c33;
+    --accent: #2dd4bf;
+    --accent-bright: #5eead4;
+    --accent-soft: rgba(45, 212, 191, 0.11);
+    --good: #4ade80;
+  }
+  :root[data-theme="light"] {
+    --ground: #f5f7f8;
+    --surface: #ffffff;
+    --surface-2: #eef1f3;
+    --ink: #161a1f;
+    --ink-soft: #48525b;
+    --ink-faint: #8b949c;
+    --hairline: #e0e5e9;
+    --accent: #0f766e;
+    --accent-bright: #0d9488;
+    --accent-soft: rgba(15, 118, 110, 0.09);
+    --good: #15803d;
+  }
 
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.2rem, 4vw, 2.5rem); }
+  section { padding: clamp(3rem, 7vw, 5.5rem) 0; border-top: 1px solid var(--hairline); }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
 
+  /* ---------- nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--ground) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 0.7rem clamp(1.2rem, 4vw, 2.5rem); display: flex; align-items: center; gap: 1.5rem; }
+  .nav-brand { font-family: var(--font-mono); font-weight: 600; font-size: 0.9rem; letter-spacing: -0.01em; color: var(--ink); }
+  .nav-brand .dot { color: var(--accent); }
+  .nav-links { margin-left: auto; display: flex; gap: 1.3rem; align-items: center; }
+  .nav-links a { font-size: 0.83rem; color: var(--ink-soft); font-family: var(--font-mono); }
+  .nav-links a:hover { color: var(--accent); text-decoration: none; }
+  .theme-btn { background: none; border: 1px solid var(--hairline); color: var(--ink-soft); width: 34px; height: 30px; border-radius: 7px; cursor: pointer; font-size: 0.9rem; display: grid; place-items: center; }
+  .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+  @media (max-width: 620px) { .nav-links a.jump { display: none; } }
 
+  /* ---------- hero ---------- */
+  .hero { padding: clamp(3.5rem, 9vw, 7rem) 0 clamp(2.5rem, 6vw, 4rem); border-top: none; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background-image: linear-gradient(var(--hairline) 1px, transparent 1px), linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
+    background-size: 46px 46px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 80% 0%, #000 0%, transparent 70%);
+    mask-image: radial-gradient(ellipse 70% 60% at 80% 0%, #000 0%, transparent 70%);
+    opacity: 0.6;
+  }
+  .hero .wrap { position: relative; z-index: 1; }
+  .eyebrow { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin: 0 0 1.1rem; display: flex; align-items: center; gap: 0.6rem; }
+  .eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--accent); display: inline-block; }
+  .hero h1 { font-size: clamp(2.4rem, 6vw, 3.8rem); line-height: 1.05; letter-spacing: -0.03em; margin: 0 0 0.4rem; text-wrap: balance; font-weight: 700; }
+  .hero h1 .en { font-family: var(--font-mono); font-weight: 500; color: var(--ink-faint); font-size: 0.42em; letter-spacing: 0.02em; vertical-align: middle; margin-left: 0.7rem; }
+  .hero .thesis { font-size: clamp(1.1rem, 2.4vw, 1.4rem); color: var(--ink-soft); max-width: 40ch; text-wrap: balance; margin: 1.2rem 0 2rem; line-height: 1.5; }
+  .hero .thesis b { color: var(--ink); font-weight: 600; }
+  .hero-links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .chip-link { font-family: var(--font-mono); font-size: 0.82rem; border: 1px solid var(--hairline); background: var(--surface); padding: 0.5rem 0.9rem; border-radius: 8px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 0.45rem; }
+  .chip-link:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .chip-link .k { color: var(--ink-faint); }
 
+  /* ---------- stat strip ---------- */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); border-radius: var(--radius); overflow: hidden; margin-top: 2.6rem; }
+  .stat { background: var(--surface); padding: 1.1rem 1.2rem; }
+  .stat .n { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 600; color: var(--accent); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .stat .l { font-size: 0.78rem; color: var(--ink-faint); margin-top: 0.2rem; }
+  @media (max-width: 620px) { .stats { grid-template-columns: repeat(2, 1fr); } }
 
+  /* ---------- section heads ---------- */
+  .sec-head { display: flex; align-items: baseline; gap: 0.9rem; margin: 0 0 2rem; }
+  .sec-head .idx { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); }
+  .sec-head h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); letter-spacing: -0.02em; margin: 0; font-weight: 680; }
+  .sec-head .rule { flex: 1; height: 1px; background: var(--hairline); align-self: center; }
 
+  /* ---------- about ---------- */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
+  @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; } }
+  .about p { max-width: 60ch; color: var(--ink-soft); margin: 0 0 1rem; }
+  .about p b { color: var(--ink); font-weight: 600; }
+  .facts { font-family: var(--font-mono); font-size: 0.85rem; border: 1px solid var(--hairline); border-radius: var(--radius); overflow: hidden; }
+  .facts .row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.7rem 1rem; border-bottom: 1px solid var(--hairline); }
+  .facts .row:last-child { border-bottom: none; }
+  .facts .row .k { color: var(--ink-faint); }
+  .facts .row .v { color: var(--ink); text-align: right; }
 
+  /* ---------- skills ---------- */
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .skill-cat { background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius); padding: 1.2rem 1.3rem; }
+  .skill-cat h3 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); margin: 0 0 0.9rem; font-family: var(--font-mono); font-weight: 600; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag { font-family: var(--font-mono); font-size: 0.8rem; padding: 0.3rem 0.6rem; border-radius: 6px; background: var(--surface-2); color: var(--ink-soft); }
+  .tag.on { background: var(--accent-soft); color: var(--accent); }
+  .skill-cat.learning { border-style: dashed; }
+  .skill-cat.learning h3 { color: var(--accent); }
+  .skill-cat.learning .note { font-size: 0.76rem; color: var(--ink-faint); margin-top: 0.75rem; font-family: var(--font-sans); }
 
-    
+  /* ---------- projects ---------- */
+  .proj { background: var(--surface); border: 1px solid var(--hairline); border-radius: 14px; padding: clamp(1.4rem, 3vw, 2.2rem); margin-bottom: 1.6rem; }
+  .proj-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem 1rem; margin-bottom: 0.3rem; }
+  .proj-top h3 { font-size: 1.35rem; margin: 0; letter-spacing: -0.02em; }
+  .proj-top .badge { font-family: var(--font-mono); font-size: 0.72rem; padding: 0.22rem 0.55rem; border-radius: 20px; background: var(--accent-soft); color: var(--accent); }
+  .proj-meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faint); display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; margin: 0.5rem 0 1.1rem; }
+  .proj-meta .role { color: var(--accent); }
+  .proj-summary { color: var(--ink-soft); margin: 0 0 1.3rem; max-width: 62ch; }
+  .proj-summary b { color: var(--ink); font-weight: 600; }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
 
+  .contrib { margin-bottom: 1.6rem; }
+  .contrib h4 { font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); font-family: var(--font-mono); margin: 0 0 0.7rem; }
+  .contrib ul { margin: 0; padding-left: 0; list-style: none; display: grid; gap: 0.5rem; }
+  .contrib li { position: relative; padding-left: 1.4rem; color: var(--ink-soft); font-size: 0.94rem; }
+  .contrib li::before { content: "▹"; position: absolute; left: 0; color: var(--accent); }
+  .contrib li b { color: var(--ink); font-weight: 600; }
 
+  /* troubleshooting 4-step */
+  .ts { border: 1px solid var(--hairline); border-radius: var(--radius); overflow: hidden; margin-top: 1.2rem; }
+  .ts-title { font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink); background: var(--surface-2); padding: 0.7rem 1rem; border-bottom: 1px solid var(--hairline); display: flex; align-items: center; gap: 0.5rem; }
+  .ts-title .tag-mini { color: var(--accent); }
+  .ts-step { display: grid; grid-template-columns: 92px 1fr; gap: 1rem; padding: 0.85rem 1rem; border-bottom: 1px solid var(--hairline); }
+  .ts-step:last-child { border-bottom: none; }
+  .ts-step .lab { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-faint); padding-top: 0.15rem; }
+  .ts-step.result { background: var(--accent-soft); }
+  .ts-step.result .lab { color: var(--accent); }
+  .ts-step .txt { color: var(--ink-soft); font-size: 0.92rem; }
+  .ts-step .txt b { color: var(--ink); font-weight: 600; }
+  .ts-step .txt .num { font-family: var(--font-mono); color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }
+  @media (max-width: 560px) { .ts-step { grid-template-columns: 1fr; gap: 0.25rem; } }
 
+  .proj-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
 
+  /* ---------- minor projects ---------- */
+  .minors { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+  .minor { background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius); padding: 1.3rem 1.4rem; }
+  .minor h4 { margin: 0 0 0.5rem; font-size: 1.02rem; letter-spacing: -0.01em; }
+  .minor p { margin: 0 0 0.9rem; font-size: 0.88rem; color: var(--ink-soft); }
+  .minor .mtags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .minor .tag { font-size: 0.72rem; }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  /* ---------- contact ---------- */
+  .contact { text-align: center; }
+  .contact h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); letter-spacing: -0.02em; margin: 0 0 0.8rem; text-wrap: balance; }
+  .contact p { color: var(--ink-soft); max-width: 44ch; margin: 0 auto 2rem; }
+  .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.6rem; }
+  footer { text-align: center; padding: 2.5rem 0 3rem; color: var(--ink-faint); font-family: var(--font-mono); font-size: 0.78rem; border-top: 1px solid var(--hairline); }
 
-
-
-<link rel="icon" type="image/ico" href="https://pelikan-dev.click/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://pelikan-dev.click/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://pelikan-dev.click/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="https://pelikan-dev.click/android-chrome-192x192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="https://pelikan-dev.click/apple-touch-icon.png">
-
-<link rel="alternate" type="application/rss+xml" href="https://pelikan-dev.click/index.xml" title="Pelikan's Glide">
-<meta name="description" content="A Tech Blog"/>
-
-
-
-<title>
-    
-    Pelikan&#39;s Glide
-    
-</title>
-
-<link rel="canonical" href="https://pelikan-dev.click/"/>
-
-<meta property="og:url" content="https://pelikan-dev.click/">
-  <meta property="og:site_name" content="Pelikan&#39;s Glide">
-  <meta property="og:title" content="Home">
-  <meta property="og:description" content="A Tech Blog">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="website">
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/assets/combined.min.104a7fee30ae385db782d9ae92a3b5b05f36936519aabc8b11655e4ed1a7ed69.css" media="all">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
+  /* ---------- print / PDF ---------- */
+  @media print {
+    :root { --ground: #ffffff; --surface: #ffffff; --surface-2: #f2f4f5; --hairline: #cdd3d8; --ink: #14181c; --ink-soft: #33393f; --accent: #0b6b63; }
+    .nav, .theme-btn, .hero::before { display: none !important; }
+    body { font-size: 11pt; }
+    section { padding: 1.1rem 0; border-top: 1px solid var(--hairline); break-inside: avoid; }
+    .hero { padding: 0.5rem 0 1rem; }
+    .proj, .minor, .skill-cat, .stat { break-inside: avoid; }
+    .hero-links, .chip-link { border-color: var(--hairline); }
+    a { color: var(--ink); }
+  }
+</style>
 </head>
+<body>
 
 
-
-
-
-
-
-<body class="auto">
-
-  <div class="content">
-    <header>
-      
-
-<div class="header">
-
-    
-
-    <h1 class="header-title">
-        <a href="https://pelikan-dev.click/">Pelikan&#39;s Glide</a>
-    </h1>
-
-    <div class="header-menu">
-        
-
-        
-        
-
-        <p
-            class="small  bold ">
-            <a href="/" >
-                /home
-            </a>
-        </p>
-        
-
-        <p
-            class="small ">
-            <a href="/posts" >
-                /posts
-            </a>
-        </p>
-        
-
-        <p
-            class="small ">
-            <a href="/about" >
-                /about
-            </a>
-        </p>
-        
-        
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-brand">kim_sanghae<span class="dot">.</span>be</span>
+    <div class="nav-links">
+      <a class="jump" href="#about">about</a>
+      <a class="jump" href="#skills">skills</a>
+      <a class="jump" href="#projects">projects</a>
+      <a class="jump" href="#contact">contact</a>
+      <button class="theme-btn" id="themeBtn" aria-label="테마 전환" title="라이트/다크 전환">◐</button>
     </div>
-
-    
-
-</div>
-
-    </header>
-
-    <main class="main">
-      
-
-
-
-
-
-
-<div class="intro">
-    
-
-    
-    <p>I am an South Korean Software Engineer with a strong foundation in computer science and a passion for solving complex problems.
-I am interested in a range of topics, including algorithms, spring boot, JPA, and information retrieval.</p>
-    
-</div>
-
-
-
-
-
-<div class="social-icons">
-    <a href="https://www.linkedin.com/in/%ec%83%81%ed%95%b4-%ea%b9%80-a7135a2a7/" target="_blank"
-        rel="noopener noreferrer me"
-        title="Linkedin">
-        <svg role="img" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-    </a>
-    <a href="https://medium.com/" target="_blank"
-        rel="noopener noreferrer me"
-        title="Medium">
-        <svg role="img" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Medium</title><path d="M4.21 0A4.201 4.201 0 0 0 0 4.21v15.58A4.201 4.201 0 0 0 4.21 24h15.58A4.201 4.201 0 0 0 24 19.79v-1.093c-.137.013-.278.02-.422.02-2.577 0-4.027-2.146-4.09-4.832a7.592 7.592 0 0 1 .022-.708c.093-1.186.475-2.241 1.105-3.022a3.885 3.885 0 0 1 1.395-1.1c.468-.237 1.127-.367 1.664-.367h.023c.101 0 .202.004.303.01V4.211A4.201 4.201 0 0 0 19.79 0Zm.198 5.583h4.165l3.588 8.435 3.59-8.435h3.864v.146l-.019.004c-.705.16-1.063.397-1.063 1.254h-.003l.003 10.274c.06.676.424.885 1.063 1.03l.02.004v.145h-4.923v-.145l.019-.005c.639-.144.994-.353 1.054-1.03V7.267l-4.745 11.15h-.261L6.15 7.569v9.445c0 .857.358 1.094 1.063 1.253l.02.004v.147H4.405v-.147l.019-.004c.705-.16 1.065-.397 1.065-1.253V6.987c0-.857-.358-1.094-1.064-1.254l-.018-.004zm19.25 3.668c-1.086.023-1.733 1.323-1.813 3.124H24V9.298a1.378 1.378 0 0 0-.342-.047Zm-1.862 3.632c-.1 1.756.86 3.239 2.204 3.634v-3.634z"/></svg>
-    </a>
-    <a href="https://github.com/gobad820" target="_blank"
-        rel="noopener noreferrer me"
-        title="Github">
-        <svg role="img" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-    </a>
-</div>
-
-
-
-
-
-
-<div class="list-container">
-    
-    <h1> Posts </h1>
-    
-
-    
-
-    
-    
-    
-    
-
-    
-
-    
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">29 Aug 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/cs-note/cs-note-1-2-factory/">
-                네트워크 기초 - CS 전공지식 정리
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> 네트워크 기초 개념 정리 </p>
-        
-    </div>
-</div>
-    
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">5 Sep 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/algorithm/dynamic-programming-1/">
-                Dynamic Programming: N으로 표현
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> 알고리즘 문제 해결 과정을 기록합니다 </p>
-        
-    </div>
-</div>
-    
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">28 Apr 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/back-propagation/">
-                Back Propagation
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> ComputerVision Lecture 9-1 </p>
-        
-    </div>
-</div>
-    
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">2 Apr 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/linear-models_ml/">
-                Linear-Models(ML)
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> 선형 모델(머신러닝) </p>
-        
-    </div>
-</div>
-    
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">2 Apr 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/linear-model/">
-                Linear Model
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> Computer Vision Lecture 5: Linear model </p>
-        
-    </div>
-</div>
-    
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">31 Mar 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/image-transformation/">
-                Image Transformation
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> ComputerVision Lecture05: Image transformation </p>
-        
-    </div>
-</div>
-    
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">24 Mar 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/image-filtering/">
-                이미지 필터링
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> ComputerVision Lecture01 </p>
-        
-    </div>
-</div>
-    
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">21 Jan 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/personality_test/">
-                성격 유형 검사하기
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> 2020 KAKAO TECH INTERNSHIP </p>
-        
-    </div>
-</div>
-    
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">16 Jan 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/press_keypad/">
-                키패드 누르기
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> 2020 카카오 인턴쉽 기출문제 </p>
-        
-    </div>
-</div>
-    
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">12 Jan 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/http_api/">
-                HTTP API
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> HTTP API를 만들어보자 </p>
-        
-    </div>
-</div>
-    
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">10 Jan 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/crain_doll_game/">
-                크레인 인형뽑기 게임
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> 2019 카카오 겨울 인턴쉽 기출 </p>
-        
-    </div>
-</div>
-    
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">10 Jan 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/http/">
-                HTTP
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> 모든 것이 HTTP </p>
-        
-    </div>
-</div>
-    
-    <div class="post-line">
-
-    
-
-    
-        <p class="line-date">7 Jan 2025 </p>
-    
-
-    <div>
-        <p class="line-title">
-            <a href="/posts/cleaning_desktop/">
-                바탕화면 정리
-            </a>
-        </p>
-
-        
-        <p class="line-summary"> 바탕화면의 파일들을 한 번에 삭제하기 위해 최소한의 이동거리를 갖는 드래그의 시작점과 끝점을 담은 정수 배열을 반환하라 </p>
-        
-    </div>
-</div>
-    
-
-    
-
-    
-</div>
-
-
-    </main>
   </div>
+</nav>
 
-  
-  
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Backend Engineer · Java / Spring</p>
+    <h1>김상해<span class="en">Kim Sanghae</span></h1>
+    <p class="thesis">예외와 동시성을 <b>설계 단계에서 잡고</b>, AI를 검증 파이프라인에 넣어 <b>감이 아닌 데이터로 판단</b>하는 백엔드 개발자입니다.</p>
+    <div class="hero-links">
+      <a class="chip-link" href="https://github.com/gobad820" target="_blank" rel="noopener"><span class="k">github</span> /gobad820</a>
+      <a class="chip-link" href="https://pelikan-dev.click" target="_blank" rel="noopener"><span class="k">blog</span> pelikan-dev.click</a>
+      <a class="chip-link" href="mailto:pelikan@pusan.ac.kr"><span class="k">email</span> pelikan@pusan.ac.kr</a>
+    </div>
 
+    <div class="stats">
+      <div class="stat"><div class="n">97%</div><div class="l">담당 도메인 메서드 커버리지</div></div>
+      <div class="stat"><div class="n">우수상</div><div class="l">카카오테크캠퍼스 2기 · 29팀</div></div>
+      <div class="stat"><div class="n">Redis+Lua</div><div class="l">좋아요 동시성 정합 제어</div></div>
+      <div class="stat"><div class="n">CI · AI</div><div class="l">PR 코드리뷰 자동화 구축</div></div>
+    </div>
+  </div>
+</header>
 
+<section id="about" class="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">01</span><h2>About</h2><span class="rule"></span></div>
+    <div class="about-grid">
+      <div>
+        <p>데이터가 <b>한 건도 틀리면 안 되는</b> 시스템을 좋아합니다. 예외 응답을 하나로 통일하고, 동시 요청에서 카운트가 어긋나지 않게 원자 연산으로 정합성을 지키는 것처럼, <b>흔들리지 않는 백엔드</b>를 설계 단계부터 만드는 데 강점이 있습니다.</p>
+        <p>Claude를 CI에 연동해 PR마다 코드 리뷰가 자동으로 달리도록 구축한 것처럼, <b>AI를 개발·검증 파이프라인에 실제로 심는</b> 경험을 갖고 있습니다. 새 도구를 두려움 없이 실무에 적용하고, 생성된 코드는 원리를 다시 이해한 뒤 씁니다.</p>
+      </div>
+      <div class="facts">
+        <div class="row"><span class="k">학력</span><span class="v">부산대 컴퓨터공학과 졸업</span></div>
+        <div class="row"><span class="k">교육</span><span class="v">SSAFY 15기</span></div>
+        <div class="row"><span class="k">전공</span><span class="v">CS · 4.05 / 4.5</span></div>
+        <div class="row"><span class="k">관심</span><span class="v">동시성 · 데이터 정합 · AI 검증</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section id="skills" class="skills-sec">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">02</span><h2>Skills</h2><span class="rule"></span></div>
+    <div class="skills">
+      <div class="skill-cat">
+        <h3>Language · Framework</h3>
+        <div class="tags">
+          <span class="tag on">Java</span><span class="tag on">Spring Boot</span><span class="tag on">Spring Data JPA</span><span class="tag on">JUnit 5</span><span class="tag on">Mockito</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Database · Cache</h3>
+        <div class="tags">
+          <span class="tag on">MySQL</span><span class="tag on">Redis</span><span class="tag on">MyBatis (Mapper XML)</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Infra · Tooling</h3>
+        <div class="tags">
+          <span class="tag on">AWS EC2 / S3</span><span class="tag on">Docker</span><span class="tag on">K3s</span><span class="tag on">Nginx</span><span class="tag on">Git</span><span class="tag on">GitHub Actions</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>AI · Automation</h3>
+        <div class="tags">
+          <span class="tag on">Claude API / claude-code-action</span><span class="tag on">YOLOv8</span><span class="tag on">LoRA</span>
+        </div>
+      </div>
+      <div class="skill-cat learning">
+        <h3>학습 중</h3>
+        <div class="tags">
+          <span class="tag">JEUS</span><span class="tag">MSSQL</span><span class="tag">jQuery</span><span class="tag">Spring Security</span>
+        </div>
+        <p class="note">현대오토에버 SE 스택. 입사 후 실무 적용 목표로 학습 중 — "봤다"와 "짰다"를 구분해 표기했습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">03</span><h2>Projects</h2><span class="rule"></span></div>
 
-    
+    <!-- eatBusan -->
+    <article class="proj">
+      <div class="proj-top">
+        <h3>eatBusan</h3>
+        <span class="badge">SSAFY 관통 프로젝트</span>
+      </div>
+      <div class="proj-meta">
+        <span>2026.05 – 06</span><span>백엔드 2인</span><span class="role">Role: 좋아요 도메인 단독 설계·구현 / AI 리뷰 자동화</span>
+      </div>
+      <p class="proj-summary">부산 맛집 추천·리뷰 커뮤니티 서비스. <b>가장 자주 호출되는 좋아요 기능</b>의 동시성·정합성을 단독으로 맡았고, <b>PR 코드 리뷰를 AI로 자동화</b>하는 CI 워크플로우를 직접 구축했습니다.</p>
+      <div class="proj-tags">
+        <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">JPA</span><span class="tag">MyBatis</span><span class="tag">MySQL</span><span class="tag">Redis</span><span class="tag">AWS S3</span><span class="tag">GitHub Actions</span>
+      </div>
 
+      <div class="contrib">
+        <h4>본인 기여</h4>
+        <ul>
+          <li>좋아요 <b>Redis Set + Lua 원자 연산</b> 동시성 제어 (캐시 장애 시 DB 폴백 설계)</li>
+          <li><b>claude-code-action</b>을 PR 트리거로 연결, 프로젝트 특화 리뷰 규칙 설계</li>
+          <li><b>MyBatis Mapper XML</b> 쿼리 직접 작성 (JPA와 병행, 기능별 도구 선택)</li>
+        </ul>
+      </div>
 
+      <div class="ts">
+        <div class="ts-title"><span class="tag-mini">TROUBLESHOOTING</span> 좋아요 카운트 동시성 경합</div>
+        <div class="ts-step"><div class="lab">문제</div><div class="txt">가장 자주 호출되는 좋아요에서 <b>동시 요청 시 카운트가 어긋나는 경합</b>(Lost Update)이 발생.</div></div>
+        <div class="ts-step"><div class="lab">원인·가설</div><div class="txt">DB 카운터만으로 처리하면 <b>SADD 확인 없이 INCR</b>가 겹쳐 중복 좋아요·카운트 오차가 생긴다고 판단.</div></div>
+        <div class="ts-step"><div class="lab">해결</div><div class="txt">Redis Set으로 사용자 중복을 막고, <b>Lua 스크립트로 검사와 증감을 원자적으로 묶어</b> 경합 구간 제거. 캐시 장애 시 DB 폴백까지 설계.</div></div>
+        <div class="ts-step result"><div class="lab">결과</div><div class="txt">동시 요청에서 <b>카운트 정합성 보장</b>. 사람이 놓치기 쉬운 동시성 결함을 구조로 차단.</div></div>
+      </div>
 
+      <div class="ts">
+        <div class="ts-title"><span class="tag-mini">TROUBLESHOOTING</span> 반복 결함을 사람이 매번 못 잡음</div>
+        <div class="ts-step"><div class="lab">문제</div><div class="txt">협업 중 <b>트랜잭션 누락·soft delete 위반·Redis Lost Update</b> 같은 반복 결함을 사람이 PR마다 잡기 어려움.</div></div>
+        <div class="ts-step"><div class="lab">가설</div><div class="txt">프로젝트 규칙을 <b>AI 리뷰어에게 명시적으로 규정</b>하면 사람이 놓치는 패턴을 자동으로 걸러낼 수 있다.</div></div>
+        <div class="ts-step"><div class="lab">해결</div><div class="txt">claude-code-action을 PR 열림에 트리거. <b>심각도 4단계·변경 라인만 리뷰·지적 5개 초과 시 축약</b> 등 리뷰 규칙을 직접 설계하고 <span class="num">gh api</span>로 코멘트 자동 게시.</div></div>
+        <div class="ts-step result"><div class="lab">결과</div><div class="txt">중복 좋아요(SADD 미확인 INCR)·IDOR 같은 결함을 <b>머지 전에 차단</b>. 리뷰 부담과 누락 감소.</div></div>
+      </div>
 
-  <footer>
-    
+      <div class="proj-links">
+        <a class="chip-link" href="https://github.com/spring-boys/eatBusan" target="_blank" rel="noopener"><span class="k">backend</span> spring-boys/eatBusan</a>
+        <a class="chip-link" href="https://github.com/spring-boys/eatBusan-front" target="_blank" rel="noopener"><span class="k">frontend</span> eatBusan-front</a>
+      </div>
+    </article>
 
-    
-    
+    <!-- MediTogether -->
+    <article class="proj">
+      <div class="proj-top">
+        <h3>MediTogether</h3>
+        <span class="badge">카카오테크캠퍼스 2기 · 우수상</span>
+      </div>
+      <div class="proj-meta">
+        <span>2024.08 – 11</span><span>7인 (백엔드)</span><span class="role">Role: 예약·매니저·리포트 도메인 API·DB·예외 설계</span>
+      </div>
+      <p class="proj-summary">의료 접근이 어려운 취약계층을 <b>동행 매니저와 연결</b>하는 병원 동행 매칭 플랫폼. OneStore 출시, 29팀 중 <b>우수상</b>. 예약·매니저·리포트 도메인의 API·DB 스키마·예외 처리 구조를 설계했습니다.</p>
+      <div class="proj-tags">
+        <span class="tag">Java 21</span><span class="tag">Spring Boot 3.3</span><span class="tag">JPA</span><span class="tag">MySQL</span><span class="tag">JUnit 5</span><span class="tag">Mockito</span><span class="tag">AWS EC2</span>
+      </div>
 
+      <div class="contrib">
+        <h4>본인 기여</h4>
+        <ul>
+          <li>예약·매니저·리포트 <b>REST CRUD API 설계 + MySQL 스키마 직접 설계</b></li>
+          <li><b>40여 개 ErrorCode Enum + GlobalExceptionHandler</b>로 예외 응답 일원화</li>
+          <li>입력 검증을 역할별로 분리 (validateLocations / validateDateTime / validatePatient)</li>
+        </ul>
+      </div>
 
+      <div class="ts">
+        <div class="ts-title"><span class="tag-mini">TROUBLESHOOTING</span> 예외 응답 형식이 팀원마다 제각각</div>
+        <div class="ts-step"><div class="lab">문제</div><div class="txt">백엔드 팀원마다 예외 처리와 <b>응답 형식이 제각각</b>이라, 앱에서 응답을 형식마다 다르게 처리해야 했음.</div></div>
+        <div class="ts-step"><div class="lab">가설</div><div class="txt">에러 코드를 <b>enum으로 통합하고 처리 지점을 한 곳으로</b> 모으면 응답 규격이 하나로 고정된다.</div></div>
+        <div class="ts-step"><div class="lab">해결</div><div class="txt"><b>40여 개 ErrorCode Enum</b>을 정의하고 GlobalExceptionHandler로 응답을 일원화. 입력 검증도 역할별로 분리해 책임을 명확히.</div></div>
+        <div class="ts-step result"><div class="lab">결과</div><div class="txt">응답 규격 고정. <b>JUnit 5·Mockito로 담당 도메인 메서드 커버리지 <span class="num">97%</span></b>(IntelliJ 기준) 달성해 결함을 사전 방어.</div></div>
+      </div>
 
+      <div class="proj-links">
+        <a class="chip-link" href="https://github.com/kakao-tech-campus-2nd-step3/Team25_BE" target="_blank" rel="noopener"><span class="k">backend</span> Team25_BE</a>
+      </div>
+    </article>
 
+    <!-- minor projects -->
+    <h4 style="font-family:var(--font-mono);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-faint);margin:2.2rem 0 1rem;">그 외 경험</h4>
+    <div class="minors">
+      <div class="minor">
+        <h4>블루-그린 무중단 배포</h4>
+        <p>업데이트마다 서버를 내렸다 올리는 불편을 없애기 위해 AWS EC2 + Route 53 + Nginx로 <b>무중단 배포 파이프라인</b>을 직접 구축.</p>
+        <div class="mtags"><span class="tag">AWS EC2</span><span class="tag">Route 53</span><span class="tag">Nginx</span></div>
+      </div>
+      <div class="minor">
+        <h4>Cloud9 · 수강신청 부하 처리</h4>
+        <p>수강신청 트래픽을 견디기 위한 K3s 기반 시스템. <b>HPA 오토스케일링</b>과 Prometheus·Grafana 모니터링 구성.</p>
+        <div class="mtags"><span class="tag">K3s</span><span class="tag">FastAPI</span><span class="tag">HPA</span><span class="tag">Grafana</span></div>
+      </div>
+      <div class="minor">
+        <h4>SSAFY AI 경진대회</h4>
+        <p>재활용 분류 VQA 시스템. <b>Qwen VLM + LoRA 파인튜닝</b>, Albumentations로 데이터를 5,000 → 20,000장 증강.</p>
+        <div class="mtags"><span class="tag">Qwen VLM</span><span class="tag">LoRA</span><span class="tag">Augmentation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>데이터로 판단하는 백엔드,<br>함께 만들고 싶습니다.</h2>
+    <p>동시성·데이터 정합·AI 검증 자동화에 대한 이야기라면 언제든 환영합니다.</p>
+    <div class="contact-links">
+      <a class="chip-link" href="mailto:pelikan@pusan.ac.kr"><span class="k">email</span> pelikan@pusan.ac.kr</a>
+      <a class="chip-link" href="https://github.com/gobad820" target="_blank" rel="noopener"><span class="k">github</span> /gobad820</a>
+      <a class="chip-link" href="https://pelikan-dev.click" target="_blank" rel="noopener"><span class="k">blog</span> pelikan-dev.click</a>
+    </div>
+  </div>
+</section>
 
+<footer>
+  kim_sanghae.be — Backend Engineer · Java / Spring
+</footer>
 
+<script>
+  (function () {
+    var btn = document.getElementById('themeBtn');
+    function current() {
+      var set = document.documentElement.getAttribute('data-theme');
+      if (set) return set;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    btn.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      btn.textContent = next === 'dark' ? '◑' : '◐';
+    });
+  })();
+</script>
 
-
-    
-    <p>Powered by
-        <a href="https://gohugo.io/">Hugo</a>
-        and
-        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
-    </p>
-    
-    
-    
-
-
-  </footer>
-
-  
 </body>
-
-<script src="/js/theme-switch.js"></script>
-<script defer src="/js/copy-code.js"></script>
 </html>
