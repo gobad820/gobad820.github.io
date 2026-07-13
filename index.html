@@ -8,6 +8,12 @@
 <meta property="og:description" content="예외와 동시성을 설계 단계에서 잡고, AI를 검증 파이프라인에 넣는 백엔드 개발자">
 <meta property="og:type" content="website">
 <title>김상해 · Backend Engineer</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#14181d">
 <style>
   :root {
     --ground: #f5f7f8;
@@ -129,6 +135,7 @@
   .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); border-radius: var(--radius); overflow: hidden; margin-top: 2.6rem; }
   .stat { background: var(--surface); padding: 1.1rem 1.2rem; }
   .stat .n { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 600; color: var(--accent); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .stat .n.ko { font-family: var(--font-sans); letter-spacing: -0.01em; }
   .stat .l { font-size: 0.78rem; color: var(--ink-faint); margin-top: 0.2rem; }
   @media (max-width: 620px) { .stats { grid-template-columns: repeat(2, 1fr); } }
 
@@ -251,7 +258,7 @@
 
     <div class="stats">
       <div class="stat"><div class="n">97%</div><div class="l">담당 도메인 메서드 커버리지</div></div>
-      <div class="stat"><div class="n">우수상</div><div class="l">카카오테크캠퍼스 2기 · 29팀</div></div>
+      <div class="stat"><div class="n ko">우수상</div><div class="l">카카오테크캠퍼스 2기 · 29팀</div></div>
       <div class="stat"><div class="n">Redis+Lua</div><div class="l">좋아요 동시성 정합 제어</div></div>
       <div class="stat"><div class="n">CI · AI</div><div class="l">PR 코드리뷰 자동화 구축</div></div>
     </div>
