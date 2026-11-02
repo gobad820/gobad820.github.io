@@ -261,7 +261,7 @@
     </div>
 
     <div class="stats">
-      <div class="stat"><div class="n">97%</div><div class="l">담당 도메인 메서드 커버리지</div></div>
+      <div class="stat"><div class="n">12→46</div><div class="l">흩어진 에러 코드 통합</div></div>
       <div class="stat"><div class="n ko">우수상</div><div class="l">카카오테크캠퍼스 2기 · 29팀</div></div>
       <div class="stat"><div class="n">Redis+Lua</div><div class="l">좋아요 동시성 정합 제어</div></div>
       <div class="stat"><div class="n">CI · AI</div><div class="l">PR 코드리뷰 자동화 구축</div></div>
@@ -306,7 +306,7 @@
       <div class="skill-cat">
         <h3>Infra · Tooling</h3>
         <div class="tags">
-          <span class="tag on">AWS EC2 / S3</span><span class="tag on">Docker</span><span class="tag on">K3s</span><span class="tag on">Nginx</span><span class="tag on">Git</span><span class="tag on">GitHub Actions</span>
+          <span class="tag on">AWS EC2 / S3</span><span class="tag on">Docker</span><span class="tag on">Nginx</span><span class="tag on">Git</span><span class="tag on">GitHub Actions</span>
         </div>
       </div>
       <div class="skill-cat">
@@ -366,7 +366,7 @@
         <div class="ts-step"><div class="lab">문제</div><div class="txt">협업 중 <b>트랜잭션 누락·soft delete 위반·Redis Lost Update</b> 같은 반복 결함을 사람이 PR마다 잡기 어려움.</div></div>
         <div class="ts-step"><div class="lab">가설</div><div class="txt">프로젝트 규칙을 <b>AI 리뷰어에게 명시적으로 규정</b>하면 사람이 놓치는 패턴을 자동으로 걸러낼 수 있다.</div></div>
         <div class="ts-step"><div class="lab">해결</div><div class="txt">claude-code-action을 PR 열림에 트리거. <b>심각도 4단계·변경 라인만 리뷰·지적 5개 초과 시 축약</b> 등 리뷰 규칙을 직접 설계하고 <span class="num">gh api</span>로 코멘트 자동 게시.</div></div>
-        <div class="ts-step result"><div class="lab">결과</div><div class="txt">권한 검증 누락(IDOR)과 댓글 수 <b>Lost Update</b>가 실제로 검출됨. <b>그중 하나는 제 코드였고</b> 원자적 갱신으로 수정. 차단은 걸지 않아 <b>판단은 사람이 하도록</b> 두었음(2인 팀).</div></div>
+        <div class="ts-step result"><div class="lab">결과</div><div class="txt">트랜잭션 누락·<b>Lost Update</b>·권한 검증 누락(IDOR)을 심각도 기준으로 명시. 댓글 수 Lost Update는 <b>원자적 UPDATE</b>로 직접 수정. 차단은 걸지 않아 <b>판단은 사람이 하도록</b> 두었음(2인 팀).</div></div>
       </div>
 
       <div class="proj-links">
@@ -382,9 +382,9 @@
         <span class="badge">카카오테크캠퍼스 2기 · 우수상</span>
       </div>
       <div class="proj-meta">
-        <span>2024.08 – 11</span><span>7인 (백엔드)</span><span class="role">Role: 예약·매니저·리포트 도메인 API·DB·예외 설계</span>
+        <span>2024.08 – 11</span><span>백엔드 4인</span><span class="role">Role: 예약·리포트·실시간 동행 도메인 API, 예외 처리 통합</span>
       </div>
-      <p class="proj-summary">의료 접근이 어려운 취약계층을 <b>동행 매니저와 연결</b>하는 병원 동행 매칭 플랫폼. OneStore 출시, 29팀 중 <b>우수상</b>. 예약·매니저·리포트 도메인의 API·DB 스키마·예외 처리 구조를 설계했습니다.</p>
+      <p class="proj-summary">의료 접근이 어려운 취약계층을 <b>동행 매니저와 연결</b>하는 병원 동행 매칭 플랫폼. OneStore 출시, 29팀 중 <b>우수상</b>. 백엔드에서 예약·리포트·실시간 동행 도메인과 예외 처리 구조를 맡았습니다.</p>
       <div class="proj-tags">
         <span class="tag">Java 21</span><span class="tag">Spring Boot 3.3</span><span class="tag">JPA</span><span class="tag">MySQL</span><span class="tag">JUnit 5</span><span class="tag">Mockito</span><span class="tag">AWS EC2</span>
       </div>
@@ -392,7 +392,7 @@
       <div class="contrib">
         <h4>본인 기여</h4>
         <ul>
-          <li>예약·매니저·리포트 <b>REST CRUD API 설계 + MySQL 스키마 직접 설계</b></li>
+          <li>예약·리포트·실시간 동행 <b>REST API 설계·구현</b></li>
           <li>도메인별로 흩어진 <b>ErrorCode Enum을 병합하고 GlobalExceptionHandler</b>로 예외 응답 일원화</li>
           <li>입력 검증을 역할별로 분리 (validateLocations / validateDateTime / validatePatient)</li>
         </ul>
@@ -403,7 +403,7 @@
         <div class="ts-step"><div class="lab">문제</div><div class="txt">백엔드 팀원마다 예외 처리와 <b>응답 형식이 제각각</b>이라, 앱에서 응답을 형식마다 다르게 처리해야 했음.</div></div>
         <div class="ts-step"><div class="lab">가설</div><div class="txt">에러 코드를 <b>enum으로 통합하고 처리 지점을 한 곳으로</b> 모으면 응답 규격이 하나로 고정된다.</div></div>
         <div class="ts-step"><div class="lab">해결</div><div class="txt">도메인마다 따로 있던 <b>ErrorCode Enum을 하나로 병합</b>하고 GlobalExceptionHandler로 응답을 일원화. 입력 검증도 역할별로 분리해 책임을 명확히.</div></div>
-        <div class="ts-step result"><div class="lab">결과</div><div class="txt">응답 규격 고정. <b>JUnit 5·Mockito로 담당 도메인 메서드 커버리지 <span class="num">97%</span></b>(IntelliJ 기준) 달성해 결함을 사전 방어.</div></div>
+        <div class="ts-step result"><div class="lab">결과</div><div class="txt">응답 규격 고정. 오류 코드 <span class="num">12</span>개를 <b><span class="num">46</span>개로 통합</b>(이후 팀원이 같은 규칙으로 65개). 서비스는 @SpringBootTest 통합 테스트, 컨트롤러는 Mockito로 검증.</div></div>
       </div>
 
       <div class="proj-links">
